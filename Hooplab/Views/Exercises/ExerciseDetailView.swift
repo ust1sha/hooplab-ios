@@ -216,6 +216,15 @@ public struct ExerciseDetailView: View {
         }
         .background(HooplabTheme.bgDark.ignoresSafeArea())
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: { dismiss() }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(HooplabTheme.textMuted)
+                        .font(.system(size: 24))
+                }
+            }
+        }
         .sheet(isPresented: $showingWorkoutSheet) {
             WorkoutTimerView(exercise: exercise)
                 .environmentObject(dataStore)

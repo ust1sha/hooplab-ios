@@ -50,9 +50,11 @@ public struct HomeView: View {
                 QuizSheetView()
                     .environmentObject(dataStore)
             }
-            .navigationDestination(item: $selectedExercise) { ex in
-                ExerciseDetailView(exercise: ex)
-                    .environmentObject(dataStore)
+            .sheet(item: $selectedExercise) { ex in
+                NavigationStack {
+                    ExerciseDetailView(exercise: ex)
+                        .environmentObject(dataStore)
+                }
             }
         }
     }

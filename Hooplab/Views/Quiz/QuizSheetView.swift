@@ -239,7 +239,6 @@ public struct QuizSheetView: View {
                     .font(.system(size: 26, weight: .heavy))
                     .foregroundColor(.white)
 
-                let percent = Int((Double(score) / Double(questions.count)) * 100)
                 Text(score >= 7 ? (dataStore.isEnglish ? "Superb knowledge of basketball rules!" : "Отличное знание правил и тактики!") : (dataStore.isEnglish ? "Good effort! Keep practicing." : "Хороший результат! Тренируйся дальше."))
                     .font(.system(size: 15))
                     .foregroundColor(HooplabTheme.textSecondary)
