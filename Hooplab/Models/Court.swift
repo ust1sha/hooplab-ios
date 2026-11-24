@@ -23,7 +23,7 @@ public struct CourtsData {
         StreetballCourt(
             id: "court_1",
             name: "Лужники Streetball Park",
-            address = "ул. Лужники, 24с1",
+            address: "ул. Лужники, 24с1",
             surfaceTypeRu: "Полимерное покрытие",
             surfaceTypeEn: "Polymer Acrylic",
             rimsCount: 6,
