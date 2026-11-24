@@ -2,42 +2,63 @@ import SwiftUI
 
 public struct CourtsView: View {
     @EnvironmentObject var dataStore: DataStore
+    @Environment(\.dismiss) var dismiss
     @State private var courts: [StreetballCourt] = CourtsData.sampleCourts
 
     public var body: some View {
-        NavigationStack {
-            ZStack {
-                HooplabTheme.bgDark.ignoresSafeArea()
+        ZStack {
+            Color.clear
+                .hooplabAurora()
 
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text(dataStore.isEnglish ? "POPULAR BASKETBALL COURTS" : "ПОПУЛЯРНЫЕ СТРИТБОЛЬНЫЕ КОРТЫ")
-                            .font(.system(size: 12, weight: .bold))
-                            .foregroundColor(HooplabTheme.textMuted)
-                            .tracking(1)
-                            .padding(.horizontal, 16)
+            VStack(alignment: .leading, spacing: 0) {
+                // Header
+                HStack {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(dataStore.isEnglish ? "Streetball Courts" : "Стритбольные площадки")
+                            .font(.system(size: 24, weight: .bold))
+                            .foregroundColor(HooplabTheme.textPrimary)
+                        Text(dataStore.isEnglish ? "Top basketball spots in Moscow" : "Лучшие баскетбольные споты Москвы")
+                            .font(.system(size: 13, weight: .regular))
+                            .foregroundColor(HooplabTheme.textSecondary)
+                    }
 
+                    Spacer()
+
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 26))
+                            .foregroundColor(HooplabTheme.textSecondary)
+                    }
+                }
+                .padding(.horizontal, 16)
+                .padding(.top, 14)
+                .padding(.bottom, 12)
+
+                ScrollView(showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: 14) {
                         ForEach(courts) { court in
                             courtCard(court)
                         }
                     }
-                    .padding(.vertical, 16)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 4)
+                    .padding(.bottom, 32)
                 }
             }
-            .navigationTitle(dataStore.isEnglish ? "Courts" : "Площадки")
         }
+        .navigationBarHidden(true)
     }
 
     private func courtCard(_ court: StreetballCourt) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 3) {
                     Text(court.name)
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(.white)
+                        .font(.system(size: 17, weight: .bold))
+                        .foregroundColor(HooplabTheme.textPrimary)
 
                     Text(court.address)
-                        .font(.system(size: 14))
+                        .font(.system(size: 13))
                         .foregroundColor(HooplabTheme.textSecondary)
                 }
 
@@ -45,33 +66,36 @@ public struct CourtsView: View {
 
                 HStack(spacing: 4) {
                     Image(systemName: "person.2.fill")
-                        .font(.system(size: 12))
+                        .font(.system(size: 11))
                     Text("\(court.activePlayersCount)")
-                        .font(.system(size: 13, weight: .bold))
+                        .font(.system(size: 12, weight: .bold))
                 }
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)
-                .background(HooplabTheme.orangePrimary.opacity(0.2))
+                .background(HooplabTheme.orangeSoft)
                 .foregroundColor(HooplabTheme.orangePrimary)
                 .cornerRadius(8)
             }
 
-            Divider().background(HooplabTheme.borderDark)
+            Divider()
+                .background(HooplabTheme.cardBorder)
 
             HStack(spacing: 16) {
-                HStack(spacing: 6) {
+                HStack(spacing: 5) {
                     Image(systemName: "circle.grid.cross")
                         .foregroundColor(HooplabTheme.orangePrimary)
+                        .font(.system(size: 12))
                     Text("\(court.rimsCount) \(dataStore.isEnglish ? "rims" : "колец")")
-                        .font(.system(size: 13, weight: .medium))
+                        .font(.system(size: 12, weight: .medium))
                         .foregroundColor(HooplabTheme.textSecondary)
                 }
 
-                HStack(spacing: 6) {
+                HStack(spacing: 5) {
                     Image(systemName: "square.fill")
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(Color(hex: "2563EB"))
+                        .font(.system(size: 10))
                     Text(court.localizedSurface(isEn: dataStore.isEnglish))
-                        .font(.system(size: 13, weight: .medium))
+                        .font(.system(size: 12, weight: .medium))
                         .foregroundColor(HooplabTheme.textSecondary)
                 }
 
@@ -80,15 +104,15 @@ public struct CourtsView: View {
                 if court.hasLighting {
                     HStack(spacing: 4) {
                         Image(systemName: "lightbulb.fill")
-                            .foregroundColor(.yellow)
-                        Text(dataStore.isEnglish ? "Light" : "Свет")
-                            .font(.system(size: 12, weight: .semibold))
-                            .foregroundColor(.yellow)
+                            .foregroundColor(Color(hex: "D97706"))
+                            .font(.system(size: 11))
+                        Text(dataStore.isEnglish ? "Light" : "Освещение")
+                            .font(.system(size: 11, weight: .semibold))
+                            .foregroundColor(Color(hex: "D97706"))
                     }
                 }
             }
         }
-        .hooplabCard(padding: 16)
-        .padding(.horizontal, 16)
+        .hooplabCard(padding: 14, cornerRadius: 18)
     }
 }

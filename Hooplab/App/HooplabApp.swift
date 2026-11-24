@@ -8,7 +8,7 @@ struct HooplabApp: App {
         WindowGroup {
             MainTabView()
                 .environmentObject(dataStore)
-                .preferredColorScheme(.dark)
+                .preferredColorScheme(.light)
         }
     }
 }

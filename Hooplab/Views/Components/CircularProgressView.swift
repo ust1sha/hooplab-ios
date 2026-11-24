@@ -14,13 +14,13 @@ public struct CircularProgressView: View {
     public var body: some View {
         ZStack {
             Circle()
-                .stroke(Color.white.opacity(0.1), lineWidth: lineWidth)
+                .stroke(HooplabTheme.bgNav, lineWidth: lineWidth)
 
             Circle()
                 .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
                 .stroke(
                     AngularGradient(
-                        gradient: Gradient(colors: [color, color.opacity(0.7), color]),
+                        gradient: Gradient(colors: [color, color.opacity(0.75), color]),
                         center: .center,
                         startAngle: .degrees(0),
                         endAngle: .degrees(360)

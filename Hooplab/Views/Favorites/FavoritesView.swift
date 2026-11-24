@@ -11,38 +11,65 @@ public struct FavoritesView: View {
     public var body: some View {
         NavigationStack {
             ZStack {
-                HooplabTheme.bgDark.ignoresSafeArea()
+                Color.clear
+                    .hooplabAurora()
 
-                if favoriteExercises.isEmpty {
-                    VStack(spacing: 16) {
-                        Image(systemName: "heart.slash.fill")
-                            .font(.system(size: 54))
-                            .foregroundColor(HooplabTheme.textMuted)
-
-                        Text(dataStore.isEnglish ? "No Favorites Yet" : "В избранном пока пусто")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.white)
-
-                        Text(dataStore.isEnglish ? "Save your favorite exercises to quickly access them anytime." : "Добавляйте упражнения в избранное сердечком, чтобы быстро начинать тренировку.")
-                            .font(.system(size: 14))
+                VStack(alignment: .leading, spacing: 0) {
+                    // Header
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(dataStore.isEnglish ? "Favorites" : "Избранное")
+                            .font(.system(size: 28, weight: .bold))
+                            .foregroundColor(HooplabTheme.textPrimary)
+                        Text(dataStore.isEnglish ? "Saved exercises for quick access" : "Сохраненные упражнения для быстрых тренировок")
+                            .font(.system(size: 13, weight: .regular))
                             .foregroundColor(HooplabTheme.textSecondary)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal, 40)
                     }
-                } else {
-                    ScrollView {
-                        LazyVGrid(columns: [GridItem(.flexible(), spacing: 14), GridItem(.flexible(), spacing: 14)], spacing: 14) {
-                            ForEach(favoriteExercises) { exercise in
-                                ExerciseCardView(exercise: exercise) {
-                                    selectedExercise = exercise
+                    .padding(.horizontal, 16)
+                    .padding(.top, 14)
+                    .padding(.bottom, 12)
+
+                    if favoriteExercises.isEmpty {
+                        Spacer()
+                        VStack(spacing: 14) {
+                            ZStack {
+                                Circle()
+                                    .fill(HooplabTheme.orangeSoft)
+                                    .frame(width: 80, height: 80)
+
+                                Image(systemName: "heart.slash.fill")
+                                    .font(.system(size: 38))
+                                    .foregroundColor(HooplabTheme.orangePrimary)
+                            }
+
+                            Text(dataStore.isEnglish ? "No Favorites Yet" : "В избранном пока пусто")
+                                .font(.system(size: 19, weight: .bold))
+                                .foregroundColor(HooplabTheme.textPrimary)
+
+                            Text(dataStore.isEnglish ? "Tap the heart icon on any exercise card to save it here for fast training." : "Нажимайте на сердечко у карточки любого упражнения, чтобы добавить его сюда.")
+                                .font(.system(size: 14))
+                                .foregroundColor(HooplabTheme.textSecondary)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 36)
+                        }
+                        .frame(maxWidth: .infinity)
+                        Spacer()
+                    } else {
+                        ScrollView(showsIndicators: false) {
+                            LazyVStack(spacing: 12) {
+                                ForEach(favoriteExercises) { exercise in
+                                    ExerciseCardView(exercise: exercise) {
+                                        selectedExercise = exercise
+                                    }
                                 }
                             }
+                            .padding(.horizontal, 16)
+                            .padding(.top, 8)
+                            .padding(.bottom, 32)
                         }
-                        .padding(16)
                     }
                 }
             }
-            .navigationTitle(dataStore.isEnglish ? "Favorites" : "Избранное")
+            .navigationBarHidden(true)
             .sheet(item: $selectedExercise) { ex in
                 NavigationStack {
                     ExerciseDetailView(exercise: ex)

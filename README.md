@@ -139,5 +139,3 @@ Hooplab/
 1. Подключи iPhone по проводу к ПК.
 2. Открой **Sideloadly** или **AltStore**.
 3. Перетащи файл `Hooplab.ipa`, введи свой Apple ID (или выбери сертификат) и нажми **Start**.
-
-<!-- build trigger 2026-11-25 01:09:07 -->

@@ -26,7 +26,8 @@ public struct WorkoutTimerView: View {
 
     public var body: some View {
         ZStack {
-            HooplabTheme.bgDark.ignoresSafeArea()
+            Color.clear
+                .hooplabAurora()
 
             VStack(spacing: 24) {
                 // Top Bar
@@ -37,7 +38,7 @@ public struct WorkoutTimerView: View {
                     }) {
                         Image(systemName: "xmark.circle.fill")
                             .font(.system(size: 28))
-                            .foregroundColor(HooplabTheme.textMuted)
+                            .foregroundColor(HooplabTheme.textSecondary)
                     }
 
                     Spacer()
@@ -48,7 +49,7 @@ public struct WorkoutTimerView: View {
                             .foregroundColor(exercise.categoryColor)
                         Text(exercise.localizedTitle(isEn: dataStore.isEnglish))
                             .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(HooplabTheme.textPrimary)
                             .lineLimit(1)
                     }
 
@@ -79,12 +80,12 @@ public struct WorkoutTimerView: View {
     }
 
     private var activeWorkoutView: some View {
-        VStack(spacing: 32) {
+        VStack(spacing: 28) {
             // Sets indicator
             HStack(spacing: 8) {
                 ForEach(1...totalSets, id: \.self) { idx in
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(idx < currentSet ? HooplabTheme.orangePrimary : (idx == currentSet ? Color.white : Color.white.opacity(0.15)))
+                        .fill(idx < currentSet ? HooplabTheme.orangePrimary : (idx == currentSet ? HooplabTheme.textPrimary : HooplabTheme.bgNav))
                         .frame(height: 6)
                 }
             }
@@ -92,13 +93,13 @@ public struct WorkoutTimerView: View {
 
             VStack(spacing: 8) {
                 Text(phase == .resting ? (dataStore.isEnglish ? "REST INTERVAL" : "ВРЕМЯ ОТДЫХА") : (dataStore.isEnglish ? "SET \(currentSet) OF \(totalSets)" : "ПОДХОД \(currentSet) ИЗ \(totalSets)"))
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundColor(phase == .resting ? .green : HooplabTheme.orangePrimary)
+                    .font(.system(size: 13, weight: .bold))
+                    .foregroundColor(phase == .resting ? HooplabTheme.greenAccent : HooplabTheme.orangePrimary)
                     .tracking(2)
 
                 Text(phase == .resting ? "\(timeRemaining) сек" : (dataStore.isEnglish ? "Perform Set" : "Выполняйте подход"))
                     .font(.system(size: 32, weight: .heavy))
-                    .foregroundColor(.white)
+                    .foregroundColor(HooplabTheme.textPrimary)
             }
 
             // Circular Timer
@@ -106,19 +107,19 @@ public struct WorkoutTimerView: View {
                 let progress = phase == .resting ? Double(restDuration - timeRemaining) / Double(max(1, restDuration)) : 1.0
                 CircularProgressView(
                     progress: progress,
-                    lineWidth: 18,
-                    color: phase == .resting ? .green : HooplabTheme.orangePrimary
+                    lineWidth: 16,
+                    color: phase == .resting ? HooplabTheme.greenAccent : HooplabTheme.orangePrimary
                 )
                 .frame(width: 220, height: 220)
 
                 VStack(spacing: 8) {
                     if phase == .resting {
                         Text(formatSeconds(timeRemaining))
-                            .font(.system(size: 48, weight: .black, design: .rounded))
-                            .foregroundColor(.white)
+                            .font(.system(size: 46, weight: .black, design: .rounded))
+                            .foregroundColor(HooplabTheme.textPrimary)
                         Text(dataStore.isEnglish ? "to next set" : "до след. подхода")
                             .font(.system(size: 13, weight: .medium))
-                            .foregroundColor(HooplabTheme.textMuted)
+                            .foregroundColor(HooplabTheme.textSecondary)
                     } else {
                         Image(systemName: exercise.sfSymbol)
                             .font(.system(size: 54))
@@ -143,13 +144,17 @@ public struct WorkoutTimerView: View {
                         HStack {
                             Image(systemName: "forward.fill")
                             Text(dataStore.isEnglish ? "Skip Rest" : "Пропустить отдых")
-                                .font(.system(size: 17, weight: .bold))
+                                .font(.system(size: 16, weight: .bold))
                         }
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                        .background(HooplabTheme.cardDark)
-                        .foregroundColor(.white)
+                        .frame(height: 52)
+                        .background(HooplabTheme.cardBg)
+                        .foregroundColor(HooplabTheme.textPrimary)
                         .cornerRadius(16)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(HooplabTheme.cardBorder, lineWidth: 1)
+                        )
                     }
                 } else {
                     Button(action: {
@@ -160,14 +165,14 @@ public struct WorkoutTimerView: View {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.system(size: 20, weight: .bold))
                             Text(currentSet < totalSets ? (dataStore.isEnglish ? "Done: Next Set" : "Подход выполнен ▶") : (dataStore.isEnglish ? "Finish Workout" : "Завершить тренировку 🎉"))
-                                .font(.system(size: 18, weight: .bold))
+                                .font(.system(size: 17, weight: .bold))
                         }
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 18)
-                        .background(HooplabTheme.orangeGradient)
+                        .frame(height: 54)
+                        .background(HooplabTheme.orangePrimary)
                         .foregroundColor(.white)
-                        .cornerRadius(18)
-                        .shadow(color: HooplabTheme.orangePrimary.opacity(0.4), radius: 10, y: 5)
+                        .cornerRadius(16)
+                        .shadow(color: HooplabTheme.orangePrimary.opacity(0.35), radius: 8, x: 0, y: 3)
                     }
                 }
             }
@@ -182,7 +187,7 @@ public struct WorkoutTimerView: View {
 
             ZStack {
                 Circle()
-                    .fill(HooplabTheme.orangePrimary.opacity(0.15))
+                    .fill(HooplabTheme.orangeSoft)
                     .frame(width: 130, height: 130)
 
                 Image(systemName: "trophy.fill")
@@ -193,7 +198,7 @@ public struct WorkoutTimerView: View {
             VStack(spacing: 8) {
                 Text(dataStore.isEnglish ? "Workout Complete!" : "Тренировка завершена!")
                     .font(.system(size: 26, weight: .heavy))
-                    .foregroundColor(.white)
+                    .foregroundColor(HooplabTheme.textPrimary)
 
                 Text(dataStore.isEnglish ? "Great work! You've improved your skills." : "Отличная работа! Навыки игрока улучшены.")
                     .font(.system(size: 15))
@@ -208,7 +213,7 @@ public struct WorkoutTimerView: View {
                         .foregroundColor(HooplabTheme.orangePrimary)
                     Text("XP Опыт")
                         .font(.system(size: 12, weight: .bold))
-                        .foregroundColor(HooplabTheme.textMuted)
+                        .foregroundColor(HooplabTheme.textSecondary)
                 }
                 .frame(maxWidth: .infinity)
                 .hooplabCard()
@@ -216,10 +221,10 @@ public struct WorkoutTimerView: View {
                 VStack(spacing: 4) {
                     Text("\(totalSets)")
                         .font(.system(size: 24, weight: .black))
-                        .foregroundColor(.green)
+                        .foregroundColor(HooplabTheme.greenAccent)
                     Text(dataStore.isEnglish ? "Sets" : "Подходов")
                         .font(.system(size: 12, weight: .bold))
-                        .foregroundColor(HooplabTheme.textMuted)
+                        .foregroundColor(HooplabTheme.textSecondary)
                 }
                 .frame(maxWidth: .infinity)
                 .hooplabCard()
@@ -233,12 +238,13 @@ public struct WorkoutTimerView: View {
                 dismiss()
             }) {
                 Text(dataStore.isEnglish ? "Awesome!" : "Отлично, к тренировкам")
-                    .font(.system(size: 18, weight: .bold))
+                    .font(.system(size: 17, weight: .bold))
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-                    .background(HooplabTheme.orangeGradient)
+                    .frame(height: 52)
+                    .background(HooplabTheme.orangePrimary)
                     .foregroundColor(.white)
                     .cornerRadius(16)
+                    .shadow(color: HooplabTheme.orangePrimary.opacity(0.35), radius: 8, x: 0, y: 3)
             }
             .padding(.horizontal, 24)
             .padding(.bottom, 24)

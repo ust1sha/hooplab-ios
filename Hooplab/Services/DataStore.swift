@@ -8,8 +8,9 @@ public class DataStore: ObservableObject {
     @Published public var completedSessions: [WorkoutSession] = []
     @Published public var streakDays: Int = 1
     @Published public var isEnglish: Bool = false
-    @Published public var playerName: String = "Baller"
+    @Published public var playerName: String = "Атлет"
     @Published public var playerPosition: PlayerPosition = .pg
+    @Published public var playerJersey: Int = 7
     @Published public var quizHighScore: Int = 0
     @Published public var totalXP: Int = 150
 
@@ -20,6 +21,8 @@ public class DataStore: ObservableObject {
     private let xpKey = "hooplab_xp"
     private let quizScoreKey = "hooplab_quiz_high_score"
     private let positionKey = "hooplab_player_position"
+    private let nameKey = "hooplab_player_name"
+    private let jerseyKey = "hooplab_player_jersey"
 
     public init() {
         loadPersistedData()
@@ -28,6 +31,15 @@ public class DataStore: ObservableObject {
 
     public func loadExercises() {
         self.exercises = ExerciseCatalog.loadExercises()
+    }
+
+    public var totalMinutes: Int {
+        let mins = completedSessions.reduce(0) { $0 + ($1.durationSec / 60) }
+        return max(15, mins)
+    }
+
+    public func calculateOVR() -> Int {
+        calculateSkills().ovr
     }
 
     public func isFavorite(id: Int) -> Bool {
@@ -47,7 +59,7 @@ public class DataStore: ObservableObject {
         let session = WorkoutSession(
             exerciseId: exercise.id,
             exerciseTitle: exercise.localizedTitle(isEn: isEnglish),
-            category: exercise.category.en,
+            category: exercise.categoryRu,
             setsCompleted: setsCompleted,
             durationSec: durationSec
         )
@@ -67,22 +79,22 @@ public class DataStore: ObservableObject {
     }
 
     public func calculateSkills() -> PlayerStatsSkills {
-        var shooting = 60
-        var finishing = 60
-        var defense = 60
-        var playmaking = 60
-        var athleticism = 60
+        var shooting = 65
+        var finishing = 65
+        var defense = 65
+        var playmaking = 65
+        var athleticism = 65
 
         for session in completedSessions {
             let cat = session.category.lowercased()
             let bonus = session.setsCompleted * 2
-            if cat.contains("shot") {
+            if cat.contains("shot") || cat.contains("брос") {
                 shooting += bonus
-            } else if cat.contains("dribbl") || cat.contains("technique") {
+            } else if cat.contains("dribbl") || cat.contains("дрибл") || cat.contains("техник") {
                 playmaking += bonus
-            } else if cat.contains("defen") {
+            } else if cat.contains("defen") || cat.contains("защит") {
                 defense += bonus
-            } else if cat.contains("physic") {
+            } else if cat.contains("physic") || cat.contains("физик") {
                 athleticism += bonus
             } else {
                 finishing += bonus
@@ -98,10 +110,11 @@ public class DataStore: ObservableObject {
         let avg = (shooting + finishing + defense + playmaking + athleticism) / 5
         let tier: String
         switch avg {
-        case 90...99: tier = "Superstar"
-        case 80...89: tier = "All-Star"
-        case 70...79: tier = "Starter"
-        default: tier = "Rookie"
+        case 90...99: tier = "MVP 🏆"
+        case 85...89: tier = "SUPERSTAR ⭐"
+        case 80...84: tier = "ALL-STAR 🌟"
+        case 70...79: tier = "PRO 🏀"
+        default: tier = "ROOKIE 🏀"
         }
 
         return PlayerStatsSkills(
@@ -175,6 +188,14 @@ public class DataStore: ObservableObject {
         self.totalXP = xp > 0 ? xp : 150
         self.quizHighScore = UserDefaults.standard.integer(forKey: quizScoreKey)
 
+        if let name = UserDefaults.standard.string(forKey: nameKey), !name.isEmpty {
+            self.playerName = name
+        }
+        let jersey = UserDefaults.standard.integer(forKey: jerseyKey)
+        if jersey > 0 {
+            self.playerJersey = jersey
+        }
+
         if let posStr = UserDefaults.standard.string(forKey: positionKey),
            let pos = PlayerPosition(rawValue: posStr) {
             self.playerPosition = pos
@@ -207,5 +228,15 @@ public class DataStore: ObservableObject {
     public func setPosition(_ pos: PlayerPosition) {
         self.playerPosition = pos
         UserDefaults.standard.set(pos.rawValue, forKey: positionKey)
+    }
+
+    public func setPlayerName(_ name: String) {
+        self.playerName = name
+        UserDefaults.standard.set(name, forKey: nameKey)
+    }
+
+    public func setPlayerJersey(_ jersey: Int) {
+        self.playerJersey = jersey
+        UserDefaults.standard.set(jersey, forKey: jerseyKey)
     }
 }

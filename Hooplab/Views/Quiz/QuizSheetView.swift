@@ -13,9 +13,10 @@ public struct QuizSheetView: View {
 
     public var body: some View {
         ZStack {
-            HooplabTheme.bgDark.ignoresSafeArea()
+            Color.clear
+                .hooplabAurora()
 
-            VStack(spacing: 20) {
+            VStack(spacing: 16) {
                 // Top header
                 HStack {
                     Button(action: {
@@ -23,25 +24,29 @@ public struct QuizSheetView: View {
                     }) {
                         Image(systemName: "xmark.circle.fill")
                             .font(.system(size: 26))
-                            .foregroundColor(HooplabTheme.textMuted)
+                            .foregroundColor(HooplabTheme.textSecondary)
                     }
 
                     Spacer()
 
                     Text(dataStore.isEnglish ? "Basketball Quiz" : "Баскетбольный квиз")
                         .font(.system(size: 17, weight: .bold))
-                        .foregroundColor(.white)
+                        .foregroundColor(HooplabTheme.textPrimary)
 
                     Spacer()
 
                     HStack(spacing: 4) {
                         Image(systemName: "star.fill")
-                            .foregroundColor(.yellow)
+                            .foregroundColor(Color(hex: "D97706"))
                             .font(.system(size: 14))
                         Text("\(score)")
                             .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(HooplabTheme.textPrimary)
                     }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 4)
+                    .background(Color(hex: "FEF3C7"))
+                    .cornerRadius(12)
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 16)
@@ -56,19 +61,19 @@ public struct QuizSheetView: View {
     }
 
     private func questionContentView(question: QuizQuestion) -> some View {
-        ScrollView {
-            VStack(spacing: 20) {
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 16) {
                 // Progress bar
                 HStack(spacing: 6) {
                     ForEach(0..<questions.count, id: \.self) { idx in
                         RoundedRectangle(cornerRadius: 3)
-                            .fill(idx < currentIndex ? Color.green : (idx == currentIndex ? HooplabTheme.orangePrimary : Color.white.opacity(0.15)))
+                            .fill(idx < currentIndex ? HooplabTheme.greenAccent : (idx == currentIndex ? HooplabTheme.orangePrimary : HooplabTheme.bgNav))
                             .frame(height: 5)
                     }
                 }
                 .padding(.horizontal, 20)
 
-                // Question counter & badge
+                // Question counter
                 HStack {
                     Text(dataStore.isEnglish ? "QUESTION \(currentIndex + 1) OF \(questions.count)" : "ВОПРОС \(currentIndex + 1) ИЗ \(questions.count)")
                         .font(.system(size: 12, weight: .bold))
@@ -80,18 +85,18 @@ public struct QuizSheetView: View {
                 .padding(.horizontal, 20)
 
                 // Question text card
-                VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: 10) {
                     Text(question.localizedQuestion(isEn: dataStore.isEnglish))
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.white)
+                        .font(.system(size: 19, weight: .bold))
+                        .foregroundColor(HooplabTheme.textPrimary)
                         .lineSpacing(4)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .hooplabCard(padding: 20)
+                .hooplabCard(padding: 18)
                 .padding(.horizontal, 16)
 
                 // Options
-                VStack(spacing: 12) {
+                VStack(spacing: 10) {
                     let options = question.localizedOptions(isEn: dataStore.isEnglish)
                     ForEach(0..<options.count, id: \.self) { optIdx in
                         optionButton(index: optIdx, text: options[optIdx], correctIdx: question.correctIndex)
@@ -101,13 +106,13 @@ public struct QuizSheetView: View {
 
                 // Explanation & Next Button
                 if isAnswered {
-                    VStack(alignment: .leading, spacing: 14) {
+                    VStack(alignment: .leading, spacing: 12) {
                         HStack(spacing: 8) {
                             Image(systemName: selectedOptionIndex == question.correctIndex ? "checkmark.circle.fill" : "info.circle.fill")
-                                .foregroundColor(selectedOptionIndex == question.correctIndex ? .green : .orange)
+                                .foregroundColor(selectedOptionIndex == question.correctIndex ? HooplabTheme.greenAccent : HooplabTheme.orangePrimary)
                             Text(dataStore.isEnglish ? "Explanation" : "Объяснение")
                                 .font(.system(size: 15, weight: .bold))
-                                .foregroundColor(.white)
+                                .foregroundColor(HooplabTheme.textPrimary)
                         }
 
                         Text(question.localizedExplanation(isEn: dataStore.isEnglish))
@@ -125,11 +130,13 @@ public struct QuizSheetView: View {
                                 Image(systemName: "arrow.right")
                             }
                             .frame(maxWidth: .infinity)
-                            .padding(.vertical, 14)
-                            .background(HooplabTheme.orangeGradient)
+                            .frame(height: 50)
+                            .background(HooplabTheme.orangePrimary)
                             .foregroundColor(.white)
-                            .cornerRadius(12)
+                            .cornerRadius(14)
+                            .shadow(color: HooplabTheme.orangePrimary.opacity(0.35), radius: 6, x: 0, y: 3)
                         }
+                        .buttonStyle(.plain)
                         .padding(.top, 4)
                     }
                     .hooplabCard(padding: 16)
@@ -137,7 +144,7 @@ public struct QuizSheetView: View {
                     .transition(.opacity.combined(with: .move(edge: .bottom)))
                 }
 
-                Spacer(minLength: 40)
+                Spacer(minLength: 32)
             }
         }
     }
@@ -146,22 +153,22 @@ public struct QuizSheetView: View {
         let isCorrect = index == correctIdx
         let isSelected = selectedOptionIndex == index
 
-        var bgColor: Color = HooplabTheme.cardDark
-        var borderColor: Color = HooplabTheme.borderDark
+        var bgColor: Color = HooplabTheme.cardBg
+        var borderColor: Color = HooplabTheme.cardBorder
         var iconName: String = "circle"
-        var iconColor: Color = HooplabTheme.textMuted
+        var iconColor: Color = HooplabTheme.textHint
 
         if isAnswered {
             if isCorrect {
-                bgColor = Color.green.opacity(0.2)
-                borderColor = Color.green
+                bgColor = Color(hex: "DCFCE7")
+                borderColor = HooplabTheme.greenAccent
                 iconName = "checkmark.circle.fill"
-                iconColor = .green
+                iconColor = HooplabTheme.greenAccent
             } else if isSelected {
-                bgColor = Color.red.opacity(0.2)
-                borderColor = Color.red
+                bgColor = Color(hex: "FEE2E2")
+                borderColor = Color(hex: "EF4444")
                 iconName = "xmark.circle.fill"
-                iconColor = .red
+                iconColor = Color(hex: "EF4444")
             }
         }
 
@@ -170,14 +177,14 @@ public struct QuizSheetView: View {
                 selectOption(index: index, correctIdx: correctIdx)
             }
         }) {
-            HStack(spacing: 14) {
+            HStack(spacing: 12) {
                 Image(systemName: iconName)
                     .foregroundColor(iconColor)
                     .font(.system(size: 20))
 
                 Text(text)
                     .font(.system(size: 15, weight: .medium))
-                    .foregroundColor(.white)
+                    .foregroundColor(HooplabTheme.textPrimary)
                     .multilineTextAlignment(.leading)
 
                 Spacer()
@@ -185,11 +192,12 @@ public struct QuizSheetView: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 14)
             .background(bgColor)
-            .cornerRadius(14)
+            .cornerRadius(16)
             .overlay(
-                RoundedRectangle(cornerRadius: 14)
+                RoundedRectangle(cornerRadius: 16)
                     .stroke(borderColor, lineWidth: 1.5)
             )
+            .shadow(color: HooplabTheme.shadowColor, radius: 4, x: 0, y: 1)
         }
         .buttonStyle(.plain)
         .disabled(isAnswered)
@@ -226,7 +234,7 @@ public struct QuizSheetView: View {
 
             ZStack {
                 Circle()
-                    .fill(HooplabTheme.orangePrimary.opacity(0.15))
+                    .fill(HooplabTheme.orangeSoft)
                     .frame(width: 120, height: 120)
 
                 Image(systemName: score >= 7 ? "medal.fill" : "flame.fill")
@@ -237,7 +245,7 @@ public struct QuizSheetView: View {
             VStack(spacing: 8) {
                 Text(dataStore.isEnglish ? "Quiz Completed!" : "Квиз завершён!")
                     .font(.system(size: 26, weight: .heavy))
-                    .foregroundColor(.white)
+                    .foregroundColor(HooplabTheme.textPrimary)
 
                 Text(score >= 7 ? (dataStore.isEnglish ? "Superb knowledge of basketball rules!" : "Отличное знание правил и тактики!") : (dataStore.isEnglish ? "Good effort! Keep practicing." : "Хороший результат! Тренируйся дальше."))
                     .font(.system(size: 15))
@@ -251,7 +259,7 @@ public struct QuizSheetView: View {
                         .foregroundColor(HooplabTheme.orangePrimary)
                     Text(dataStore.isEnglish ? "Score" : "Правильно")
                         .font(.system(size: 12, weight: .bold))
-                        .foregroundColor(HooplabTheme.textMuted)
+                        .foregroundColor(HooplabTheme.textSecondary)
                 }
                 .frame(maxWidth: .infinity)
                 .hooplabCard()
@@ -259,10 +267,10 @@ public struct QuizSheetView: View {
                 VStack(spacing: 4) {
                     Text("+\(score * 20)")
                         .font(.system(size: 26, weight: .black))
-                        .foregroundColor(.green)
+                        .foregroundColor(HooplabTheme.greenAccent)
                     Text("XP Опыт")
                         .font(.system(size: 12, weight: .bold))
-                        .foregroundColor(HooplabTheme.textMuted)
+                        .foregroundColor(HooplabTheme.textSecondary)
                 }
                 .frame(maxWidth: .infinity)
                 .hooplabCard()
@@ -278,10 +286,11 @@ public struct QuizSheetView: View {
                     Text(dataStore.isEnglish ? "Play Again" : "Сыграть ещё раз")
                         .font(.system(size: 17, weight: .bold))
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                        .background(HooplabTheme.orangeGradient)
+                        .frame(height: 52)
+                        .background(HooplabTheme.orangePrimary)
                         .foregroundColor(.white)
                         .cornerRadius(16)
+                        .shadow(color: HooplabTheme.orangePrimary.opacity(0.35), radius: 8, x: 0, y: 3)
                 }
 
                 Button(action: {
@@ -290,10 +299,14 @@ public struct QuizSheetView: View {
                     Text(dataStore.isEnglish ? "Close" : "Закрыть")
                         .font(.system(size: 16, weight: .semibold))
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
-                        .background(HooplabTheme.cardDark)
-                        .foregroundColor(.white)
+                        .frame(height: 50)
+                        .background(HooplabTheme.cardBg)
+                        .foregroundColor(HooplabTheme.textPrimary)
                         .cornerRadius(16)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(HooplabTheme.cardBorder, lineWidth: 1)
+                        )
                 }
             }
             .padding(.horizontal, 24)

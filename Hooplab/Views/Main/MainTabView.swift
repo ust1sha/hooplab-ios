@@ -18,29 +18,34 @@ public struct MainTabView: View {
                 }
                 .tag(1)
 
-            CourtsView()
-                .tabItem {
-                    Label(dataStore.isEnglish ? "Courts" : "Площадки", systemImage: "map.fill")
-                }
-                .tag(2)
-
             FavoritesView()
                 .tabItem {
                     Label(dataStore.isEnglish ? "Favorites" : "Избранное", systemImage: "heart.fill")
                 }
-                .tag(3)
+                .tag(2)
 
             ProfileView()
                 .tabItem {
                     Label(dataStore.isEnglish ? "Profile" : "Профиль", systemImage: "person.fill")
                 }
-                .tag(4)
+                .tag(3)
         }
         .tint(HooplabTheme.orangePrimary)
         .onAppear {
             let appearance = UITabBarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = UIColor(HooplabTheme.cardDark)
+            appearance.configureWithDefaultBackground()
+            appearance.backgroundColor = UIColor(Color.white.opacity(0.95))
+
+            // Unselected items tint #64748B
+            let normalColor = UIColor(Color(hex: "64748B"))
+            let selectedColor = UIColor(Color(hex: "EA580C"))
+
+            appearance.stackedLayoutAppearance.normal.iconColor = normalColor
+            appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: normalColor]
+
+            appearance.stackedLayoutAppearance.selected.iconColor = selectedColor
+            appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: selectedColor]
+
             UITabBar.appearance().standardAppearance = appearance
             UITabBar.appearance().scrollEdgeAppearance = appearance
         }
