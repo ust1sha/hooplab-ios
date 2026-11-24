@@ -10,15 +10,14 @@ on:
 jobs:
   build:
     name: Build & Package Hooplab IPA
-    runs-on: macos-13
+    runs-on: macos-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Select Xcode 15
+      - name: Show Xcode Version
         run: |
-          sudo xcode-select -s /Applications/Xcode_15.2.app || sudo xcode-select -s /Applications/Xcode_15.0.1.app || sudo xcode-select -s /Applications/Xcode.app || true
           xcodebuild -version
 
       - name: Build Archive (No Code Signing Required)
