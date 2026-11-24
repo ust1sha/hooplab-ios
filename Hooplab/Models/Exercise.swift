@@ -33,19 +33,36 @@ public struct Exercise: Identifiable, Codable, Hashable {
     public let tips: LocalizedField
     public let mistakes: LocalizedField
 
+    // Convenience properties
+    public var titleRu: String { title.ru }
+    public var titleEn: String { title.en }
+    public var descriptionRu: String { description.ru }
+    public var descriptionEn: String { description.en }
+    public var categoryRu: String { category.ru }
+    public var categoryEn: String { category.en }
+    public var levelRu: String { level.ru }
+    public var levelEn: String { level.en }
+    public var reps: String { sets.ru }
+
     public func localizedTitle(isEn: Bool) -> String { title.text(isEn: isEn) }
     public func localizedDesc(isEn: Bool) -> String { description.text(isEn: isEn) }
+    public func localizedDescription(isEn: Bool) -> String { description.text(isEn: isEn) }
     public func localizedLevel(isEn: Bool) -> String { level.text(isEn: isEn) }
     public func localizedCategory(isEn: Bool) -> String { category.text(isEn: isEn) }
     public func localizedMuscles(isEn: Bool) -> String { muscles.text(isEn: isEn) }
     public func localizedSets(isEn: Bool) -> String { sets.text(isEn: isEn) }
     public func localizedRest(isEn: Bool) -> String { rest.text(isEn: isEn) }
     public func localizedTips(isEn: Bool) -> String { tips.text(isEn: isEn) }
+    public func localizedTip(isEn: Bool) -> String { tips.text(isEn: isEn) }
     public func localizedMistakes(isEn: Bool) -> String { mistakes.text(isEn: isEn) }
 
     public func stepsList(isEn: Bool) -> [String] {
         let raw = steps.text(isEn: isEn)
         return raw.components(separatedBy: "\n").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
+    }
+
+    public func localizedInstructions(isEn: Bool) -> [String] {
+        stepsList(isEn: isEn)
     }
 
     public func mistakesList(isEn: Bool) -> [String] {
@@ -72,19 +89,18 @@ public struct Exercise: Identifiable, Codable, Hashable {
     public var categoryColor: Color {
         let cat = category.en.lowercased()
         if cat.contains("shot") {
-            return Color(red: 1.0, green: 0.42, blue: 0.0) // Orange
+            return Color(hex: "EA580C") // Orange
         } else if cat.contains("technique") || cat.contains("dribbl") {
-            return Color(red: 0.2, green: 0.6, blue: 1.0) // Blue
+            return Color(hex: "2563EB") // Blue
         } else if cat.contains("defen") {
-            return Color(red: 0.2, green: 0.8, blue: 0.4) // Green
+            return Color(hex: "16A34A") // Green
         } else if cat.contains("physic") {
-            return Color(red: 0.9, green: 0.25, blue: 0.3) // Red/Crimson
+            return Color(hex: "DC2626") // Red/Crimson
         }
-        return Color(red: 0.6, green: 0.35, blue: 0.9) // Purple
+        return Color(hex: "9333EA") // Purple
     }
 
     public var parsedRestSeconds: Int {
-        // e.g. "45–60 сек" or "30 сек"
         let raw = rest.ru
         let numbers = raw.components(separatedBy: CharacterSet.decimalDigits.inverted).filter { !$0.isEmpty }
         if let first = numbers.first, let val = Int(first) {
@@ -94,7 +110,6 @@ public struct Exercise: Identifiable, Codable, Hashable {
     }
 
     public var parsedSetsCount: Int {
-        // e.g. "3 подхода × 10 повторений"
         let raw = sets.ru
         let numbers = raw.components(separatedBy: CharacterSet.decimalDigits.inverted).filter { !$0.isEmpty }
         if let first = numbers.first, let val = Int(first) {

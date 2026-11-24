@@ -93,10 +93,10 @@ public struct ExerciseDetailView: View {
 
                                 Text("⭐ " + exercise.localizedLevel(isEn: dataStore.isEnglish).uppercased())
                                     .font(.system(size: 11, weight: .heavy))
-                                    .foregroundColor(HooplabTheme.levelColor(exercise.level))
+                                    .foregroundColor(HooplabTheme.levelColor(exercise.levelRu))
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 3)
-                                    .background(HooplabTheme.levelBgColor(exercise.level))
+                                    .background(HooplabTheme.levelBgColor(exercise.levelRu))
                                     .cornerRadius(6)
                             }
 

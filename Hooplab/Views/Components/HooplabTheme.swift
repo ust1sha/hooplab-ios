@@ -73,6 +73,10 @@ public struct HooplabTheme {
         }
     }
 
+    public static func levelColor(_ field: LocalizedField) -> Color {
+        levelColor(field.ru)
+    }
+
     public static func levelBgColor(_ level: String) -> Color {
         switch level.lowercased() {
         case "начальный", "beginner": return beginnerBg
@@ -80,6 +84,10 @@ public struct HooplabTheme {
         case "продвинутый", "advanced": return advancedBg
         default: return orangeSoft
         }
+    }
+
+    public static func levelBgColor(_ field: LocalizedField) -> Color {
+        levelBgColor(field.ru)
     }
 
     public static let orangeGradient = LinearGradient(

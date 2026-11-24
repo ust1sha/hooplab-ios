@@ -233,7 +233,9 @@ public struct HomeView: View {
 
     private func openPillExercise(named keyword: String) {
         SoundAndHaptics.shared.lightTap()
-        let match = dataStore.exercises.first { $0.titleRu.lowercased().contains(keyword) || $0.categoryRu.lowercased().contains(keyword) }
+        let match = dataStore.exercises.first { (ex: Exercise) -> Bool in
+            ex.titleRu.lowercased().contains(keyword) || ex.categoryRu.lowercased().contains(keyword)
+        }
         selectedExercise = match ?? dataStore.exercises.first
     }
 
@@ -300,10 +302,10 @@ public struct HomeView: View {
 
                         Text("⭐ " + exercise.localizedLevel(isEn: dataStore.isEnglish).uppercased())
                             .font(.system(size: 11, weight: .heavy))
-                            .foregroundColor(HooplabTheme.levelColor(exercise.level))
+                            .foregroundColor(HooplabTheme.levelColor(exercise.levelRu))
                             .padding(.horizontal, 8)
                             .padding(.vertical, 3)
-                            .background(HooplabTheme.levelBgColor(exercise.level))
+                            .background(HooplabTheme.levelBgColor(exercise.levelRu))
                             .cornerRadius(6)
                     }
 

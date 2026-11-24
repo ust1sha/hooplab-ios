@@ -56,8 +56,8 @@ public struct ExerciseCardView: View {
                         .font(.system(size: 10, weight: .bold))
                         .padding(.horizontal, 7)
                         .padding(.vertical, 3)
-                        .background(HooplabTheme.levelBgColor(exercise.level))
-                        .foregroundColor(HooplabTheme.levelColor(exercise.level))
+                        .background(HooplabTheme.levelBgColor(exercise.levelRu))
+                        .foregroundColor(HooplabTheme.levelColor(exercise.levelRu))
                         .cornerRadius(6)
 
                     Spacer()
@@ -103,7 +103,7 @@ public struct ExerciseCarouselCardView: View {
 
                     // Vertical neon indicator capsule
                     RoundedRectangle(cornerRadius: 2)
-                        .fill(HooplabTheme.levelColor(exercise.level))
+                        .fill(HooplabTheme.levelColor(exercise.levelRu))
                         .frame(width: 4, height: 26)
                         .padding(.leading, 8)
                         .padding(.top, 8)
@@ -137,7 +137,7 @@ public struct ExerciseCarouselCardView: View {
                     HStack(spacing: 4) {
                         Text(exercise.localizedLevel(isEn: dataStore.isEnglish).uppercased())
                             .font(.system(size: 9, weight: .heavy))
-                            .foregroundColor(HooplabTheme.levelColor(exercise.level))
+                            .foregroundColor(HooplabTheme.levelColor(exercise.levelRu))
 
                         Spacer()
 

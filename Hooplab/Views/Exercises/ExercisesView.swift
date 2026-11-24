@@ -13,9 +13,9 @@ public struct ExercisesView: View {
     }
 
     private var filteredExercises: [Exercise] {
-        dataStore.exercises.filter { ex in
+        dataStore.exercises.filter { (ex: Exercise) -> Bool in
             let matchCat = activeCategory == nil || activeCategory?.matches(categoryString: ex.categoryRu) == true || activeCategory?.matches(categoryString: ex.categoryEn) == true
-            let matchLvl = selectedLevel.matches(levelString: ex.level)
+            let matchLvl = selectedLevel.matches(levelString: ex.levelRu) || selectedLevel.matches(levelString: ex.levelEn)
 
             if !searchText.isEmpty {
                 let q = searchText.lowercased()
@@ -28,7 +28,9 @@ public struct ExercisesView: View {
     }
 
     private func countForCategory(_ cat: ExerciseCategory) -> Int {
-        dataStore.exercises.filter { cat.matches(categoryString: $0.categoryRu) || cat.matches(categoryString: $0.categoryEn) }.count
+        dataStore.exercises.filter { (ex: Exercise) -> Bool in
+            cat.matches(categoryString: ex.categoryRu) || cat.matches(categoryString: ex.categoryEn)
+        }.count
     }
 
     public var body: some View {
