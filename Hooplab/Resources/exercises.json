@@ -1,0 +1,1278 @@
+{
+  "exercises": [
+    {
+      "id": 1,
+      "title": { "ru": "Бросок в прыжке", "en": "Jump Shot" },
+      "description": {
+        "ru": "Базовая техника броска в прыжке. Учимся правильно отталкиваться и выпускать мяч в высшей точке. Держите локоть прямо, следите за траекторией полета мяча.",
+        "en": "Basic jump shot technique. Learn to push off correctly and release the ball at the peak. Keep your elbow straight and watch the ball's flight path."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Броски", "en": "Shots" },
+      "imageName": "ic_shot",
+      "steps": {
+        "ru": "Встаньте лицом к кольцу, ноги на ширине плеч, колени слегка согнуты\nДержите мяч на уровне груди, кисть ведущей руки под мячом\nОттолкнитесь вверх, выпрыгивая вертикально, и одновременно выпрямляйте руку с мячом\nВыпустите мяч в высшей точке прыжка лёгким щелчком кисти\nПриземлитесь на обе ноги, сохраняя баланс",
+        "en": "Face the hoop, feet shoulder-width apart, knees slightly bent\nHold the ball at chest level, shooting hand under the ball\nPush off upward, jumping vertically, and extend the shooting arm\nRelease the ball at the peak of the jump with a light wrist flick\nLand on both feet, keeping your balance"
+      },
+      "muscles": { "ru": "Плечевой пояс, трицепс, мышцы кора, икроножные мышцы", "en": "Shoulder girdle, triceps, core muscles, calves" },
+      "sets": { "ru": "3 подхода × 10 повторений", "en": "3 sets × 10 reps" },
+      "rest": { "ru": "45–60 сек", "en": "45–60 sec" },
+      "tips": {
+        "ru": "Следите, чтобы мяч сходил с кончиков пальцев с обратным вращением; не отклоняйтесь назад в прыжке.",
+        "en": "Make the ball leave your fingertips with backspin; don't lean back during the jump."
+      },
+      "mistakes": {
+        "ru": "Выпуск мяча слишком поздно — после прохождения высшей точки\nЛокти в стороны вместо выпрямления вдоль траектории\nПриземление на одну ногу",
+        "en": "Releasing the ball too late, past the peak\nElbows out instead of extending along the path\nLanding on one foot"
+      }
+    },
+    {
+      "id": 2,
+      "title": { "ru": "Дриблинг", "en": "Dribbling" },
+      "description": {
+        "ru": "Основы ведения мяча. Контроль мяча на месте и в движении. Учимся чувствовать мяч кончиками пальцев, не смотреть на мяч при ведении.",
+        "en": "Ball handling basics. Dribbling in place and on the move. Learn to feel the ball with your fingertips and keep your eyes up."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Техника", "en": "Technique" },
+      "imageName": "ic_technique",
+      "steps": {
+        "ru": "Встаньте, ноги на ширине плеч, колени слегка согнуты\nВедите мяч кончиками пальцев, а не ладонью\nОтбивайте мяч чуть в сторону от тела, на уровне пояса\nСмотрите вперёд, а не на мяч — контролируйте площадку взглядом\nУскоряйте темп, чередуя высоту ведения",
+        "en": "Stand with feet shoulder-width apart, knees slightly bent\nDribble with your fingertips, not your palm\nBounce the ball slightly to the side of your body at waist level\nLook ahead, not at the ball — scan the court\nIncrease the pace, alternating dribble height"
+      },
+      "muscles": { "ru": "Мышцы предплечий, плечевой пояс, мышцы кора", "en": "Forearms, shoulder girdle, core muscles" },
+      "sets": { "ru": "4 подхода × 60 сек", "en": "4 sets × 60 sec" },
+      "rest": { "ru": "30 сек", "en": "30 sec" },
+      "tips": {
+        "ru": "Толкайте мяч вниз движением кисти и предплечья; ведите мяч подушечками пальцев.",
+        "en": "Push the ball down with your wrist and forearm; dribble with your fingertips."
+      },
+      "mistakes": {
+        "ru": "Шлепки по мячу ладонью\nВедение слишком высоко\nВзгляд на мяч",
+        "en": "Slapping the ball with your palm\nDribbling too high\nLooking at the ball"
+      }
+    },
+    {
+      "id": 3,
+      "title": { "ru": "Защитная стойка", "en": "Defensive Stance" },
+      "description": {
+        "ru": "Правильная позиция в защите. Работа ног и положение рук. Ноги на ширине плеч, спина прямая, руки разведены в стороны.",
+        "en": "The correct defensive stance. Footwork and hand position. Feet shoulder-width apart, back straight, arms spread out."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Защита", "en": "Defense" },
+      "imageName": "ic_defense",
+      "steps": {
+        "ru": "Ноги на ширине плеч, колени согнуты, вес на носках\nСпина прямая, корпус слегка наклонён вперёд\nРуки разведены в стороны, ладони открыты к сопернику\nПеремещайтесь короткими скользящими шагами, не скрещивая ног\nДержите соперника перед собой, между ним и кольцом",
+        "en": "Feet shoulder-width apart, knees bent, weight on the balls of your feet\nKeep your back straight and torso leaning slightly forward\nArms spread out, palms open toward the opponent\nMove with short sliding steps, never crossing your feet\nKeep the opponent in front of you, between them and the hoop"
+      },
+      "muscles": { "ru": "Квадрицепсы, ягодицы, мышцы кора, икроножные мышцы", "en": "Quadriceps, glutes, core muscles, calves" },
+      "sets": { "ru": "3 подхода × 45 сек", "en": "3 sets × 45 sec" },
+      "rest": { "ru": "30 сек", "en": "30 sec" },
+      "tips": {
+        "ru": "Не тянитесь за финтами — двигайтесь в сторону смещения центра тяжести соперника.",
+        "en": "Don't chase fakes — move in the direction the opponent's center of gravity shifts."
+      },
+      "mistakes": {
+        "ru": "Ноги на одной линии — теряется устойчивость\nСпина округлена\nРуки опущены",
+        "en": "Feet on one line, losing balance\nRounded back\nArms dropped down"
+      }
+    },
+    {
+      "id": 4,
+      "title": { "ru": "Передача мяча", "en": "Passing" },
+      "description": {
+        "ru": "Техника точных передач. Прямая, навесная и с отскоком от пола. Учимся передавать мяч в движении и на месте.",
+        "en": "Accurate passing technique. Chest, overhead and bounce passes. Learn to pass on the move and stationary."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Техника", "en": "Technique" },
+      "imageName": "ic_technique",
+      "steps": {
+        "ru": "Встаньте лицом к партнёру, мяч на уровне груди\nВыполните передачу двумя руками от груди, шагнув вперёд\nДоводите руки до конца движения — кисти «тянутся» за мячом\nПоймайте ответную передачу мягкими руками, смягчая приём\nПовторите, добавив передачу с отскоком от пола",
+        "en": "Hold the ball with both hands at chest level\nStep forward and extend your arms toward your partner\nRelease the ball with backspin, snapping your wrists\nFinish the motion with your wrists, thumbs pointing down\nReceive the pass while staying ready to move"
+      },
+      "muscles": { "ru": "Грудные мышцы, трицепс, мышцы кора", "en": "Shoulder girdle, chest muscles, triceps" },
+      "sets": { "ru": "3 подхода × 20 передач", "en": "3 sets × 20 passes" },
+      "rest": { "ru": "40 сек", "en": "40 sec" },
+      "tips": {
+        "ru": "Выпускайте мяч большими пальцами вниз и наружу — так передача получается прямой.",
+        "en": "Pass at your partner's chest level — it makes the pass faster and more accurate."
+      },
+      "mistakes": {
+        "ru": "Передача одной рукой без контроля\nМяч летит слишком высоко — защитник перехватит\nЛокти разведены в стороны",
+        "en": "One-handed pass with no control\nBall flying above the partner's head\nTorso turning away from the target"
+      }
+    },
+    {
+      "id": 5,
+      "title": { "ru": "Штрафной бросок", "en": "Free Throw" },
+      "description": {
+        "ru": "Техника выполнения штрафных бросков. Постановка ног и концентрация. Важно соблюдать ритуал перед броском.",
+        "en": "Free throw technique. Foot placement and concentration. Keep a consistent routine before each shot."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Броски", "en": "Shots" },
+      "imageName": "ic_shot",
+      "steps": {
+        "ru": "Встаньте за линией штрафного броска, стопы на ширине плеч\nВедущая нога чуть впереди, колени мягкие\nДержите мяч на ладони ведущей руки, локоть под мячом\nСогните колени и плавно выпрямитесь, выпуская мяч вверх\nСопровождайте мяч рукой до конца — кисть «смотрит» в кольцо\nПовторяйте ритуал одинаково каждый раз",
+        "en": "Stand on the free-throw line, feet slightly wider than shoulders\nPlace your lead foot a little ahead\nBend your knees and hold the ball at forehead level\nExtend upward and release the ball with a soft wrist motion\nKeep the same routine before every shot"
+      },
+      "muscles": { "ru": "Плечевой пояс, трицепс, мышцы кора, ноги", "en": "Shoulder girdle, triceps, leg muscles, core" },
+      "sets": { "ru": "5 подходов × 5 бросков", "en": "5 sets × 5 shots" },
+      "rest": { "ru": "30 сек", "en": "30 sec" },
+      "tips": {
+        "ru": "Создайте свой ритуал (два-три удара мячом, вдох) — он стабилизирует концентрацию.",
+        "en": "Look at the far edge of the rim, not the ball — it stabilizes the shot."
+      },
+      "mistakes": {
+        "ru": "Разная постановка ног в каждом броске\nБросок двумя руками\nСлишком быстрый бросок без паузы в высшей точке",
+        "en": "Holding the ball in the palm\nJerky torso movement\nInconsistent pace between shots"
+      }
+    },
+    {
+      "id": 6,
+      "title": { "ru": "Подбор мяча", "en": "Rebounding" },
+      "description": {
+        "ru": "Борьба за подбор. Правильная позиция и тайминг прыжка. Боксирование соперника — ключ к успешному подбору.",
+        "en": "Rebounding. Proper positioning and jump timing. Box out your opponent to win the rebound."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Защита", "en": "Defense" },
+      "imageName": "ic_defense",
+      "steps": {
+        "ru": "Заняв позицию, согните колени и будьте готовы к прыжку\nЗаблокируйте соперника спиной/корпусом (box out)\nОтследите момент, когда мяч срывается с кольца\nВыпрыгните вверх за мячом, вытянув обе руки\nПриземлитесь на широкой стойке и защитите мяч локтями",
+        "en": "Take position between the opponent and the hoop\nSpread your feet wide and bend your knees\nHold the opponent off with your body, not your hands\nWatch the ball's path and jump at the right moment\nGrab the ball with both hands and pull it to your chest"
+      },
+      "muscles": { "ru": "Мышцы ног, ягодицы, спина, плечевой пояс", "en": "Legs, glutes, core muscles, back muscles" },
+      "sets": { "ru": "3 подхода × 8 подборов", "en": "3 sets × 8 rebounds" },
+      "rest": { "ru": "40 сек", "en": "40 sec" },
+      "tips": {
+        "ru": "Сначала блокируйте соперника, затем прыгайте — тайминг решает больше, чем высота.",
+        "en": "Get position first, then jump — position matters more than the jump."
+      },
+      "mistakes": {
+        "ru": "Прыжок без block-out\nМяч пойман одной рукой\nПотеря мяча на приземлении",
+        "en": "Jumping without boxing out\nWatching the ball instead of the opponent\nLosing the ball on landing"
+      }
+    },
+    {
+      "id": 7,
+      "title": { "ru": "Быстрый прорыв", "en": "Fast Break" },
+      "description": {
+        "ru": "Организация быстрого прорыва. Скорость и принятие решений. Первый пас должен быть быстрым и точным.",
+        "en": "Organizing a fast break. Speed and decision making. The outlet pass must be quick and accurate."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Нападение", "en": "Offense" },
+      "imageName": "ic_offense",
+      "steps": {
+        "ru": "После подбора сразу начинайте движение вперёд\nСделайте первый пас быстро и точно — он задаёт темп прорыва\nБегите по своей полосе, руки готовы принять мяч\nПри получении мяча двигайтесь к кольцу без остановки\nЗавершите атаку броском или передачей на открытого партнёра",
+        "en": "Turn upcourt immediately after the rebound\nMake the first pass forward to an open teammate\nFill the lanes along the sides of the court\nDecide before you receive the ball\nFinish the attack before the defense gets back"
+      },
+      "muscles": { "ru": "Скоростная работа ног, мышцы кора, плечевой пояс", "en": "Legs, core muscles, shoulder girdle" },
+      "sets": { "ru": "4 подхода × 30 сек", "en": "4 sets × 30 sec" },
+      "rest": { "ru": "45 сек", "en": "45 sec" },
+      "tips": {
+        "ru": "Скорость прорыва создаётся первым пасом — чем раньше он выходит, тем меньше времени у защиты.",
+        "en": "The first pass is the most important: it must be quick and accurate."
+      },
+      "mistakes": {
+        "ru": "Медленный первый пас\nПеревод взгляда вниз на мяч\nОстановка перед защитником вместо решения",
+        "en": "Dribbling instead of passing\nRunning into the middle of the court\nHesitating with your decision"
+      }
+    },
+    {
+      "id": 8,
+      "title": { "ru": "Защита 1 на 1", "en": "One-on-One Defense" },
+      "description": {
+        "ru": "Индивидуальная защита против игрока с мячом и без мяча. Держите дистанцию, следите за центром тяжести соперника.",
+        "en": "One-on-one defense against a player with and without the ball. Keep your distance and watch your opponent's center of gravity."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Защита", "en": "Defense" },
+      "imageName": "ic_defense",
+      "steps": {
+        "ru": "Примите защитную стойку на дистанции вытянутой руки от соперника\nСледите за поясом/центром тяжести соперника, не за мячом\nСкользящими шагами повторяйте его движения\nПри атаке на кольцо уплотните позицию, не фоля\nПостоянно ориентируйтесь между соперником и кольцом",
+        "en": "Take a defensive stance an arm's length from the opponent\nWatch the opponent's waist/center of gravity, not the ball\nMirror their movement with sliding steps\nWhen they attack the rim, tighten your position without fouling\nAlways stay between the opponent and the hoop"
+      },
+      "muscles": { "ru": "Ноги, ягодицы, мышцы кора, реакция", "en": "Legs, glutes, core muscles, reaction" },
+      "sets": { "ru": "3 подхода × 45 сек", "en": "3 sets × 45 sec" },
+      "rest": { "ru": "30 сек", "en": "30 sec" },
+      "tips": {
+        "ru": "Держите «руку в сфере» — палец на уровне глаз соперника, чтобы мешать обзору.",
+        "en": "Keep a \"hand in the sphere\" — a finger at the opponent's eye level to block their view."
+      },
+      "mistakes": {
+        "ru": "Колени прямые — теряется скорость реакции\nСлишком большая дистанция\nСледить за мячом вместо корпуса",
+        "en": "Straight knees, losing reaction speed\nStanding too far away\nWatching the ball instead of the body"
+      }
+    },
+    {
+      "id": 9,
+      "title": { "ru": "Бросок из-под кольца (лэй-ап)", "en": "Layup" },
+      "description": {
+        "ru": "Бросок после ведения и двух шагов у кольца. Самый частый способ набрать очки в игре. Учимся правильно считать шаги и мягко класть мяч в кольцо от щита.",
+        "en": "A shot after dribbling and two steps near the hoop. The most common way to score in a game. Learn to count your steps and softly lay the ball in off the backboard."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Броски", "en": "Shots" },
+      "imageName": "ic_shot",
+      "steps": {
+        "ru": "Начните ведение с угла площадки под небольшим углом к кольцу\nСделайте последний отбив мяча и первый шаг на ногу, противоположную бросковой руке\nВторым шагом оттолкнитесь и подпрыгните вверх коленом толчковой ноги\nВытяните руку с мячом к щиту и мягко положите мяч на щит около квадрата\nПриземлитесь на обе ноги, сохраняя равновесие",
+        "en": "Start dribbling from the wing at a slight angle to the hoop\nTake your last dribble and make the first step with the foot opposite your shooting hand\nPush off with the second step and drive the knee of your jumping leg upward\nExtend your arm with the ball to the backboard and softly lay it in near the square\nLand on both feet, keeping your balance"
+      },
+      "muscles": { "ru": "Квадрицепсы, ягодичные, икроножные мышцы, плечевой пояс", "en": "Quadriceps, glutes, calves, shoulder girdle" },
+      "sets": { "ru": "4 подхода × 8 бросков с каждой стороны", "en": "4 sets × 8 shots from each side" },
+      "rest": { "ru": "45 сек", "en": "45 sec" },
+      "tips": {
+        "ru": "Цельтесь в верхний угол квадрата на щите: так мяч отскакивает точно в кольцо.",
+        "en": "Aim for the top corner of the square on the backboard: that way the ball bounces right into the hoop."
+      },
+      "mistakes": {
+        "ru": "Слишком сильный бросок в щит\nЛишний шаг (пробежка)\nТолчок с неправильной ноги",
+        "en": "Shooting too hard into the backboard\nAn extra step (traveling)\nPushing off from the wrong foot"
+      }
+    },
+    {
+      "id": 10,
+      "title": { "ru": "Бросок двумя шагами с обеих рук", "en": "Two-Step Shot with Both Hands" },
+      "description": {
+        "ru": "Лэй-ап правой и левой рукой. Игрок, который умеет завершать атаку с обеих сторон, намного сложнее для защиты. Упражнение развивает слабую руку.",
+        "en": "A layup with the right and the left hand. A player who can finish on both sides is much harder to defend. This drill develops your weak hand."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Броски", "en": "Shots" },
+      "imageName": "ic_shot",
+      "steps": {
+        "ru": "Начните с правой стороны: ведение, шаг левой ногой, бросок правой рукой\nВернитесь на старт и повторите с левой стороны: шаг правой, бросок левой рукой\nЧередуйте стороны после каждого броска\nДелайте больше повторений слабой рукой, пока броски не станут уверенными\nПостепенно увеличивайте скорость подхода к кольцу",
+        "en": "Start on the right side: dribble, step with the left foot, shoot with the right hand\nReturn to the start and repeat on the left side: step with the right foot, shoot with the left hand\nAlternate sides after every shot\nDo more reps with your weak hand until the shots become confident\nGradually increase your speed approaching the hoop"
+      },
+      "muscles": { "ru": "Квадрицепсы, ягодичные, икроножные мышцы, плечевой пояс, кор", "en": "Quadriceps, glutes, calves, shoulder girdle, core" },
+      "sets": { "ru": "4 подхода × 10 бросков (по 5 с каждой руки)", "en": "4 sets × 10 shots (5 with each hand)" },
+      "rest": { "ru": "45 сек", "en": "45 sec" },
+      "tips": {
+        "ru": "Сначала отработайте движение без мяча, а потом добавляйте ведение и скорость.",
+        "en": "First practice the movement without the ball, then add dribbling and speed."
+      },
+      "mistakes": {
+        "ru": "Игрок обходит слабую сторону и бросает только сильной рукой\nМяч закрыт не той рукой от воображаемого защитника\nНедостаточный прыжок вверх",
+        "en": "Avoiding the weak side and shooting only with the strong hand\nThe ball is shielded with the wrong hand from an imaginary defender\nNot jumping high enough"
+      }
+    },
+    {
+      "id": 11,
+      "title": { "ru": "Трёхочковый бросок", "en": "Three-Point Shot" },
+      "description": {
+        "ru": "Бросок из-за трёхочковой линии. Требует мощности от ног и точной механики. Учимся стабильно бросать с дистанции, не теряя технику.",
+        "en": "A shot from behind the three-point line. Requires leg power and precise mechanics. Learn to shoot consistently from distance without losing form."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Броски", "en": "Shots" },
+      "imageName": "ic_shot",
+      "steps": {
+        "ru": "Встаньте за линией, ноги чуть шире плеч, колени согнуты\nПоймайте или возьмите мяч на уровне груди, пальцы широко расставлены\nРазогнитесь через ноги, передавая импульс от ног к рукам\nВыпрямите руку и выпустите мяч щелчком кисти с обратным вращением\nСохраняйте позу после броска, пока мяч в полёте",
+        "en": "Stand behind the line, feet slightly wider than shoulders, knees bent\nCatch or hold the ball at chest level, fingers spread wide\nExtend through your legs, transferring power from legs to arms\nExtend your arm and release the ball with a wrist flick and backspin\nHold your finish while the ball is in the air"
+      },
+      "muscles": { "ru": "Квадрицепсы, ягодичные, плечевой пояс, трицепс, кор", "en": "Quadriceps, glutes, shoulder girdle, triceps, core" },
+      "sets": { "ru": "5 подходов × 8 бросков", "en": "5 sets × 8 shots" },
+      "rest": { "ru": "45–60 сек", "en": "45–60 sec" },
+      "tips": {
+        "ru": "Если мяч не долетает, добавляйте силу ног, а не усилие плеч.",
+        "en": "If the ball falls short, add leg power rather than shoulder effort."
+      },
+      "mistakes": {
+        "ru": "Бросок только руками, без толчка ногами\nНаступание на линию\nСильное отклонение корпуса назад",
+        "en": "Shooting with only the arms, with no leg drive\nStepping on the line\nLeaning back too much"
+      }
+    },
+    {
+      "id": 12,
+      "title": { "ru": "Добивание мяча", "en": "Putback" },
+      "description": {
+        "ru": "Подбор мяча после неточного броска и мгновенный бросок вторым касанием. Развивает позиционирование, ловкость и умение действовать до того, как защита перестроится.",
+        "en": "Grabbing the ball after a missed shot and immediately shooting on the second touch. Develops positioning, agility and the ability to act before the defense resets."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Броски", "en": "Shots" },
+      "imageName": "ic_shot",
+      "steps": {
+        "ru": "Бросьте мяч в щит или кольцо с небольшим ударом, чтобы он отскочил\nСразу сделайте шаг к месту предполагаемого отскока\nПодпрыгните и поймайте мяч двумя руками в верхней точке\nНе опуская мяч, сразу бросьте его в кольцо\nПриземлитесь на две ноги и снова встаньте в стойку",
+        "en": "Throw the ball off the backboard or rim so that it bounces away\nImmediately step toward the expected rebound spot\nJump and catch the ball with both hands at the top of the jump\nWithout lowering the ball, shoot it right away\nLand on both feet and get back into your stance"
+      },
+      "muscles": { "ru": "Икроножные мышцы, квадрицепсы, плечевой пояс, кор", "en": "Calves, quadriceps, shoulder girdle, core" },
+      "sets": { "ru": "4 подхода × 6 добиваний", "en": "4 sets × 6 putbacks" },
+      "rest": { "ru": "45 сек", "en": "45 sec" },
+      "tips": {
+        "ru": "Не ждите, пока мяч опустится: добивайте в верхней точке прыжка, пока защита не успела среагировать.",
+        "en": "Don't wait for the ball to come down: finish at the top of your jump, before the defense can react."
+      },
+      "mistakes": {
+        "ru": "Игрок стоит на месте и следит за мячом\nМяч опускается к груди перед повторным броском\nНет контакта корпусом с соперником (в парной игре)",
+        "en": "Standing still and watching the ball\nBringing the ball down to the chest before the second shot\nNo body contact with the opponent (in partner drills)"
+      }
+    },
+    {
+      "id": 13,
+      "title": { "ru": "Крюк (хук-шот)", "en": "Hook Shot" },
+      "description": {
+        "ru": "Бросок одной рукой над головой, когда корпус закрывает мяч от защитника. Очень эффективен вблизи кольца. Учимся контролировать мяч и корпус.",
+        "en": "A one-handed shot over the head while your body shields the ball from the defender. Very effective near the hoop. Learn to control the ball and your body."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Броски", "en": "Shots" },
+      "imageName": "ic_shot",
+      "steps": {
+        "ru": "Встаньте боком к кольцу, мяч держите двумя руками у груди\nШагните ногой, ближней к кольцу, и поверните плечо от защитника\nПоднимите бросковую руку дугой над головой, другой рукой прикрывайте мяч\nВыпустите мяч в верхней точке дуги плавным движением кисти\nСохраняйте равновесие и после броска сразу ищите подбор",
+        "en": "Stand sideways to the hoop, holding the ball with both hands at your chest\nStep with the foot closer to the hoop and turn your shoulder away from the defender\nRaise your shooting arm in an arc over your head, shielding the ball with your other arm\nRelease the ball at the top of the arc with a smooth wrist motion\nKeep your balance after the shot and immediately look for the rebound"
+      },
+      "muscles": { "ru": "Плечевой пояс, трицепс, спина, мышцы кора, ноги", "en": "Shoulder girdle, triceps, back, core, legs" },
+      "sets": { "ru": "4 подхода × 8 бросков с каждой руки", "en": "4 sets × 8 shots with each hand" },
+      "rest": { "ru": "45–60 сек", "en": "45–60 sec" },
+      "tips": {
+        "ru": "Сначала тренируйте движение рукой с мячом в одной руке без прыжка, а потом добавляйте шаг.",
+        "en": "First practice the arm motion with one hand and no jump, then add the step."
+      },
+      "mistakes": {
+        "ru": "Бросок со слишком прямой руки без дуги\nМяч открыт для защитника\nПотеря равновесия после броска",
+        "en": "Shooting with a stiff straight arm and no arc\nThe ball is exposed to the defender\nLosing balance after the shot"
+      }
+    },
+    {
+      "id": 14,
+      "title": { "ru": "Бросок после финта", "en": "Shot After a Fake" },
+      "description": {
+        "ru": "Бросок после обманного движения, которое сдвигает защитника. Учимся создавать пространство для броска и сохранять баланс после смены направления.",
+        "en": "A shot after a fake that moves the defender. Learn to create space for a shot and keep your balance after changing direction."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Броски", "en": "Shots" },
+      "imageName": "ic_shot",
+      "steps": {
+        "ru": "Получите мяч и встаньте в тройную угрозу (бросок, проход, передача)\nСделайте обманное движение: короткий выпад или движение плечом в одну сторону\nКогда защитник отреагирует, перенесите вес в другую сторону\nСделайте шаг в сторону и сразу выйдите на бросок в прыжке\nВыпустите мяч в высшей точке и приземлитесь на две ноги",
+        "en": "Receive the ball and get into triple-threat position (shoot, drive, pass)\nMake a fake: a short jab step or shoulder move in one direction\nWhen the defender reacts, shift your weight the other way\nStep sideways and go straight into a jump shot\nRelease the ball at the peak and land on both feet"
+      },
+      "muscles": { "ru": "Квадрицепсы, ягодичные, икроножные мышцы, плечевой пояс, кор", "en": "Quadriceps, glutes, calves, shoulder girdle, core" },
+      "sets": { "ru": "4 подхода × 8 повторений", "en": "4 sets × 8 reps" },
+      "rest": { "ru": "45–60 сек", "en": "45–60 sec" },
+      "tips": {
+        "ru": "Финт должен выглядеть убедительно: двигайтесь всем корпусом, а не только мячом.",
+        "en": "The fake must look convincing: move your whole body, not just the ball."
+      },
+      "mistakes": {
+        "ru": "Слишком медленный финт, защитник успевает вернуться\nПотеря равновесия при смене направления\nБросок в спешке без правильной механики",
+        "en": "A slow fake lets the defender recover\nLosing balance when changing direction\nRushing the shot with poor mechanics"
+      }
+    },
+    {
+      "id": 15,
+      "title": { "ru": "Игра 2 на 1 и 3 на 2", "en": "2-on-1 and 3-on-2 Drills" },
+      "description": {
+        "ru": "Игра с численным преимуществом. Учимся быстро решать, бросать самому или отдавать партнёру, и как использовать лишнего игрока в атаке.",
+        "en": "Play with a numbers advantage. Learn to decide quickly whether to shoot or pass, and how to use the extra player on offense."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Нападение", "en": "Offense" },
+      "imageName": "ic_offense",
+      "steps": {
+        "ru": "Два нападающих начинают от центра площадки, один защитник стоит у кольца\nВедущий игрок атакует кольцо, заставляя защитника выбирать\nЕсли защитник остаётся на мяче, отдайте передачу партнёру\nЕсли защитник уходит к партнёру, завершайте бросок сами\nПосле атаки меняйтесь ролями и повторите, затем перейдите на 3 на 2",
+        "en": "Two attackers start from center court, one defender stands near the hoop\nThe ball handler attacks the hoop, forcing the defender to choose\nIf the defender stays on the ball, pass to your teammate\nIf the defender moves to the teammate, finish the shot yourself\nAfter the attack, switch roles and repeat, then move on to 3-on-2"
+      },
+      "muscles": { "ru": "Ноги, кор, плечевой пояс", "en": "Legs, core, shoulder girdle" },
+      "sets": { "ru": "6 атак (по 3 для каждой схемы)", "en": "6 attacks (3 for each setup)" },
+      "rest": { "ru": "45–60 сек", "en": "45–60 sec" },
+      "tips": {
+        "ru": "Принимайте решение по действиям защитника: кого он закрывает, тот и отдаёт мяч.",
+        "en": "Make your decision based on the defender's actions: the player he commits to passes the ball to the open teammate."
+      },
+      "mistakes": {
+        "ru": "Отдавать мяч, когда проще бросить самому\nНападающие стоят слишком близко друг к другу\nЗатягивать решение до реакции защиты",
+        "en": "Passing when it's easier to shoot yourself\nAttackers standing too close to each other\nDelaying the decision until the defense reacts"
+      }
+    },
+    {
+      "id": 16,
+      "title": { "ru": "Заслон (пик-н-ролл)", "en": "Pick and Roll" },
+      "description": {
+        "ru": "Комбинация двух игроков: один ставит заслон защитнику партнёра, потом уходит к кольцу. Один из самых популярных приёмов в современном баскетболе.",
+        "en": "A two-player combination: one player sets a screen on a teammate's defender and then rolls to the hoop. One of the most popular plays in modern basketball."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Нападение", "en": "Offense" },
+      "imageName": "ic_offense",
+      "steps": {
+        "ru": "Игрок без мяча подходит и встаёт неподвижно рядом с защитником ведущего\nИгрок с мячом проходит вплотную мимо заслона, прижимая защитника к игроку-заслоняющему\nЗаслоняющий разворачивается лицом к мячу и уходит к кольцу\nВедущий выбирает: бросок, проход или передача партнёру\nЗавершите комбинацию броском",
+        "en": "The player without the ball steps up and stands still next to the ball handler's defender\nThe ball handler passes close by the screen, pinning the defender against the screener\nThe screener turns to face the ball and rolls to the hoop\nThe ball handler chooses: shoot, drive or pass to the teammate\nFinish the play with a shot"
+      },
+      "muscles": { "ru": "Ноги, кор, плечевой пояс, спина", "en": "Legs, core, shoulder girdle, back" },
+      "sets": { "ru": "5 подходов × 6 повторений", "en": "5 sets × 6 reps" },
+      "rest": { "ru": "60 сек", "en": "60 sec" },
+      "tips": {
+        "ru": "Ставьте заслон неподвижно и с широкой стойкой, иначе судья может засчитать фол.",
+        "en": "Set the screen standing still with a wide base, otherwise the referee may call a foul."
+      },
+      "mistakes": {
+        "ru": "Движение при постановке заслона\nВедущий проходит слишком далеко от заслона\nНет разворота и выхода к кольцу",
+        "en": "Moving while setting the screen\nThe ball handler passes too far from the screen\nNo turn and roll to the hoop"
+      }
+    },
+    {
+      "id": 17,
+      "title": { "ru": "Отрыв от опекуна", "en": "Getting Open" },
+      "description": {
+        "ru": "Выход на свободное место для получения мяча. Учимся смене направления и скорости, чтобы оторваться от защитника.",
+        "en": "Moving to an open spot to receive the ball. Learn to change direction and speed to get away from the defender."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Нападение", "en": "Offense" },
+      "imageName": "ic_offense",
+      "steps": {
+        "ru": "Встаньте в стойку и следите за мячом и опекуном\nСделайте короткий шаг в одну сторону, заставляя защитника переместиться\nРезко смените направление и выйдите на свободное место\nПокажите руку партнёру как цель для передачи\nПоймайте мяч и встаньте в тройную угрозу",
+        "en": "Get into a stance and watch the ball and your defender\nTake a short step in one direction, making the defender shift\nChange direction sharply and move to the open spot\nShow your hand to the passer as a target\nCatch the ball and get into triple-threat position"
+      },
+      "muscles": { "ru": "Квадрицепсы, ягодичные, икроножные мышцы", "en": "Quadriceps, glutes, calves" },
+      "sets": { "ru": "4 подхода × 6 отрывов", "en": "4 sets × 6 cuts" },
+      "rest": { "ru": "45 сек", "en": "45 sec" },
+      "tips": {
+        "ru": "Смена скорости важнее самой скорости: сначала замедлитесь, потом резко ускорьтесь.",
+        "en": "Change of speed matters more than speed itself: first slow down, then accelerate sharply."
+      },
+      "mistakes": {
+        "ru": "Движение только по прямой линии\nРуки не показаны партнёру\nОтрыв без смены ритма",
+        "en": "Moving only in a straight line\nNot showing your hands to the passer\nGetting open without changing pace"
+      }
+    },
+    {
+      "id": 18,
+      "title": { "ru": "Передал и выбежал (гивн-гоу)", "en": "Give and Go" },
+      "description": {
+        "ru": "Игрок отдаёт передачу партнёру и сразу уходит к кольцу, чтобы получить мяч обратно. Простая, но очень эффективная комбинация.",
+        "en": "A player passes to a teammate and immediately cuts to the hoop to receive the ball back. A simple but very effective combination."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Нападение", "en": "Offense" },
+      "imageName": "ic_offense",
+      "steps": {
+        "ru": "Отдайте передачу партнёру на крыле\nСразу сделайте резкий рывок к кольцу, смотря на мяч\nПартнёр возвращает вам мяч в движении\nПоймайте мяч и завершите бросок из-под кольца\nПоменяйтесь ролями",
+        "en": "Pass to a teammate on the wing\nImmediately make a sharp cut to the hoop, watching the ball\nYour teammate returns the ball to you on the move\nCatch the ball and finish with a layup\nSwitch roles"
+      },
+      "muscles": { "ru": "Ноги, кор, плечи", "en": "Legs, core, shoulders" },
+      "sets": { "ru": "5 подходов × 6 повторений", "en": "5 sets × 6 reps" },
+      "rest": { "ru": "45 сек", "en": "45 sec" },
+      "tips": {
+        "ru": "Рывок должен начаться сразу после передачи, пока защитник ещё смотрит на мяч.",
+        "en": "Start the cut right after the pass, while the defender is still watching the ball."
+      },
+      "mistakes": {
+        "ru": "Остановка после передачи\nВозвратная передача в ноги или за спину\nСлишком ранний или поздний рывок",
+        "en": "Stopping after the pass\nA return pass at your feet or behind you\nCutting too early or too late"
+      }
+    },
+    {
+      "id": 19,
+      "title": { "ru": "Заслон без мяча", "en": "Off-Ball Screen" },
+      "description": {
+        "ru": "Постановка заслона для партнёра без мяча и использование заслона самим. Помогает партнёру освободиться для броска.",
+        "en": "Setting a screen for a teammate without the ball and using a teammate's screen yourself. Helps a teammate get open for a shot."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Нападение", "en": "Offense" },
+      "imageName": "ic_offense",
+      "steps": {
+        "ru": "Подойдите к защитнику партнёра и встаньте неподвижно, ноги шире плеч\nСкрестите руки перед собой и не двигайтесь в момент контакта\nПартнёр проходит вплотную к вам, прижимая защитника\nКак только партнёр прошёл, развернитесь лицом к мячу\nМеняйтесь: теперь используйте заслон партнёра",
+        "en": "Go to your teammate's defender and stand still with your feet wider than your shoulders\nCross your arms in front of you and don't move at the moment of contact\nYour teammate passes close by you, pinning the defender\nAs soon as your teammate has passed, turn to face the ball\nSwitch: now use your teammate's screen"
+      },
+      "muscles": { "ru": "Ноги, кор, спина, плечи", "en": "Legs, core, back, shoulders" },
+      "sets": { "ru": "4 подхода × 6 заслонов", "en": "4 sets × 6 screens" },
+      "rest": { "ru": "60 сек", "en": "60 sec" },
+      "tips": {
+        "ru": "Если вы получаете заслон, пройдите вплотную: любая щель позволит защитнику проскочить.",
+        "en": "When using a screen, pass shoulder to shoulder: any gap lets the defender slip through."
+      },
+      "mistakes": {
+        "ru": "Движение при контакте (фол)\nПартнёр выходит слишком рано или поздно\nЗаслон поставлен спиной к мячу",
+        "en": "Moving during contact (foul)\nThe teammate cuts too early or too late\nSetting the screen with your back to the ball"
+      }
+    },
+    {
+      "id": 20,
+      "title": { "ru": "Позиционное нападение 5 на 5", "en": "Half-Court Offense 5-on-5" },
+      "description": {
+        "ru": "Организованная игра пятёрки против пятёрки. Учимся занимать позиции, двигаться без мяча и использовать комбинации.",
+        "en": "Organized play, five against five. Learn to take positions, move without the ball and use set plays."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Нападение", "en": "Offense" },
+      "imageName": "ic_offense",
+      "steps": {
+        "ru": "Расставьте игроков по схеме: два на периметре, два на флангах, один у кольца\nПередавайте мяч по периметру, ища пространство\nИгроки без мяча постоянно двигаются и создают заслоны\nИщите слабое место в защите и атакуйте его\nПосле броска сразу идите на подбор и возвращайтесь в защиту",
+        "en": "Set up players in a formation: two on the perimeter, two on the wings, one near the hoop\nPass the ball around the perimeter, looking for space\nPlayers without the ball keep moving and set screens\nLook for a weak spot in the defense and attack it\nAfter a shot, go straight to the rebound and get back on defense"
+      },
+      "muscles": { "ru": "Общая выносливость, ноги, кор", "en": "General endurance, legs, core" },
+      "sets": { "ru": "4 розыгрыша по 2–3 минуты", "en": "4 possessions of 2–3 minutes" },
+      "rest": { "ru": "60–90 сек", "en": "60–90 sec" },
+      "tips": {
+        "ru": "Договоритесь о простом сигнале (слово или жест) для начала комбинации, чтобы не запутаться.",
+        "en": "Agree on a simple signal (a word or gesture) to start a play so no one gets confused."
+      },
+      "mistakes": {
+        "ru": "Все игроки стоят на месте\nБросок после первой передачи без комбинации\nИгроки скапливаются в одной зоне",
+        "en": "All players stand still\nShooting after the first pass with no play\nPlayers crowding into one area"
+      }
+    },
+    {
+      "id": 21,
+      "title": { "ru": "Скольжение (приставные шаги)", "en": "Defensive Slide" },
+      "description": {
+        "ru": "Передвижение защитника вбок без скрещивания ног. Основа любой защиты: именно так вы остаётесь перед нападающим.",
+        "en": "Moving sideways as a defender without crossing your feet. The basis of any defense: this is how you stay in front of the attacker."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Защита", "en": "Defense" },
+      "imageName": "ic_defense",
+      "steps": {
+        "ru": "Встаньте в защитную стойку\nОттолкнитесь дальней ногой и сделайте шаг в сторону ближней ногой\nПодтяните вторую ногу, не скрещивая ноги\nСохраняйте низкую стойку и ровную спину\nДвигайтесь вдоль линии площадки и обратно",
+        "en": "Get into a defensive stance\nPush off with the far foot and step sideways with the near foot\nBring the other foot up without crossing your feet\nStay low with a straight back\nSlide along the court line and back"
+      },
+      "muscles": { "ru": "Квадрицепсы, ягодичные, приводящие мышцы бедра, икроножные", "en": "Quadriceps, glutes, hip adductors, calves" },
+      "sets": { "ru": "4 подхода × 20 секунд", "en": "4 sets × 20 sec" },
+      "rest": { "ru": "30–45 сек", "en": "30–45 sec" },
+      "tips": {
+        "ru": "Не подпрыгивайте: голова должна двигаться на одном уровне.",
+        "en": "Don't bounce up and down: your head should stay at the same level."
+      },
+      "mistakes": {
+        "ru": "Скрещивание ног\nПоднимание корпуса при шаге\nСлишком мелкие или слишком широкие шаги",
+        "en": "Crossing your feet\nStanding up while stepping\nSteps that are too short or too wide"
+      }
+    },
+    {
+      "id": 22,
+      "title": { "ru": "Защита против заслона", "en": "Defending the Screen" },
+      "description": {
+        "ru": "Действия защитника, когда партнёр соперника ставит заслон. Учимся не терять опекаемого и общаться с партнёрами.",
+        "en": "A defender's actions when the opponent's teammate sets a screen. Learn not to lose your man and to communicate with teammates."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Защита", "en": "Defense" },
+      "imageName": "ic_defense",
+      "steps": {
+        "ru": "Заметьте, что идёт заслон, и громко предупредите партнёра сигналом\nЗащитник, на которого ставят заслон, пробирается сквозь щель между заслоном и партнёром\nВторой защитник слегка отступает, давая коллеге пройти\nЕсли не получилось пройти, меняйтесь опекаемыми\nСразу займите правильную позицию и продолжайте защиту",
+        "en": "Notice the screen coming and call it out loudly to your teammate\nThe defender being screened squeezes through the gap between the screener and the teammate\nThe other defender steps back slightly, letting the teammate through\nIf you can't get through, switch opponents\nImmediately take the correct position and continue defending"
+      },
+      "muscles": { "ru": "Ноги, кор, плечи", "en": "Legs, core, shoulders" },
+      "sets": { "ru": "4 подхода × 6 розыгрышей", "en": "4 sets × 6 plays" },
+      "rest": { "ru": "60 сек", "en": "60 sec" },
+      "tips": {
+        "ru": "Обязательно кричите подсказку: «Заслон!» или «Меняемся!» Молчание — частая причина лёгких очков.",
+        "en": "Always shout a cue: 'Screen!' or 'Switch!' Silence is a common reason for easy points."
+      },
+      "mistakes": {
+        "ru": "Защитник запутался и упёрся в заслон\nНет общения между игроками\nПоздняя реакция на заслон",
+        "en": "The defender gets tangled and runs into the screen\nNo communication between players\nReacting late to the screen"
+      }
+    },
+    {
+      "id": 23,
+      "title": { "ru": "Командная защита «игрок к игроку»", "en": "Man-to-Man Team Defense" },
+      "description": {
+        "ru": "Каждый защитник отвечает за своего соперника, но вся команда помогает друг другу. Учимся занимать позиции и страховать партнёров.",
+        "en": "Each defender is responsible for his own opponent, but the whole team helps each other. Learn to take positions and cover for teammates."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Защита", "en": "Defense" },
+      "imageName": "ic_defense",
+      "steps": {
+        "ru": "Распределите соперников между игроками\nЗащитник на мяче играет плотно, остальные занимают позицию «между мячом и своим игроком»\nИгроки вдали от мяча смотрят и на мяч, и на соперника\nПри прорыве соперника ближайший партнёр помогает\nПосле помощи быстро вернитесь к своему игроку",
+        "en": "Assign opponents to players\nThe on-ball defender plays tight, others take position between the ball and their man\nPlayers away from the ball watch both the ball and their opponent\nIf the opponent breaks through, the nearest teammate helps\nAfter helping, quickly get back to your own man"
+      },
+      "muscles": { "ru": "Общая выносливость, ноги, кор", "en": "General endurance, legs, core" },
+      "sets": { "ru": "4 розыгрыша по 2 минуты", "en": "4 possessions of 2 minutes" },
+      "rest": { "ru": "60–90 сек", "en": "60–90 sec" },
+      "tips": {
+        "ru": "Чем дальше ваш подопечный от мяча, тем дальше вы можете отойти от него к кольцу.",
+        "en": "The farther your man is from the ball, the farther you can sag off him toward the hoop."
+      },
+      "mistakes": {
+        "ru": "Все смотрят только на мяч\nНет помощи при прорыве\nЗабытый игрок без опеки",
+        "en": "Everyone watches only the ball\nNo help when the opponent drives\nA forgotten player left unguarded"
+      }
+    },
+    {
+      "id": 24,
+      "title": { "ru": "Зонная защита (2-3, 3-2)", "en": "Zone Defense (2-3, 3-2)" },
+      "description": {
+        "ru": "Каждый защитник отвечает за определённую зону площадки, а не за конкретного игрока. Помогает защищать кольцо и сбивает ритм соперника.",
+        "en": "Each defender is responsible for a specific area of the court rather than a particular player. It protects the hoop and disrupts the opponent's rhythm."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Защита", "en": "Defense" },
+      "imageName": "ic_defense",
+      "steps": {
+        "ru": "Расставьте игроков по схеме: 2-3 (два впереди, три под кольцом) или 3-2\nКаждый защитник закрывает свою зону и всех, кто в неё входит\nПри передаче мяча защитники смещаются вместе, сохраняя форму\nСледите за мячом и за игроками, заходящими в зону\nПосле подбора сразу выходите в быструю атаку",
+        "en": "Set up players in a formation: 2-3 (two up front, three under the hoop) or 3-2\nEach defender covers his zone and everyone who enters it\nWhen the ball is passed, defenders shift together, keeping the shape\nWatch the ball and the players cutting into the zone\nAfter the rebound, go straight into a fast break"
+      },
+      "muscles": { "ru": "Ноги, кор, общая выносливость", "en": "Legs, core, general endurance" },
+      "sets": { "ru": "4 розыгрыша по 2 минуты", "en": "4 possessions of 2 minutes" },
+      "rest": { "ru": "60–90 сек", "en": "60–90 sec" },
+      "tips": {
+        "ru": "Двигайтесь вместе: когда мяч идёт вправо, вся зона смещается вправо.",
+        "en": "Move together: when the ball goes right, the whole zone shifts right."
+      },
+      "mistakes": {
+        "ru": "Игроки стоят на месте и не смещаются\nДыры между защитниками\nИгроки гоняются за мячом, покидая зону",
+        "en": "Players stand still and don't shift\nGaps between defenders\nPlayers chase the ball, leaving their zone"
+      }
+    },
+    {
+      "id": 25,
+      "title": { "ru": "Перехват мяча", "en": "Steal" },
+      "description": {
+        "ru": "Умение предугадать передачу и перехватить мяч. Хороший перехват сразу превращается в быструю атаку.",
+        "en": "The ability to anticipate a pass and intercept the ball. A good steal turns directly into a fast break."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Защита", "en": "Defense" },
+      "imageName": "ic_defense",
+      "steps": {
+        "ru": "Встаньте в стойку и следите за мячом и опекаемым игроком\nЧитайте взгляд и положение корпуса соперника с мячом\nКогда передача начата, сделайте рывок на линию передачи\nПерехватите мяч двумя руками или выбейте его в свободное пространство\nСразу переходите в атаку: ведите мяч вперёд или отдайте передачу",
+        "en": "Get into a stance and watch the ball and your opponent\nRead the eyes and body position of the player with the ball\nWhen the pass starts, burst into the passing lane\nCatch the ball with both hands or knock it into open space\nImmediately go on offense: dribble ahead or pass"
+      },
+      "muscles": { "ru": "Икроножные, квадрицепсы, плечи", "en": "Calves, quadriceps, shoulders" },
+      "sets": { "ru": "4 подхода × 6 попыток", "en": "4 sets × 6 attempts" },
+      "rest": { "ru": "45–60 сек", "en": "45–60 sec" },
+      "tips": {
+        "ru": "Не рискуйте без необходимости: если вы промахнулись, ваш игрок остаётся без опеки.",
+        "en": "Don't gamble without need: if you miss, your man is left unguarded."
+      },
+      "mistakes": {
+        "ru": "Рывок до начала передачи\nПопытка выбить мяч рукой сзади (фол)\nЗабывать про своего подопечного",
+        "en": "Bursting before the pass has started\nTrying to knock the ball from behind with your hand (foul)\nForgetting about your own man"
+      }
+    },
+    {
+      "id": 26,
+      "title": { "ru": "Блок-шот", "en": "Block Shot" },
+      "description": {
+        "ru": "Блокировка броска соперника в полёте. Требует хорошего тайминга и прыжка, а главное — чистой игры без фола.",
+        "en": "Blocking the opponent's shot in the air. Requires good timing and a jump, and above all clean play without a foul."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Защита", "en": "Defense" },
+      "imageName": "ic_defense",
+      "steps": {
+        "ru": "Встаньте в стойку напротив нападающего, не делайте прыжков на финты\nДождитесь, когда соперник начнёт бросок и поднимет мяч\nПрыгните вверх вертикально и вытяните руку к мячу\nКоснитесь мяча ладонью в верхней точке, не задевая руку соперника\nПриземлитесь на две ноги и сразу идите на подбор",
+        "en": "Stand in a stance facing the attacker and don't jump at fakes\nWait until the opponent starts the shot and raises the ball\nJump straight up and extend your arm toward the ball\nTouch the ball with your palm at the top without hitting the opponent's arm\nLand on both feet and go right to the rebound"
+      },
+      "muscles": { "ru": "Икроножные, квадрицепсы, плечи, кор", "en": "Calves, quadriceps, shoulders, core" },
+      "sets": { "ru": "4 подхода × 6 попыток", "en": "4 sets × 6 attempts" },
+      "rest": { "ru": "60 сек", "en": "60 sec" },
+      "tips": {
+        "ru": "Блокируйте мяч сверху или сбоку, а не бейте по руке: это основная причина фола.",
+        "en": "Block the ball from above or the side, not by hitting the arm: that's the main cause of fouls."
+      },
+      "mistakes": {
+        "ru": "Прыжок слишком рано\nУдар по руке соперника\nПрыжок вперёд на нападающего",
+        "en": "Jumping too early\nHitting the opponent's arm\nJumping forward into the attacker"
+      }
+    },
+    {
+      "id": 27,
+      "title": { "ru": "Смена руки и кроссовер", "en": "Hand Switch and Crossover" },
+      "description": {
+        "ru": "Перевод мяча с одной руки на другую перед защитником. Помогает сменить направление и обмануть соперника.",
+        "en": "Transferring the ball from one hand to the other in front of a defender. Helps you change direction and fool your opponent."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Техника", "en": "Technique" },
+      "imageName": "ic_technique",
+      "steps": {
+        "ru": "Ведите мяч правой рукой, колени согнуты\nСделайте короткий шаг вправо, показывая, что идёте в эту сторону\nРезко переведите мяч перед собой низко над полом в левую руку\nОттолкнитесь правой ногой и уходите влево\nПродолжите ведение левой рукой, закрывая мяч корпусом",
+        "en": "Dribble with your right hand, knees bent\nTake a short step right, showing that you are going that way\nSharply move the ball low in front of you into your left hand\nPush off with your right foot and go left\nContinue dribbling with your left hand, shielding the ball with your body"
+      },
+      "muscles": { "ru": "Предплечья, плечевой пояс, кор, ноги", "en": "Forearms, shoulder girdle, core, legs" },
+      "sets": { "ru": "4 подхода × 20 смен руки", "en": "4 sets × 20 hand switches" },
+      "rest": { "ru": "30–45 сек", "en": "30–45 sec" },
+      "tips": {
+        "ru": "Мяч должен лететь низко и быстро: чем ниже перевод, тем сложнее его перехватить.",
+        "en": "The ball should travel low and fast: the lower the crossover, the harder it is to steal."
+      },
+      "mistakes": {
+        "ru": "Высокий перевод мяча\nНет шага и движения корпусом\nПотеря скорости после смены",
+        "en": "A high crossover\nNo step or body movement\nLosing speed after the switch"
+      }
+    },
+    {
+      "id": 28,
+      "title": { "ru": "Ведение с изменением скорости", "en": "Change-of-Pace Dribble" },
+      "description": {
+        "ru": "Чередование медленного и быстрого ведения. Резкое ускорение после медленного темпа помогает оторваться от защитника.",
+        "en": "Alternating slow and fast dribbling. A sharp burst after a slow tempo helps you get away from a defender."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Техника", "en": "Technique" },
+      "imageName": "ic_technique",
+      "steps": {
+        "ru": "Начните ведение в медленном темпе, чуть присев\nВыберите момент и резко ускорьтесь, толкая мяч вперёд\nПробегите 5–6 метров на скорости\nСнова замедлитесь, останавливая движение вперёд\nПовторяйте чередование до конца площадки",
+        "en": "Start dribbling at a slow pace, slightly crouched\nPick your moment and accelerate sharply, pushing the ball forward\nRun 5–6 meters at speed\nSlow down again, stopping your forward movement\nRepeat the alternation to the end of the court"
+      },
+      "muscles": { "ru": "Ноги, предплечья, плечевой пояс, кор", "en": "Legs, forearms, shoulder girdle, core" },
+      "sets": { "ru": "4 прохода по площадке", "en": "4 runs down the court" },
+      "rest": { "ru": "45 сек", "en": "45 sec" },
+      "tips": {
+        "ru": "Самая важная часть — резкость перехода: сначала замедлитесь и только потом ускоряйтесь.",
+        "en": "The key is the sharpness of the transition: first slow down, then accelerate."
+      },
+      "mistakes": {
+        "ru": "Одинаковая скорость на всём пути\nМяч уходит далеко вперёд при ускорении\nВыпрямленные ноги при замедлении",
+        "en": "The same speed all the way\nThe ball gets away from you when accelerating\nStraight legs when slowing down"
+      }
+    },
+    {
+      "id": 29,
+      "title": { "ru": "Остановка прыжком и двумя шагами", "en": "Jump Stop and Two-Count Stop" },
+      "description": {
+        "ru": "Два способа остановиться после ведения. Остановка прыжком сохраняет обе ноги в равновесии, остановка двумя шагами позволяет выбрать ногу для поворота.",
+        "en": "Two ways to stop after dribbling. A jump stop keeps both feet balanced, a two-count stop lets you choose a pivot foot."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Техника", "en": "Technique" },
+      "imageName": "ic_technique",
+      "steps": {
+        "ru": "Ведите мяч в среднем темпе\nДля остановки прыжком: подпрыгните, поймав мяч, и приземлитесь на обе ноги одновременно\nДля остановки двумя шагами: поймайте мяч, сделайте первый шаг, затем второй\nПрисядьте при приземлении, смягчая удар коленями\nСохраните равновесие и защитите мяч локтями",
+        "en": "Dribble at a medium pace\nFor a jump stop: jump while catching the ball and land on both feet at the same time\nFor a two-count stop: catch the ball, take the first step, then the second\nSit down on landing, cushioning the impact with your knees\nKeep your balance and protect the ball with your elbows"
+      },
+      "muscles": { "ru": "Квадрицепсы, ягодичные, икроножные, кор", "en": "Quadriceps, glutes, calves, core" },
+      "sets": { "ru": "4 подхода × 6 остановок каждым способом", "en": "4 sets × 6 stops of each type" },
+      "rest": { "ru": "45 сек", "en": "45 sec" },
+      "tips": {
+        "ru": "Приземляйтесь на мягкие ноги: жёсткие колени делают остановку шумной и небезопасной.",
+        "en": "Land with soft legs: stiff knees make the stop loud and unsafe."
+      },
+      "mistakes": {
+        "ru": "Приземление на прямые ноги\nТри шага вместо двух (пробежка)\nПотеря мяча при остановке",
+        "en": "Landing on straight legs\nThree steps instead of two (traveling)\nLosing the ball on the stop"
+      }
+    },
+    {
+      "id": 30,
+      "title": { "ru": "Повороты и пивот", "en": "Pivoting and Turns" },
+      "description": {
+        "ru": "Вращение на опорной ноге при неподвижной второй. Позволяет защитить мяч и найти партнёра, не нарушая правил.",
+        "en": "Rotating on a pivot foot while the other foot moves. Lets you protect the ball and find a teammate without breaking the rules."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Техника", "en": "Technique" },
+      "imageName": "ic_technique",
+      "steps": {
+        "ru": "Встаньте с мячом в двух руках, выберите опорную ногу\nНе отрывая опорную ногу от пола, поворачивайтесь на её носке\nСвободной ногой делайте шаг вперёд, назад или в сторону\nДержите мяч близко к телу, прикрывая его локтями\nСмотрите по сторонам, как будто ищете партнёра",
+        "en": "Stand with the ball in both hands and choose your pivot foot\nWithout lifting the pivot foot, turn on its toes\nStep forward, back or sideways with your free foot\nKeep the ball close to your body, covering it with your elbows\nLook around as if searching for a teammate"
+      },
+      "muscles": { "ru": "Квадрицепсы, икроножные, кор, плечи", "en": "Quadriceps, calves, core, shoulders" },
+      "sets": { "ru": "3 подхода × 10 поворотов на каждую ногу", "en": "3 sets × 10 pivots on each foot" },
+      "rest": { "ru": "30 сек", "en": "30 sec" },
+      "tips": {
+        "ru": "Представьте, что опорная нога приклеена к полу: отрывать её нельзя, пока мяч в руках.",
+        "en": "Imagine your pivot foot is glued to the floor: you can't lift it while you hold the ball."
+      },
+      "mistakes": {
+        "ru": "Сдвиг опорной ноги (пробежка)\nМяч опускается к полу\nСлишком широкие шаги",
+        "en": "Moving the pivot foot (traveling)\nThe ball drops toward the floor\nSteps that are too wide"
+      }
+    },
+    {
+      "id": 31,
+      "title": { "ru": "Ловля мяча", "en": "Catching the Ball" },
+      "description": {
+        "ru": "Приём мяча на месте и в движении. Правильная ловля — это начало любой атакующей комбинации.",
+        "en": "Receiving the ball standing still and on the move. A proper catch is the start of any offensive play."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Техника", "en": "Technique" },
+      "imageName": "ic_technique",
+      "steps": {
+        "ru": "Встаньте в стойку и покажите партнёру открытые руки\nПротяните руки навстречу мячу с растопыренными пальцами\nПри касании мяча слегка согните руки, смягчая удар\nПодтяните мяч к груди и сразу займите тройную угрозу\nПовторите на ходу: поймайте мяч в движении, не останавливаясь",
+        "en": "Get into a stance and show your teammate open hands\nReach out toward the ball with fingers spread\nWhen you touch the ball, bend your arms slightly to absorb the impact\nPull the ball to your chest and immediately get into triple-threat position\nRepeat on the move: catch the ball while running without stopping"
+      },
+      "muscles": { "ru": "Предплечья, кисти, плечи", "en": "Forearms, hands, shoulders" },
+      "sets": { "ru": "3 подхода × 15 ловлей", "en": "3 sets × 15 catches" },
+      "rest": { "ru": "30 сек", "en": "30 sec" },
+      "tips": {
+        "ru": "Ловите мяч пальцами, а не ладонями: так он не отскочит и не выскользнет.",
+        "en": "Catch with your fingers, not your palms: that way the ball won't bounce off or slip away."
+      },
+      "mistakes": {
+        "ru": "Ловля прямыми руками\nВзгляд на мяч только в последний момент\nОтсутствие шага навстречу мячу",
+        "en": "Catching with straight arms\nLooking at the ball only at the last moment\nNot stepping toward the ball"
+      }
+    },
+    {
+      "id": 32,
+      "title": { "ru": "Прыжковые упражнения", "en": "Jump Training" },
+      "description": {
+        "ru": "Развитие взрывной силы ног для прыжков, блок-шотов и подборов. Выполняйте на мягком покрытии и после разминки.",
+        "en": "Developing explosive leg power for jumps, blocks and rebounds. Do on a soft surface and after a warm-up."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Физическая подготовка", "en": "Fitness" },
+      "imageName": "ic_fitness",
+      "steps": {
+        "ru": "Встаньте на ширине плеч, руки впереди\nПрисядьте и резко выпрыгните вверх, максимально вытягиваясь\nПриземлитесь на носки, плавно перекатываясь на всю стопу\nСразу согните колени, смягчая приземление\nПовторяйте без паузы, сохраняя высоту прыжка",
+        "en": "Stand shoulder-width apart, arms in front\nSquat and jump up sharply, stretching as high as you can\nLand on your toes, rolling smoothly onto your whole foot\nBend your knees immediately to cushion the landing\nRepeat without pause, keeping your jump height"
+      },
+      "muscles": { "ru": "Квадрицепсы, ягодичные, икроножные, кор", "en": "Quadriceps, glutes, calves, core" },
+      "sets": { "ru": "3 подхода × 10 прыжков", "en": "3 sets × 10 jumps" },
+      "rest": { "ru": "60 сек", "en": "60 sec" },
+      "tips": {
+        "ru": "Лучше сделать меньше прыжков, но каждый в полную силу, чем много слабых.",
+        "en": "It's better to do fewer jumps with full effort than many weak ones."
+      },
+      "mistakes": {
+        "ru": "Жёсткое приземление на прямые ноги\nКолени заваливаются внутрь\nПрыжки в усталости без отдыха",
+        "en": "Hard landing on straight legs\nKnees caving inward\nJumping when tired without rest"
+      }
+    },
+    {
+      "id": 33,
+      "title": { "ru": "Челночный бег", "en": "Shuttle Run" },
+      "description": {
+        "ru": "Бег с разворотами между отметками. Тренирует скорость, ловкость и выносливость, нужные для игры.",
+        "en": "Running with turns between markers. Trains speed, agility and the endurance needed for the game."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Физическая подготовка", "en": "Fitness" },
+      "imageName": "ic_fitness",
+      "steps": {
+        "ru": "Поставьте две отметки на расстоянии 10–15 метров\nПробегите до дальней отметки и коснитесь её рукой\nРезко развернитесь и бегите обратно\nПовторите нужное количество пробежек без остановки\nПосле подхода походите шагом, восстанавливая дыхание",
+        "en": "Set two markers 10–15 meters apart\nRun to the far marker and touch it with your hand\nTurn sharply and run back\nRepeat the required number of runs without stopping\nAfter the set, walk to recover your breathing"
+      },
+      "muscles": { "ru": "Квадрицепсы, ягодичные, икроножные, кор", "en": "Quadriceps, glutes, calves, core" },
+      "sets": { "ru": "5 подходов × 4 пробежки", "en": "5 sets × 4 runs" },
+      "rest": { "ru": "60 сек", "en": "60 sec" },
+      "tips": {
+        "ru": "Перед разворотом опускайте центр тяжести: так вы быстрее оттолкнётесь.",
+        "en": "Lower your center of gravity before the turn: you'll push off faster."
+      },
+      "mistakes": {
+        "ru": "Разворот на прямых ногах\nТорможение слишком рано\nПотеря скорости после разворота",
+        "en": "Turning on straight legs\nBraking too early\nLosing speed after the turn"
+      }
+    },
+    {
+      "id": 34,
+      "title": { "ru": "Координация и баланс", "en": "Coordination and Balance" },
+      "description": {
+        "ru": "Упражнения на устойчивость и контроль тела. Помогают двигаться увереннее и снижают риск травм.",
+        "en": "Exercises for stability and body control. They help you move with more confidence and reduce injury risk."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Физическая подготовка", "en": "Fitness" },
+      "imageName": "ic_fitness",
+      "steps": {
+        "ru": "Встаньте на одну ногу, вторую слегка согните\nУдерживайте равновесие, не опираясь на другую ногу\nУсложните: закройте глаза или отбивайте мяч рукой\nМеняйте ногу после каждого подхода\nДобавьте ходьбу по линии, перенося вес с пятки на носок",
+        "en": "Stand on one leg with the other slightly bent\nHold your balance without touching down with the other foot\nMake it harder: close your eyes or dribble a ball with your hand\nSwitch legs after every set\nAdd walking along a line, shifting weight from heel to toe"
+      },
+      "muscles": { "ru": "Мышцы кора, икроножные, стабилизаторы голеностопа", "en": "Core muscles, calves, ankle stabilizers" },
+      "sets": { "ru": "3 подхода × 30 секунд на каждую ногу", "en": "3 sets × 30 sec on each leg" },
+      "rest": { "ru": "30 сек", "en": "30 sec" },
+      "tips": {
+        "ru": "Смотрите на одну неподвижную точку: так равновесие удерживать проще.",
+        "en": "Look at one fixed point: it makes balance easier to hold."
+      },
+      "mistakes": {
+        "ru": "Опора на вторую ногу\nНапряжённые плечи и задержка дыхания\nСлишком быстрое усложнение",
+        "en": "Putting the other foot down\nTense shoulders and holding your breath\nMaking it harder too quickly"
+      }
+    },
+    {
+      "id": 35,
+      "title": { "ru": "Круговая тренировка", "en": "Circuit Training" },
+      "description": {
+        "ru": "Серия упражнений без пауз между ними. Развивает общую выносливость и силу, подходит для межсезонья.",
+        "en": "A series of exercises with no pauses between them. Develops overall endurance and strength, good for the off-season."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Физическая подготовка", "en": "Fitness" },
+      "imageName": "ic_fitness",
+      "steps": {
+        "ru": "Выберите 5 упражнений: приседания, отжимания, выпады, планка, прыжки\nВыполняйте каждое упражнение по 30 секунд\nМежду упражнениями отдыхайте 30 секунд\nПосле круга отдохните 2 минуты\nПовторите круг ещё два раза",
+        "en": "Choose 5 exercises: squats, push-ups, lunges, plank, jumps\nDo each exercise for 30 seconds\nRest 30 seconds between exercises\nAfter a round, rest for 2 minutes\nRepeat the round two more times"
+      },
+      "muscles": { "ru": "Всё тело: ноги, кор, плечи, спина", "en": "Whole body: legs, core, shoulders, back" },
+      "sets": { "ru": "3 круга по 5 упражнений × 30 секунд", "en": "3 rounds of 5 exercises × 30 sec" },
+      "rest": { "ru": "30 сек между упражнениями, 2 минуты между кругами", "en": "30 sec between exercises, 2 min between rounds" },
+      "tips": {
+        "ru": "Следите за техникой: лучше медленнее, но без ошибок.",
+        "en": "Watch your form: it's better slower but without mistakes."
+      },
+      "mistakes": {
+        "ru": "Слишком быстрый темп, потеря техники\nПропуск отдыха\nОдинаковая нагрузка без прогресса",
+        "en": "Pace too fast, losing form\nSkipping rest\nThe same load with no progression"
+      }
+    },
+    {
+      "id": 36,
+      "title": { "ru": "Динамическая разминка", "en": "Dynamic Warm-Up" },
+      "description": {
+        "ru": "Подготовка тела к тренировке: разогревает мышцы и суставы и снижает риск травм. Делайте перед каждой тренировкой.",
+        "en": "Preparing your body for training: it warms up muscles and joints and reduces injury risk. Do it before every workout."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Разминка и растяжка", "en": "Warm-up & Stretching" },
+      "imageName": "ic_warmup",
+      "steps": {
+        "ru": "Лёгкий бег 2–3 минуты по залу\nВращения головой, плечами, локтями и кистями\nМахи ногами вперёд и в стороны\nВыпады и приставные шаги\nНесколько коротких ускорений и прыжков",
+        "en": "Light jogging for 2–3 minutes around the gym\nRotations of the head, shoulders, elbows and wrists\nLeg swings forward and to the sides\nLunges and side steps\nA few short sprints and jumps"
+      },
+      "muscles": { "ru": "Всё тело", "en": "Whole body" },
+      "sets": { "ru": "5–10 минут", "en": "5–10 minutes" },
+      "rest": { "ru": "Без отдыха между упражнениями", "en": "No rest between exercises" },
+      "tips": {
+        "ru": "Разминка должна слегка вас разогревать, но не утомлять.",
+        "en": "The warm-up should make you slightly warm, not tired."
+      },
+      "mistakes": {
+        "ru": "Пропуск разминки\nТолько статическая растяжка без движения\nСлишком короткая разминка",
+        "en": "Skipping the warm-up\nOnly static stretching with no movement\nA warm-up that is too short"
+      }
+    },
+    {
+      "id": 37,
+      "title": { "ru": "Растяжка после тренировки", "en": "Post-Workout Stretching" },
+      "description": {
+        "ru": "Статическая растяжка основных групп мышц после тренировки. Помогает расслабиться и сохранить гибкость.",
+        "en": "Static stretching of the main muscle groups after training. Helps you relax and maintain flexibility."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Разминка и растяжка", "en": "Warm-up & Stretching" },
+      "imageName": "ic_warmup",
+      "steps": {
+        "ru": "Растяните квадрицепс: подтяните пятку к ягодице, стоя на одной ноге\nРастяните заднюю поверхность бедра, наклонившись к прямой ноге\nРастяните икры, упираясь руками в стену\nРастяните плечи, прижав руку к груди\nДышите ровно и не делайте резких рывков",
+        "en": "Stretch the quadriceps: pull your heel toward your glute while standing on one leg\nStretch the hamstring by leaning toward a straight leg\nStretch the calves by pushing your hands against a wall\nStretch the shoulders by pulling an arm across your chest\nBreathe evenly and avoid sudden jerks"
+      },
+      "muscles": { "ru": "Квадрицепсы, задняя поверхность бедра, икроножные, плечи, спина", "en": "Quadriceps, hamstrings, calves, shoulders, back" },
+      "sets": { "ru": "1 подход × 20–30 секунд на каждую позу", "en": "1 set × 20–30 sec per pose" },
+      "rest": { "ru": "10 сек между позами", "en": "10 sec between poses" },
+      "tips": {
+        "ru": "Растягивайтесь до лёгкого натяжения, а не до боли.",
+        "en": "Stretch to a light tension, not to pain."
+      },
+      "mistakes": {
+        "ru": "Резкие рывки в растяжке\nЗадержка дыхания\nРастяжка через боль",
+        "en": "Jerky movements in the stretch\nHolding your breath\nStretching through pain"
+      }
+    },
+    {
+      "id": 38,
+      "title": { "ru": "Профилактика травм голеностопа и коленей", "en": "Ankle and Knee Injury Prevention" },
+      "description": {
+        "ru": "Упражнения для укрепления связок и мышц вокруг самых уязвимых суставов баскетболиста.",
+        "en": "Exercises to strengthen the ligaments and muscles around a basketball player's most vulnerable joints."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Разминка и растяжка", "en": "Warm-up & Stretching" },
+      "imageName": "ic_warmup",
+      "steps": {
+        "ru": "Подъёмы на носки: поднимайтесь медленно и так же медленно опускайтесь\nСтойка на одной ноге с закрытыми глазами для баланса\nПриседания с медленным опусканием и контролем колен\nБоковые шаги с резинкой на уровне колен\nМягкое приземление после небольших прыжков",
+        "en": "Calf raises: rise slowly and lower just as slowly\nSingle-leg stance with eyes closed for balance\nSquats with a slow descent and controlled knees\nSide steps with a resistance band at knee level\nSoft landings after small jumps"
+      },
+      "muscles": { "ru": "Икроножные, стабилизаторы голеностопа, квадрицепсы, ягодичные", "en": "Calves, ankle stabilizers, quadriceps, glutes" },
+      "sets": { "ru": "3 подхода × 12 повторений", "en": "3 sets × 12 reps" },
+      "rest": { "ru": "30 сек", "en": "30 sec" },
+      "tips": {
+        "ru": "Колени должны смотреть в ту же сторону, что и носки, на всех упражнениях.",
+        "en": "On all exercises, your knees should point in the same direction as your toes."
+      },
+      "mistakes": {
+        "ru": "Колени заваливаются внутрь\nСлишком быстрый темп\nИгнорирование боли в суставе",
+        "en": "Knees caving inward\nTempo that is too fast\nIgnoring joint pain"
+      }
+    },
+    {
+      "id": 39,
+      "title": { "ru": "Чтение игры", "en": "Reading the Game" },
+      "description": {
+        "ru": "Умение предугадывать действия соперников и партнёров. Игрок, который читает игру, всегда на шаг впереди.",
+        "en": "The ability to anticipate the actions of opponents and teammates. A player who reads the game is always a step ahead."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Игровое мышление", "en": "Game IQ" },
+      "imageName": "ic_tactics",
+      "steps": {
+        "ru": "Наблюдайте за положением всех пяти соперников, а не только за мячом\nЗамечайте, кто остался без опеки\nПредугадывайте передачу по положению корпуса игрока с мячом\nБыстро решайте: бросить, отдать, пройти или перехватить\nПосле розыгрыша обсудите с партнёром, какие подсказки вы заметили",
+        "en": "Watch the positions of all five opponents, not just the ball\nNotice who is left unguarded\nAnticipate a pass from the body position of the ball handler\nDecide quickly: shoot, pass, drive or steal\nAfter the play, discuss with a teammate what cues you noticed"
+      },
+      "muscles": { "ru": "Основная нагрузка на внимание; работают ноги и кор", "en": "Mainly attention; legs and core also work" },
+      "sets": { "ru": "4 розыгрыша по 2 минуты", "en": "4 possessions of 2 minutes" },
+      "rest": { "ru": "60 сек", "en": "60 sec" },
+      "tips": {
+        "ru": "Чаще поднимайте голову: информация приходит, когда вы смотрите на площадку.",
+        "en": "Raise your head more often: information comes when you look at the court."
+      },
+      "mistakes": {
+        "ru": "Взгляд только на мяч\nЗапоздалые решения\nИгнорирование подсказок партнёров",
+        "en": "Looking only at the ball\nLate decisions\nIgnoring teammates' cues"
+      }
+    },
+    {
+      "id": 40,
+      "title": { "ru": "Принятие решений в быстром прорыве", "en": "Fast Break Decision Making" },
+      "description": {
+        "ru": "Быстрый выбор в атаке при численном преимуществе: бросок, передача или ведение дальше.",
+        "en": "Making quick choices on offense with a numbers advantage: shoot, pass or keep dribbling."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Игровое мышление", "en": "Game IQ" },
+      "imageName": "ic_tactics",
+      "steps": {
+        "ru": "Начните быстрый прорыв 3 на 2\nВедущий выбирает направление, глядя на двух защитников\nЕсли защитник приближается к мячу, отдайте передачу свободному\nЕсли пространство открыто, продолжайте ведение до броска\nРазберите каждую атаку: было ли решение лучшим",
+        "en": "Start a 3-on-2 fast break\nThe ball handler chooses a direction while watching the two defenders\nIf a defender closes in on the ball, pass to the open player\nIf space is open, keep dribbling to the shot\nReview each attack: was the decision the best one?"
+      },
+      "muscles": { "ru": "Ноги, кор; тренируется скорость реакции", "en": "Legs, core; reaction speed is trained" },
+      "sets": { "ru": "6 атак", "en": "6 attacks" },
+      "rest": { "ru": "45–60 сек", "en": "45–60 sec" },
+      "tips": {
+        "ru": "Решайте за секунду: если сомневаетесь, отдавайте передачу.",
+        "en": "Decide within a second: if in doubt, pass."
+      },
+      "mistakes": {
+        "ru": "Слишком долгое раздумье\nБросок вопреки свободному партнёру\nЗабытое пространство для паса",
+        "en": "Thinking too long\nShooting despite an open teammate\nMissing the open space for a pass"
+      }
+    },
+    {
+      "id": 41,
+      "title": { "ru": "Игра против зоны", "en": "Playing Against a Zone" },
+      "description": {
+        "ru": "Тактика атаки против зонной защиты: быстрые передачи и поиск свободных зон.",
+        "en": "Offensive tactics against a zone defense: quick passes and finding open areas."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Игровое мышление", "en": "Game IQ" },
+      "imageName": "ic_tactics",
+      "steps": {
+        "ru": "Расставьте игроков в промежутках между защитниками\nПередавайте мяч быстро по периметру, чтобы сместить зону\nИщите игрока на слабой стороне или у кольца\nПробуйте дальние броски, если зона стоит близко к кольцу\nПодбирайте мяч и атакуйте повторно",
+        "en": "Place players in the gaps between defenders\nPass the ball quickly around the perimeter to shift the zone\nLook for a player on the weak side or near the hoop\nTry long shots if the zone stands close to the hoop\nRebound the ball and attack again"
+      },
+      "muscles": { "ru": "Ноги, кор; упор на тактику", "en": "Legs, core; focus on tactics" },
+      "sets": { "ru": "4 розыгрыша по 2 минуты", "en": "4 possessions of 2 minutes" },
+      "rest": { "ru": "60 сек", "en": "60 sec" },
+      "tips": {
+        "ru": "Зона боится быстрых передач: двигайте мяч быстрее, чем зона успевает смещаться.",
+        "en": "A zone is afraid of fast passes: move the ball faster than the zone can shift."
+      },
+      "mistakes": {
+        "ru": "Медленное ведение мяча\nВсе игроки стоят на линии, а не в промежутках\nТолько броски издалека",
+        "en": "Slow dribbling\nAll players stand on the line instead of in the gaps\nOnly long-distance shots"
+      }
+    },
+    {
+      "id": 42,
+      "title": { "ru": "Тактика на последних секундах", "en": "End-of-Game Tactics" },
+      "description": {
+        "ru": "Действия команды в конце матча при минимальном счёте: контроль времени, фолы и выбор броска.",
+        "en": "A team's actions at the end of a close game: managing the clock, fouls and choosing a shot."
+      },
+      "level": { "ru": "Продвинутый", "en": "Advanced" },
+      "category": { "ru": "Игровое мышление", "en": "Game IQ" },
+      "imageName": "ic_tactics",
+      "steps": {
+        "ru": "Назначьте тренеру или партнёру роль судьи с секундомером\nЗадайте ситуацию: счёт, время и владение мячом\nРазыграйте атаку с учётом времени и количества фолов\nВыберите лучшую позицию для последнего броска\nРазберите ошибки и повторите ситуацию",
+        "en": "Assign the coach or a teammate to be the referee with a stopwatch\nSet a situation: score, time and possession\nRun the attack taking time and the number of fouls into account\nChoose the best position for the last shot\nReview the mistakes and repeat the situation"
+      },
+      "muscles": { "ru": "Основная нагрузка на концентрацию; ноги и кор", "en": "Mainly concentration; legs and core" },
+      "sets": { "ru": "5 ситуаций по 20–30 секунд", "en": "5 situations of 20–30 sec" },
+      "rest": { "ru": "45 сек", "en": "45 sec" },
+      "tips": {
+        "ru": "Заранее распределите роли: кто бросает, кто даёт заслон, кто страхует.",
+        "en": "Assign roles in advance: who shoots, who screens, who covers."
+      },
+      "mistakes": {
+        "ru": "Спешка и бросок слишком рано\nПотеря мяча из-за паники\nИгнорирование оставшегося времени",
+        "en": "Rushing and shooting too early\nLosing the ball out of panic\nIgnoring the time remaining"
+      }
+    },
+    {
+      "id": 43,
+      "title": { "ru": "Нарушения", "en": "Violations" },
+      "description": {
+        "ru": "Основные нарушения правил: пробежка, двойное ведение, 3 секунды, 8 и 24 секунды. Знать их нужно каждому игроку.",
+        "en": "The main rule violations: traveling, double dribble, 3 seconds, 8 and 24 seconds. Every player needs to know them."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Правила", "en": "Rules" },
+      "imageName": "ic_rules",
+      "steps": {
+        "ru": "Пробежка: больше двух шагов с мячом в руках без ведения\nДвойное ведение: ведение мяча двумя руками или повторное ведение после остановки\n3 секунды: нападающий не может находиться в окрашенной зоне дольше трёх секунд\n8 секунд: команда должна перевести мяч за центральную линию за 8 секунд\n24 секунды: команда должна бросить мяч в кольцо в течение 24 секунд",
+        "en": "Traveling: more than two steps with the ball in your hands without dribbling\nDouble dribble: dribbling with two hands, or dribbling again after stopping\n3 seconds: an attacker can't stay in the painted area for more than three seconds\n8 seconds: a team must bring the ball past the center line within 8 seconds\n24 seconds: a team must attempt a shot at the hoop within 24 seconds"
+      },
+      "muscles": { "ru": "Теоретический раздел", "en": "Theory section" },
+      "sets": { "ru": "Изучение 10–15 минут", "en": "10–15 minutes of study" },
+      "rest": { "ru": "Не требуется", "en": "Not required" },
+      "tips": {
+        "ru": "Потренируйте правила в игре 3 на 3, где один игрок играет роль судьи.",
+        "en": "Practice the rules in a 3-on-3 game where one player acts as the referee."
+      },
+      "mistakes": {
+        "ru": "Путать пробежку и разрешённые шаги\nНе следить за временем владения\nИгнорировать окрашенную зону",
+        "en": "Confusing traveling with legal steps\nNot tracking possession time\nIgnoring the painted area"
+      }
+    },
+    {
+      "id": 44,
+      "title": { "ru": "Фолы и их виды", "en": "Fouls and Their Types" },
+      "description": {
+        "ru": "Нарушения правил контакта: личный, технический, неспортивный и дисквалифицирующий фолы. Помогают играть жёстко, но безопасно.",
+        "en": "Violations of contact rules: personal, technical, unsportsmanlike and disqualifying fouls. They help you play hard but safe."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Правила", "en": "Rules" },
+      "imageName": "ic_rules",
+      "steps": {
+        "ru": "Личный фол: недопустимый контакт с соперником\nТехнический фол: нарушение поведения, например споры с судьёй\nНеспортивный фол: чрезмерный контакт без попытки сыграть в мяч\nДисквалифицирующий фол: грубое нарушение, приводящее к удалению\nНакопленные фолы ведут к выбыванию игрока из матча",
+        "en": "Personal foul: illegal contact with an opponent\nTechnical foul: a conduct violation, for example arguing with the referee\nUnsportsmanlike foul: excessive contact without a play on the ball\nDisqualifying foul: a flagrant violation resulting in ejection\nAccumulated fouls lead to a player fouling out"
+      },
+      "muscles": { "ru": "Теоретический раздел", "en": "Theory section" },
+      "sets": { "ru": "Изучение 10–15 минут", "en": "10–15 minutes of study" },
+      "rest": { "ru": "Не требуется", "en": "Not required" },
+      "tips": {
+        "ru": "Играйте руками перед собой и ногами в стойке, а не толкайте и не хватайте соперника.",
+        "en": "Play with your hands in front of you and your feet in a stance; don't push or grab the opponent."
+      },
+      "mistakes": {
+        "ru": "Удар по руке при блок-шоте\nТолчок при борьбе за подбор\nСпоры с судьёй",
+        "en": "Hitting the arm on a block shot\nPushing while fighting for a rebound\nArguing with the referee"
+      }
+    },
+    {
+      "id": 45,
+      "title": { "ru": "Разметка площадки", "en": "Court Markings" },
+      "description": {
+        "ru": "Основные линии и зоны баскетбольной площадки. Без знания разметки трудно понять нарушения и тактику.",
+        "en": "The main lines and zones of a basketball court. Without knowing the markings it's hard to understand violations and tactics."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Правила", "en": "Rules" },
+      "imageName": "ic_rules",
+      "steps": {
+        "ru": "Найдите на схеме боковые и лицевые линии\nОпределите центральную линию и центральный круг\nПокажите трёхочковую линию и окрашенную зону\nНайдите линию штрафного броска\nПройдите по площадке и назовите все линии вслух",
+        "en": "Find the sidelines and baselines on the diagram\nIdentify the center line and the center circle\nPoint out the three-point line and the painted area\nFind the free-throw line\nWalk around the court and name all the lines out loud"
+      },
+      "muscles": { "ru": "Теоретический раздел", "en": "Theory section" },
+      "sets": { "ru": "Изучение 10 минут", "en": "10 minutes of study" },
+      "rest": { "ru": "Не требуется", "en": "Not required" },
+      "tips": {
+        "ru": "Лучший способ запомнить разметку — пройти по реальной площадке и показать каждую линию.",
+        "en": "The best way to memorize the markings is to walk a real court and point out every line."
+      },
+      "mistakes": {
+        "ru": "Путать линию штрафного броска и трёхочковую\nНе знать границы окрашенной зоны\nИгнорировать центральную линию",
+        "en": "Confusing the free-throw line and the three-point line\nNot knowing the boundaries of the painted area\nIgnoring the center line"
+      }
+    },
+    {
+      "id": 46,
+      "title": { "ru": "Жесты судей", "en": "Referee Signals" },
+      "description": {
+        "ru": "Основные жесты судей: фол, пробежка, двойное ведение, остановка времени. Позволяют быстро понимать решения на площадке.",
+        "en": "The main referee signals: foul, traveling, double dribble, stopping the clock. They let you quickly understand decisions on the court."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Правила", "en": "Rules" },
+      "imageName": "ic_rules",
+      "steps": {
+        "ru": "Изучите жесты: остановка времени, фол, пробежка, двойное ведение\nПовторите жест вместе с названием нарушения\nПосмотрите короткий разбор матча и угадывайте жесты\nПроверьте себя карточками с картинками\nПовторите через несколько дней для закрепления",
+        "en": "Learn the signals: stopping the clock, foul, traveling, double dribble\nRepeat each signal together with the name of the violation\nWatch a short game breakdown and guess the signals\nTest yourself with picture flashcards\nReview again after a few days to reinforce"
+      },
+      "muscles": { "ru": "Теоретический раздел", "en": "Theory section" },
+      "sets": { "ru": "Изучение 10 минут", "en": "10 minutes of study" },
+      "rest": { "ru": "Не требуется", "en": "Not required" },
+      "tips": {
+        "ru": "Смотрите игры и пытайтесь угадать решение судьи до того, как он покажет жест.",
+        "en": "Watch games and try to guess the referee's call before he shows the signal."
+      },
+      "mistakes": {
+        "ru": "Путать похожие жесты\nЗаучивать без практики\nНе повторять материал",
+        "en": "Confusing similar signals\nMemorizing without practice\nNot reviewing the material"
+      }
+    },
+    {
+      "id": 47,
+      "title": { "ru": "Игры «Ковбой» и «Вокруг света»", "en": "\"Cowboy\" and \"Around the World\" Games" },
+      "description": {
+        "ru": "Весёлые броски по очереди с разных точек. Развивают точность и добавляют игровой азарт.",
+        "en": "Fun shooting games taking turns from different spots. They develop accuracy and add a competitive spirit."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Игры и соревнования", "en": "Games" },
+      "imageName": "ic_games",
+      "steps": {
+        "ru": "Выберите 5–7 точек вокруг кольца\nБросайте с первой точки, при попадании переходите к следующей\nПри промахе можно остановиться и сохранить позицию или рискнуть ещё одним броском\nПобеждает тот, кто первым пройдёт все точки\nПостепенно отодвигайте точки дальше от кольца",
+        "en": "Pick 5–7 spots around the hoop\nShoot from the first spot; if you score, move on to the next\nOn a miss you can stop and keep your position or risk one more shot\nThe winner is whoever completes all the spots first\nGradually move the spots farther from the hoop"
+      },
+      "muscles": { "ru": "Плечевой пояс, трицепс, ноги", "en": "Shoulder girdle, triceps, legs" },
+      "sets": { "ru": "3 раунда", "en": "3 rounds" },
+      "rest": { "ru": "1 минута", "en": "1 min" },
+      "tips": {
+        "ru": "Придерживайтесь правильной техники даже в игре: азарт не повод для небрежности.",
+        "en": "Keep proper technique even in a game: excitement is no reason to be careless."
+      },
+      "mistakes": {
+        "ru": "Спешка и броски без прицеливания\nИгнорирование правил\nСлишком сложные точки в начале",
+        "en": "Rushing and shooting without aiming\nIgnoring the rules\nSpots that are too hard at the start"
+      }
+    },
+    {
+      "id": 48,
+      "title": { "ru": "Игры 1 на 1 и 3 на 3", "en": "1-on-1 and 3-on-3 Games" },
+      "description": {
+        "ru": "Малые игры, где у каждого игрока больше касаний мяча. Идеальны для тренировки решений и техники.",
+        "en": "Small-sided games where each player gets more touches. Ideal for training decisions and technique."
+      },
+      "level": { "ru": "Средний", "en": "Intermediate" },
+      "category": { "ru": "Игры и соревнования", "en": "Games" },
+      "imageName": "ic_games",
+      "steps": {
+        "ru": "Разделитесь на команды или пары\nИграйте на одно кольцо, атака начинается от трёхочковой линии\nПосле смены владения мяч выводится за линию\nСчитайте очки: 1 за обычный бросок и 2 за бросок из-за дуги\nПобедитель определяется по первым 7 очкам",
+        "en": "Split into teams or pairs\nPlay at one hoop, with offense starting from the three-point line\nAfter a change of possession, the ball is taken out beyond the line\nKeep score: 1 for a regular shot and 2 for a shot from behind the arc\nThe winner is decided by the first to 7 points"
+      },
+      "muscles": { "ru": "Ноги, кор, общая выносливость", "en": "Legs, core, general endurance" },
+      "sets": { "ru": "3 игры до 7 очков", "en": "3 games to 7 points" },
+      "rest": { "ru": "1–2 минуты", "en": "1–2 min" },
+      "tips": {
+        "ru": "В игре 3 на 3 больше двигайтесь без мяча: каждый игрок обязан участвовать.",
+        "en": "In 3-on-3, move more without the ball: every player has to take part."
+      },
+      "mistakes": {
+        "ru": "Игра только в одиночку\nОтсутствие защиты\nНарушение правил без остановки",
+        "en": "Playing only by yourself\nNo defense\nViolations without stopping play"
+      }
+    },
+    {
+      "id": 49,
+      "title": { "ru": "Конкурс штрафных бросков", "en": "Free Throw Contest" },
+      "description": {
+        "ru": "Соревнование на точность штрафных бросков. Тренирует концентрацию и работу под давлением.",
+        "en": "A free-throw accuracy competition. Trains concentration and performing under pressure."
+      },
+      "level": { "ru": "Начальный", "en": "Beginner" },
+      "category": { "ru": "Игры и соревнования", "en": "Games" },
+      "imageName": "ic_games",
+      "steps": {
+        "ru": "Каждый игрок бросает по 10 штрафных бросков\nСчитайте попадания у каждого участника\nПобедитель получает очко за раунд\nВ случае ничьей бросайте по одному броску до первого промаха\nРазберите, что помогало попадать",
+        "en": "Each player takes 10 free throws\nCount each participant's makes\nThe winner gets a point for the round\nIn case of a tie, shoot one shot each until the first miss\nReview what helped you score"
+      },
+      "muscles": { "ru": "Плечевой пояс, трицепс, ноги", "en": "Shoulder girdle, triceps, legs" },
+      "sets": { "ru": "3 раунда по 10 бросков", "en": "3 rounds of 10 shots" },
+      "rest": { "ru": "1 минута", "en": "1 min" },
+      "tips": {
+        "ru": "Не меняйте технику в соревновании: давление проверяет то, что вы отработали.",
+        "en": "Don't change your technique in competition: pressure tests what you've practiced."
+      },
+      "mistakes": {
+        "ru": "Торопливость под давлением\nИзменение ритма броска\nЭмоции после промаха",
+        "en": "Rushing under pressure\nChanging the rhythm of your shot\nEmotions after a miss"
+      }
+    }
+  ]
+}

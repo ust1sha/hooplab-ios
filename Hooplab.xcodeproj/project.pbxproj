@@ -1,0 +1,340 @@
+﻿// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		64974F7D504340C3BAD5F767 /* HooplabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9643816DB4FAF9F1A0FF7 /* HooplabApp.swift */; };
+		AE3399C527304C6788FC74B6 /* ExerciseCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA7084F2C747B9A826A396 /* ExerciseCatalog.swift */; };
+		57C62C99B97F4F638CA2E6E0 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22F33A614D842369182240B /* Category.swift */; };
+		71D0A53DCA2B4E9595C88804 /* Court.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA2128D299240929B5896D2 /* Court.swift */; };
+		4672BE764D1B4C658BA5C607 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F56F03F2A14EE1BAE8B81F /* Exercise.swift */; };
+		F8047211F3FF4420BE615F15 /* PlayerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A88FDBEEF84F68B78FDC4F /* PlayerCard.swift */; };
+		26FCBFD820D44823B0BB1255 /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424BD3353D484A7EADC8CE1A /* QuizQuestion.swift */; };
+		0E82231886D742A88BBDA4C3 /* WorkoutSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3389A7F122DA440C8AAE8AD8 /* WorkoutSession.swift */; };
+		E6B3EEC0A2164F58AEB8A87B /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFDB79BB25C43489FDDE00B /* DataStore.swift */; };
+		FBAFEC37824849198BD40632 /* SoundAndHaptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9021A11BD40D47F5AF229421 /* SoundAndHaptics.swift */; };
+		B18F86EBA5B94A8386D52328 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA97BEE9AE14EDC9CFC0827 /* CircularProgressView.swift */; };
+		90B420390DBC403683C83C12 /* HooplabTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB9AB4F253D4570938538BC /* HooplabTheme.swift */; };
+		703DD1A7FE8E43298FFFE4FF /* CourtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BFD26CAB8C4BA7A3E26E54 /* CourtsView.swift */; };
+		468322176A5E4DC2A1DCB5AF /* ExerciseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8CB215175146DC9A4A0AA3 /* ExerciseCardView.swift */; };
+		37024F59213E4A6CBA9BF9A6 /* ExerciseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC9C1C1FC3F4C258DF61367 /* ExerciseDetailView.swift */; };
+		A251D79A133A4010B65145CB /* ExercisesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6ECA58223E4250A6BC649B /* ExercisesView.swift */; };
+		77A18EE45BEF4AAFBD487953 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42EF9FA43344F829346ABD1 /* FavoritesView.swift */; };
+		E3C4B727C2DA4476A7B59758 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D579458D2B84B22A4A87AC7 /* HomeView.swift */; };
+		A6FB1D76319745FC8DC5F88F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04BF6011DAC4677A0F62055 /* MainTabView.swift */; };
+		BD18146C290E4C56B86C1B9F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0D205258AB4ABF98CF4908 /* ProfileView.swift */; };
+		7B76A4CEAF2543DEB600EB10 /* QuizSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246ECD404C949A1B3C289BA /* QuizSheetView.swift */; };
+		F6809BE18D0D4F5D999674AF /* WorkoutTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3349E21011DB409A8CBD2573 /* WorkoutTimerView.swift */; };
+		4A0962E33D9648148A68A7BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3022F17B14642C68FE6D0AD /* Assets.xcassets */; };
+		7C37CA3D60C4490896F4F9AA /* exercises.json in Resources */ = {isa = PBXBuildFile; fileRef = 5A1228D933314C3F96A2132A /* exercises.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		92E4D279D2464C189FE9CDA2 /* Hooplab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hooplab.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		06A9643816DB4FAF9F1A0FF7 /* HooplabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/App/HooplabApp.swift"; sourceTree = "<group>"; };
+		04CA7084F2C747B9A826A396 /* ExerciseCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Data/ExerciseCatalog.swift"; sourceTree = "<group>"; };
+		C22F33A614D842369182240B /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Models/Category.swift"; sourceTree = "<group>"; };
+		3EA2128D299240929B5896D2 /* Court.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Models/Court.swift"; sourceTree = "<group>"; };
+		06F56F03F2A14EE1BAE8B81F /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Models/Exercise.swift"; sourceTree = "<group>"; };
+		88A88FDBEEF84F68B78FDC4F /* PlayerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Models/PlayerCard.swift"; sourceTree = "<group>"; };
+		424BD3353D484A7EADC8CE1A /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Models/QuizQuestion.swift"; sourceTree = "<group>"; };
+		3389A7F122DA440C8AAE8AD8 /* WorkoutSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Models/WorkoutSession.swift"; sourceTree = "<group>"; };
+		4AFDB79BB25C43489FDDE00B /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Services/DataStore.swift"; sourceTree = "<group>"; };
+		9021A11BD40D47F5AF229421 /* SoundAndHaptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Services/SoundAndHaptics.swift"; sourceTree = "<group>"; };
+		8CA97BEE9AE14EDC9CFC0827 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Components/CircularProgressView.swift"; sourceTree = "<group>"; };
+		CAB9AB4F253D4570938538BC /* HooplabTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Components/HooplabTheme.swift"; sourceTree = "<group>"; };
+		16BFD26CAB8C4BA7A3E26E54 /* CourtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Courts/CourtsView.swift"; sourceTree = "<group>"; };
+		5E8CB215175146DC9A4A0AA3 /* ExerciseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Exercises/ExerciseCardView.swift"; sourceTree = "<group>"; };
+		9AC9C1C1FC3F4C258DF61367 /* ExerciseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Exercises/ExerciseDetailView.swift"; sourceTree = "<group>"; };
+		1C6ECA58223E4250A6BC649B /* ExercisesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Exercises/ExercisesView.swift"; sourceTree = "<group>"; };
+		F42EF9FA43344F829346ABD1 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Favorites/FavoritesView.swift"; sourceTree = "<group>"; };
+		7D579458D2B84B22A4A87AC7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Main/HomeView.swift"; sourceTree = "<group>"; };
+		A04BF6011DAC4677A0F62055 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Main/MainTabView.swift"; sourceTree = "<group>"; };
+		1E0D205258AB4ABF98CF4908 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Profile/ProfileView.swift"; sourceTree = "<group>"; };
+		3246ECD404C949A1B3C289BA /* QuizSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Quiz/QuizSheetView.swift"; sourceTree = "<group>"; };
+		3349E21011DB409A8CBD2573 /* WorkoutTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Workout/WorkoutTimerView.swift"; sourceTree = "<group>"; };
+		F3022F17B14642C68FE6D0AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Hooplab/Resources/Assets.xcassets"; sourceTree = "<group>"; };
+		5A1228D933314C3F96A2132A /* exercises.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Hooplab/Resources/exercises.json"; sourceTree = "<group>"; };
+		0CD847F0B23C4D3DBF974468 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hooplab/Resources/Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C019FBECDB4342A7BEBAD18F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D4BA81821B7B495394401ED9 = {
+			isa = PBXGroup;
+			children = (
+				211EFDFFDCDA41E8A0FAB346 /* Hooplab */,
+				364E92C46A894D309E9C45D0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		364E92C46A894D309E9C45D0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92E4D279D2464C189FE9CDA2 /* Hooplab.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		211EFDFFDCDA41E8A0FAB346 /* Hooplab */ = {
+			isa = PBXGroup;
+			children = (
+				06A9643816DB4FAF9F1A0FF7 /* HooplabApp.swift */,
+				04CA7084F2C747B9A826A396 /* ExerciseCatalog.swift */,
+				C22F33A614D842369182240B /* Category.swift */,
+				3EA2128D299240929B5896D2 /* Court.swift */,
+				06F56F03F2A14EE1BAE8B81F /* Exercise.swift */,
+				88A88FDBEEF84F68B78FDC4F /* PlayerCard.swift */,
+				424BD3353D484A7EADC8CE1A /* QuizQuestion.swift */,
+				3389A7F122DA440C8AAE8AD8 /* WorkoutSession.swift */,
+				4AFDB79BB25C43489FDDE00B /* DataStore.swift */,
+				9021A11BD40D47F5AF229421 /* SoundAndHaptics.swift */,
+				8CA97BEE9AE14EDC9CFC0827 /* CircularProgressView.swift */,
+				CAB9AB4F253D4570938538BC /* HooplabTheme.swift */,
+				16BFD26CAB8C4BA7A3E26E54 /* CourtsView.swift */,
+				5E8CB215175146DC9A4A0AA3 /* ExerciseCardView.swift */,
+				9AC9C1C1FC3F4C258DF61367 /* ExerciseDetailView.swift */,
+				1C6ECA58223E4250A6BC649B /* ExercisesView.swift */,
+				F42EF9FA43344F829346ABD1 /* FavoritesView.swift */,
+				7D579458D2B84B22A4A87AC7 /* HomeView.swift */,
+				A04BF6011DAC4677A0F62055 /* MainTabView.swift */,
+				1E0D205258AB4ABF98CF4908 /* ProfileView.swift */,
+				3246ECD404C949A1B3C289BA /* QuizSheetView.swift */,
+				3349E21011DB409A8CBD2573 /* WorkoutTimerView.swift */,
+				F3022F17B14642C68FE6D0AD /* Assets.xcassets */,
+				5A1228D933314C3F96A2132A /* exercises.json */,
+				0CD847F0B23C4D3DBF974468 /* Info.plist */,
+			);
+			name = Hooplab;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D14FE5AC06784FAF93647238 /* Hooplab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE3DAAC93C8F4C4AAF154009 /* Build configuration list for PBXNativeTarget "Hooplab" */;
+			buildPhases = (
+				D66FAFB0AF8D4BDB93AC933C /* Sources */,
+				C019FBECDB4342A7BEBAD18F /* Frameworks */,
+				3AC5E395518B478B8EBAF366 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hooplab;
+			productName = Hooplab;
+			productReference = 92E4D279D2464C189FE9CDA2 /* Hooplab.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F28BDE61B59543C991B03A3A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					D14FE5AC06784FAF93647238 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 9B197B05B46B4BFDA1A89C19 /* Build configuration list for PBXProject "Hooplab" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D4BA81821B7B495394401ED9;
+			productRefGroup = 364E92C46A894D309E9C45D0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D14FE5AC06784FAF93647238 /* Hooplab */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3AC5E395518B478B8EBAF366 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A0962E33D9648148A68A7BE /* Assets.xcassets in Resources */,
+				7C37CA3D60C4490896F4F9AA /* exercises.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D66FAFB0AF8D4BDB93AC933C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64974F7D504340C3BAD5F767 /* HooplabApp.swift in Sources */,
+				AE3399C527304C6788FC74B6 /* ExerciseCatalog.swift in Sources */,
+				57C62C99B97F4F638CA2E6E0 /* Category.swift in Sources */,
+				71D0A53DCA2B4E9595C88804 /* Court.swift in Sources */,
+				4672BE764D1B4C658BA5C607 /* Exercise.swift in Sources */,
+				F8047211F3FF4420BE615F15 /* PlayerCard.swift in Sources */,
+				26FCBFD820D44823B0BB1255 /* QuizQuestion.swift in Sources */,
+				0E82231886D742A88BBDA4C3 /* WorkoutSession.swift in Sources */,
+				E6B3EEC0A2164F58AEB8A87B /* DataStore.swift in Sources */,
+				FBAFEC37824849198BD40632 /* SoundAndHaptics.swift in Sources */,
+				B18F86EBA5B94A8386D52328 /* CircularProgressView.swift in Sources */,
+				90B420390DBC403683C83C12 /* HooplabTheme.swift in Sources */,
+				703DD1A7FE8E43298FFFE4FF /* CourtsView.swift in Sources */,
+				468322176A5E4DC2A1DCB5AF /* ExerciseCardView.swift in Sources */,
+				37024F59213E4A6CBA9BF9A6 /* ExerciseDetailView.swift in Sources */,
+				A251D79A133A4010B65145CB /* ExercisesView.swift in Sources */,
+				77A18EE45BEF4AAFBD487953 /* FavoritesView.swift in Sources */,
+				E3C4B727C2DA4476A7B59758 /* HomeView.swift in Sources */,
+				A6FB1D76319745FC8DC5F88F /* MainTabView.swift in Sources */,
+				BD18146C290E4C56B86C1B9F /* ProfileView.swift in Sources */,
+				7B76A4CEAF2543DEB600EB10 /* QuizSheetView.swift in Sources */,
+				F6809BE18D0D4F5D999674AF /* WorkoutTimerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		324F16AE75D448E9811BB2DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BE29F11FA85C4110828F3850 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F953C5E3212E4AFAABE436B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Hooplab/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hooplab.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6C6D967494574FDE9158A45F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Hooplab/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hooplab.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9B197B05B46B4BFDA1A89C19 /* Build configuration list for PBXProject "Hooplab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				324F16AE75D448E9811BB2DF /* Debug */,
+				BE29F11FA85C4110828F3850 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE3DAAC93C8F4C4AAF154009 /* Build configuration list for PBXNativeTarget "Hooplab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F953C5E3212E4AFAABE436B4 /* Debug */,
+				6C6D967494574FDE9158A45F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F28BDE61B59543C991B03A3A /* Project object */;
+}
