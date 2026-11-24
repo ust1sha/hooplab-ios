@@ -184,7 +184,8 @@ public struct ExerciseDetailView: View {
                         .hooplabCard(padding: 16, cornerRadius: 18)
 
                         // 7. Coach Tip
-                        if let tip = exercise.localizedTip(isEn: dataStore.isEnglish), !tip.isEmpty {
+                        let tip = exercise.localizedTip(isEn: dataStore.isEnglish)
+                        if !tip.isEmpty {
                             HStack(alignment: .top, spacing: 12) {
                                 Image(systemName: "lightbulb.fill")
                                     .font(.system(size: 20))

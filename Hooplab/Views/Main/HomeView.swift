@@ -481,7 +481,7 @@ public struct LeaderboardSheetView: View {
             MockUser(rank: 1, name: "Андрей Кириленко", position: "SF", jersey: 47, ovr: 91, isCurrentUser: false),
             MockUser(rank: 2, name: "Алексей Швед", position: "PG", jersey: 1, ovr: 88, isCurrentUser: false),
             MockUser(rank: 3, name: "Виктор Хряпа", position: "PF", jersey: 20, ovr: 85, isCurrentUser: false),
-            MockUser(rank: 4, name: dataStore.playerName.isEmpty ? "Вы" : dataStore.playerName, position: dataStore.playerPosition, jersey: 7, ovr: dataStore.calculateOVR(), isCurrentUser: true),
+            MockUser(rank: 4, name: dataStore.playerName.isEmpty ? "Вы" : dataStore.playerName, position: dataStore.playerPosition.rawValue, jersey: dataStore.playerJersey, ovr: dataStore.calculateOVR(), isCurrentUser: true),
             MockUser(rank: 5, name: "Виталий Фридзон", position: "SG", jersey: 7, ovr: 83, isCurrentUser: false),
             MockUser(rank: 6, name: "Тимофей Мозгов", position: "C", jersey: 25, ovr: 82, isCurrentUser: false),
             MockUser(rank: 7, name: "Сергей Моня", position: "SF", jersey: 12, ovr: 80, isCurrentUser: false)
