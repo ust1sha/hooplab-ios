@@ -21,6 +21,10 @@ jobs:
           sudo xcode-select -s /Applications/Xcode_15.4.app || sudo xcode-select -s /Applications/Xcode_15.2.app || true
           xcodebuild -version
 
+      - name: Resolve Swift Package Dependencies
+        run: |
+          xcodebuild -resolvePackageDependencies -project Hooplab.xcodeproj -scheme Hooplab
+
       - name: Build Archive (No Code Signing Required)
         run: |
           xcodebuild -project Hooplab.xcodeproj \

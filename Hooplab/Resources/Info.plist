@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleDevelopmentRegion</key>
-    <string>en</string>
+    <string>ru</string>
     <key>CFBundleDisplayName</key>
-    <string>Hooplab</string>
+    <string>hooplab</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -22,13 +22,25 @@
     <string>1</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
+    <key>UIAppFonts</key>
+    <array>
+        <string>geist_regular.ttf</string>
+        <string>geist_medium.ttf</string>
+        <string>geist_semibold.ttf</string>
+        <string>geist_bold.ttf</string>
+    </array>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Геолокация используется для определения ближайших баскетбольных площадок</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Доступ к галерее нужен для смены аватара в профиле</string>
     <key>UILaunchScreen</key>
-    <dict/>
+    <dict>
+        <key>UIImageRespectsSafeAreaInsets</key>
+        <false/>
+    </dict>
     <key>UISupportedInterfaceOrientations</key>
     <array>
         <string>UIInterfaceOrientationPortrait</string>
     </array>
-    <key>UIUserInterfaceStyle</key>
-    <string>Dark</string>
 </dict>
 </plist>

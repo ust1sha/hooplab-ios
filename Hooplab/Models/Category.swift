@@ -1,52 +1,83 @@
 import Foundation
 import SwiftUI
 
+public struct CategoryCardItem: Identifiable, Hashable {
+    public var id: String { ruName }
+    public let ruName: String
+    public let enName: String
+    public let imageName: String
+    public let count: Int
+
+    public func localizedName(isEn: Bool) -> String {
+        isEn ? enName : ruName
+    }
+
+    public func localizedCountText(isEn: Bool) -> String {
+        if isEn {
+            return count == 1 ? "1 exercise" : "\(count) exercises"
+        } else {
+            let mod10 = count % 10
+            let mod100 = count % 100
+            if mod10 == 1 && mod100 != 11 {
+                return "\(count) упражнение"
+            } else if (2...4).contains(mod10) && !(12...14).contains(mod100) {
+                return "\(count) упражнения"
+            } else {
+                return "\(count) упражнений"
+            }
+        }
+    }
+}
+
 public enum ExerciseCategory: String, CaseIterable, Identifiable {
-    case all = "all"
-    case shots = "shots"
-    case dribbling = "dribbling"
-    case defense = "defense"
-    case technique = "technique"
-    case physical = "physical"
-    case tactics = "tactics"
+    case shots = "Броски"
+    case technique = "Техника"
+    case defense = "Защита"
+    case offense = "Нападение"
+    case fitness = "Физическая подготовка"
+    case warmup = "Разминка и растяжка"
+    case tactics = "Игровое мышление"
+    case rules = "Правила"
+    case games = "Игры и соревнования"
 
     public var id: String { rawValue }
 
     public func localized(isEn: Bool) -> String {
+        if !isEn { return rawValue }
         switch self {
-        case .all: return isEn ? "All" : "Все"
-        case .shots: return isEn ? "Shots" : "Броски"
-        case .dribbling: return isEn ? "Dribbling" : "Дриблинг"
-        case .defense: return isEn ? "Defense" : "Защита"
-        case .technique: return isEn ? "Technique" : "Техника"
-        case .physical: return isEn ? "Physical" : "Физика"
-        case .tactics: return isEn ? "Tactics" : "Тактика"
+        case .shots: return "Shots"
+        case .technique: return "Technique"
+        case .defense: return "Defense"
+        case .offense: return "Offense"
+        case .fitness: return "Fitness"
+        case .warmup: return "Warm-up & Stretching"
+        case .tactics: return "Game IQ"
+        case .rules: return "Rules"
+        case .games: return "Games"
         }
     }
 
-    public var sfSymbol: String {
+    public var assetName: String {
         switch self {
-        case .all: return "square.grid.2x2.fill"
-        case .shots: return "figure.basketball"
-        case .dribbling: return "hand.point.up.braille.fill"
-        case .defense: return "shield.fill"
-        case .technique: return "flame.fill"
-        case .physical: return "figure.run"
-        case .tactics: return "map.fill"
+        case .shots: return "cat_shots"
+        case .technique: return "cat_technique"
+        case .defense: return "cat_defense"
+        case .offense: return "cat_offense"
+        case .fitness: return "cat_fitness"
+        case .warmup: return "cat_warmup"
+        case .tactics: return "cat_tactics"
+        case .rules: return "cat_rules"
+        case .games: return "cat_games"
         }
     }
 
-    public func matches(categoryString: String) -> Bool {
-        if self == .all { return true }
-        let lower = categoryString.lowercased()
-        switch self {
-        case .shots: return lower.contains("брос") || lower.contains("shot")
-        case .dribbling: return lower.contains("дрибл") || lower.contains("dribbl")
-        case .defense: return lower.contains("защит") || lower.contains("defen")
-        case .technique: return lower.contains("техник") || lower.contains("techniq")
-        case .physical: return lower.contains("физич") || lower.contains("физик") || lower.contains("physic")
-        case .tactics: return lower.contains("тактик") || lower.contains("tactic")
-        case .all: return true
+    public static func buildItems(from exercises: [Exercise]) -> [CategoryCardItem] {
+        let grouped = Dictionary(grouping: exercises, by: { $0.category.ru })
+        return grouped.keys.sorted().map { ruCat in
+            let list = grouped[ruCat] ?? []
+            let enCat = list.first?.category.en ?? ruCat
+            let asset = ExerciseMediaHelper.categoryAssetName(ruCat)
+            return CategoryCardItem(ruName: ruCat, enName: enCat, imageName: asset, count: list.count)
         }
     }
 }

@@ -1,81 +1,98 @@
 import SwiftUI
 
+// MARK: - Favorites Screen (1:1 Android activity_favorites.xml)
 public struct FavoritesView: View {
     @EnvironmentObject var dataStore: DataStore
-    @State private var selectedExercise: Exercise? = nil
 
-    private var favoriteExercises: [Exercise] {
-        dataStore.exercises.filter { dataStore.isFavorite(id: $0.id) }
-    }
+    public init() {}
 
     public var body: some View {
-        NavigationStack {
-            ZStack {
-                Color.clear
-                    .hooplabAurora()
+        let isEn = dataStore.isEnglish
+        let saved = dataStore.exercises.filter { dataStore.favoriteIds.contains($0.id) }
 
-                VStack(alignment: .leading, spacing: 0) {
-                    // Header
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(dataStore.isEnglish ? "Favorites" : "Избранное")
-                            .font(.system(size: 28, weight: .bold))
-                            .foregroundColor(HooplabTheme.textPrimary)
-                        Text(dataStore.isEnglish ? "Saved exercises for quick access" : "Сохраненные упражнения для быстрых тренировок")
-                            .font(.system(size: 13, weight: .regular))
-                            .foregroundColor(HooplabTheme.textSecondary)
+        VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(isEn ? "Favorites" : "Избранное")
+                    .font(.geist(HooplabDimens.textDisplay, weight: .bold))
+                    .foregroundColor(HooplabTheme.textPrimary)
+
+                Text(
+                    isEn
+                    ? "\(saved.count) saved drills"
+                    : "Сохранено упражнений: \(saved.count)"
+                )
+                .font(.geist(HooplabDimens.textBody, weight: .regular))
+                .foregroundColor(HooplabTheme.textSecondary)
+            }
+            .padding(.horizontal, HooplabDimens.screenPaddingH)
+            .padding(.top, 16)
+            .padding(.bottom, 14)
+
+            if saved.isEmpty {
+                Spacer()
+                VStack(spacing: 16) {
+                    ZStack {
+                        Circle()
+                            .fill(HooplabTheme.fireBg)
+                            .frame(width: 84, height: 84)
+                        Image(systemName: "star.fill")
+                            .font(.system(size: 36))
+                            .foregroundColor(HooplabTheme.primary)
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.top, 14)
-                    .padding(.bottom, 12)
 
-                    if favoriteExercises.isEmpty {
-                        Spacer()
-                        VStack(spacing: 14) {
-                            ZStack {
-                                Circle()
-                                    .fill(HooplabTheme.orangeSoft)
-                                    .frame(width: 80, height: 80)
+                    Text(
+                        isEn
+                        ? "You don't have any favorite exercises yet.\nAdd your favorite drills to easily come back to them!"
+                        : "У вас пока нет избранных упражнений.\nДобавляйте любимые упражнения, чтобы быстро к ним возвращаться!"
+                    )
+                    .font(.geist(15, weight: .regular))
+                    .foregroundColor(HooplabTheme.textSecondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 28)
 
-                                Image(systemName: "heart.slash.fill")
-                                    .font(.system(size: 38))
-                                    .foregroundColor(HooplabTheme.orangePrimary)
-                            }
-
-                            Text(dataStore.isEnglish ? "No Favorites Yet" : "В избранном пока пусто")
-                                .font(.system(size: 19, weight: .bold))
-                                .foregroundColor(HooplabTheme.textPrimary)
-
-                            Text(dataStore.isEnglish ? "Tap the heart icon on any exercise card to save it here for fast training." : "Нажимайте на сердечко у карточки любого упражнения, чтобы добавить его сюда.")
-                                .font(.system(size: 14))
-                                .foregroundColor(HooplabTheme.textSecondary)
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal, 36)
-                        }
-                        .frame(maxWidth: .infinity)
-                        Spacer()
-                    } else {
-                        ScrollView(showsIndicators: false) {
-                            LazyVStack(spacing: 12) {
-                                ForEach(favoriteExercises) { exercise in
-                                    ExerciseCardView(exercise: exercise) {
-                                        selectedExercise = exercise
+                    Button {
+                        SoundAndHaptics.shared.vibrateClick()
+                        dataStore.selectedTab = .exercises
+                    } label: {
+                        Text(isEn ? "Browse Drills" : "Перейти к упражнениям")
+                            .font(.geist(15, weight: .bold))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 24)
+                            .frame(height: 48)
+                            .background(HooplabTheme.primary)
+                            .clipShape(Capsule())
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.top, 4)
+                }
+                .frame(maxWidth: .infinity)
+                Spacer()
+            } else {
+                ScrollView(showsIndicators: false) {
+                    LazyVStack(spacing: 12) {
+                        ForEach(saved) { exercise in
+                            NavigationLink {
+                                ExerciseDetailView(exercise: exercise)
+                            } label: {
+                                ExerciseListCardView(
+                                    exercise: exercise,
+                                    isEn: isEn,
+                                    isFavorite: true
+                                ) {
+                                    withAnimation(.easeInOut(duration: 0.2)) {
+                                        dataStore.toggleFavorite(id: exercise.id)
                                     }
                                 }
                             }
-                            .padding(.horizontal, 16)
-                            .padding(.top, 8)
-                            .padding(.bottom, 32)
+                            .buttonStyle(.plain)
                         }
                     }
-                }
-            }
-            .navigationBarHidden(true)
-            .sheet(item: $selectedExercise) { ex in
-                NavigationStack {
-                    ExerciseDetailView(exercise: ex)
-                        .environmentObject(dataStore)
+                    .padding(.horizontal, HooplabDimens.screenPaddingH)
+                    .padding(.top, 4)
+                    .padding(.bottom, 24)
                 }
             }
         }
+        .hooplabAurora()
     }
 }

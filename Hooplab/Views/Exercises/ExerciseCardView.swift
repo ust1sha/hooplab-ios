@@ -1,170 +1,168 @@
 import SwiftUI
 
-public struct ExerciseCardView: View {
-    @EnvironmentObject var dataStore: DataStore
+// MARK: - Horizontal Carousel Exercise Card (1:1 Android item_exercise_card.xml: 160x174)
+public struct ExerciseCarouselCardView: View {
     public let exercise: Exercise
-    public var onSelect: () -> Void
+    public let isEn: Bool
+
+    public init(exercise: Exercise, isEn: Bool) {
+        self.exercise = exercise
+        self.isEn = isEn
+    }
 
     public var body: some View {
-        Button(action: {
-            SoundAndHaptics.shared.lightTap()
-            onSelect()
-        }) {
-            VStack(alignment: .leading, spacing: 10) {
-                // Top row: category icon and favorite heart
-                HStack(alignment: .top) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(exercise.categoryColor.opacity(0.15))
-                            .frame(width: 40, height: 40)
+        let lvlColor = HooplabTheme.levelColor(exercise.level)
 
-                        Image(systemName: exercise.sfSymbol)
-                            .font(.system(size: 18, weight: .semibold))
-                            .foregroundColor(exercise.categoryColor)
-                    }
+        VStack(alignment: .leading, spacing: 0) {
+            ZStack(alignment: .leading) {
+                ExercisePhotoView(exerciseId: exercise.id, categoryRu: exercise.category.ru)
+                    .frame(width: 160, height: 100)
+                    .clipped()
 
-                    Spacer()
+                LinearGradient(
+                    colors: [Color.clear, Color.black.opacity(0.32)],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .frame(width: 160, height: 100)
 
-                    Button(action: {
-                        SoundAndHaptics.shared.mediumTap()
-                        dataStore.toggleFavorite(id: exercise.id)
-                    }) {
-                        Image(systemName: dataStore.isFavorite(id: exercise.id) ? "heart.fill" : "heart")
-                            .font(.system(size: 18))
-                            .foregroundColor(dataStore.isFavorite(id: exercise.id) ? HooplabTheme.orangePrimary : Color(hex: "CBD2DA"))
-                            .padding(6)
-                    }
-                    .buttonStyle(.plain)
-                }
-
-                // Title and category
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(exercise.localizedTitle(isEn: dataStore.isEnglish))
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(HooplabTheme.textPrimary)
-                        .lineLimit(2)
-                        .multilineTextAlignment(.leading)
-
-                    Text(exercise.localizedCategory(isEn: dataStore.isEnglish))
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(exercise.categoryColor)
-                }
-
-                // Level chip and duration/reps
-                HStack(spacing: 6) {
-                    Text(exercise.localizedLevel(isEn: dataStore.isEnglish))
-                        .font(.system(size: 10, weight: .bold))
-                        .padding(.horizontal, 7)
-                        .padding(.vertical, 3)
-                        .background(HooplabTheme.levelBgColor(exercise.levelRu))
-                        .foregroundColor(HooplabTheme.levelColor(exercise.levelRu))
-                        .cornerRadius(6)
-
-                    Spacer()
-
-                    HStack(spacing: 3) {
-                        Image(systemName: "timer")
-                            .font(.system(size: 11))
-                        Text(exercise.localizedRest(isEn: dataStore.isEnglish))
-                            .font(.system(size: 11, weight: .medium))
-                    }
-                    .foregroundColor(HooplabTheme.textSecondary)
-                }
+                // Left 4dp level accent strip
+                RoundedRectangle(cornerRadius: 2)
+                    .fill(lvlColor)
+                    .frame(width: 4, height: 76)
+                    .padding(.leading, 0)
             }
-            .hooplabCard(padding: 14, cornerRadius: 18)
+            .frame(width: 160, height: 100)
+            .clipped()
+
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 5) {
+                    Image(systemName: ExerciseMediaHelper.categorySymbol(exercise.category.ru))
+                        .font(.system(size: 11, weight: .semibold))
+                        .foregroundColor(HooplabTheme.primary)
+
+                    Circle()
+                        .fill(lvlColor)
+                        .frame(width: 6, height: 6)
+
+                    Text(exercise.localizedLevel(isEn: isEn))
+                        .font(.geist(10, weight: .bold))
+                        .foregroundColor(lvlColor)
+                        .lineLimit(1)
+                }
+
+                Text(exercise.localizedTitle(isEn: isEn))
+                    .font(.geist(13, weight: .semibold))
+                    .foregroundColor(HooplabTheme.textPrimary)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 8)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
-        .buttonStyle(.plain)
+        .frame(width: 160, height: 174)
+        .background(HooplabTheme.glassFill)
+        .clipShape(RoundedRectangle(cornerRadius: HooplabDimens.radiusCard))
+        .overlay(
+            RoundedRectangle(cornerRadius: HooplabDimens.radiusCard)
+                .stroke(HooplabTheme.glassStroke, lineWidth: 1)
+        )
     }
 }
 
-// Compact card for Horizontal Carousels on Home screen (matches item_exercise_card.xml)
-public struct ExerciseCarouselCardView: View {
-    @EnvironmentObject var dataStore: DataStore
+// MARK: - List Exercise Card (1:1 Android item_exercise_list_card.xml)
+public struct ExerciseListCardView: View {
     public let exercise: Exercise
-    public var onSelect: () -> Void
+    public let isEn: Bool
+    public var isFavorite: Bool = false
+    public var onToggleFavorite: (() -> Void)? = nil
+
+    public init(
+        exercise: Exercise,
+        isEn: Bool,
+        isFavorite: Bool = false,
+        onToggleFavorite: (() -> Void)? = nil
+    ) {
+        self.exercise = exercise
+        self.isEn = isEn
+        self.isFavorite = isFavorite
+        self.onToggleFavorite = onToggleFavorite
+    }
 
     public var body: some View {
-        Button(action: {
-            SoundAndHaptics.shared.lightTap()
-            onSelect()
-        }) {
-            VStack(alignment: .leading, spacing: 0) {
-                // Top photo / icon banner with vertical difficulty strip
-                ZStack(alignment: .topLeading) {
-                    RoundedRectangle(cornerRadius: 14)
-                        .fill(
-                            LinearGradient(
-                                colors: [exercise.categoryColor.opacity(0.18), exercise.categoryColor.opacity(0.08)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .frame(height: 92)
+        let lvlColor = HooplabTheme.levelColor(exercise.level)
+        let lvlBg = HooplabTheme.levelBgColor(exercise.level)
 
-                    // Vertical neon indicator capsule
-                    RoundedRectangle(cornerRadius: 2)
-                        .fill(HooplabTheme.levelColor(exercise.levelRu))
-                        .frame(width: 4, height: 26)
-                        .padding(.leading, 8)
-                        .padding(.top, 8)
+        HStack(spacing: 12) {
+            // Left vertical level indicator
+            Capsule()
+                .fill(lvlColor)
+                .frame(width: 4, height: 64)
 
-                    // Category icon in center
-                    Image(systemName: exercise.sfSymbol)
-                        .font(.system(size: 28, weight: .semibold))
-                        .foregroundColor(exercise.categoryColor)
-                        .frame(maxWidth: .infinity, maxHeight: 92)
+            // 92x72 Exercise Photo
+            ExercisePhotoView(exerciseId: exercise.id, categoryRu: exercise.category.ru)
+                .frame(width: 92, height: 72)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
 
-                    // Favorite button in top right
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            SoundAndHaptics.shared.mediumTap()
-                            dataStore.toggleFavorite(id: exercise.id)
-                        }) {
-                            Image(systemName: dataStore.isFavorite(id: exercise.id) ? "heart.fill" : "heart")
-                                .font(.system(size: 15))
-                                .foregroundColor(dataStore.isFavorite(id: exercise.id) ? HooplabTheme.orangePrimary : Color(hex: "94A3B8"))
-                                .padding(6)
-                                .background(Color.white.opacity(0.85))
-                                .clipShape(Circle())
-                        }
-                        .padding(6)
-                    }
-                }
+            VStack(alignment: .leading, spacing: 5) {
+                HStack(spacing: 6) {
+                    Image(systemName: ExerciseMediaHelper.categorySymbol(exercise.category.ru))
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundColor(HooplabTheme.primary)
 
-                // Bottom metadata
-                VStack(alignment: .leading, spacing: 4) {
                     HStack(spacing: 4) {
-                        Text(exercise.localizedLevel(isEn: dataStore.isEnglish).uppercased())
-                            .font(.system(size: 9, weight: .heavy))
-                            .foregroundColor(HooplabTheme.levelColor(exercise.levelRu))
-
-                        Spacer()
-
-                        Text("⏱ \(exercise.reps)")
-                            .font(.system(size: 10, weight: .medium))
-                            .foregroundColor(HooplabTheme.textSecondary)
+                        Circle()
+                            .fill(lvlColor)
+                            .frame(width: 6, height: 6)
+                        Text(exercise.localizedLevel(isEn: isEn))
+                            .font(.geist(10, weight: .bold))
+                            .foregroundColor(lvlColor)
                     }
-
-                    Text(exercise.localizedTitle(isEn: dataStore.isEnglish))
-                        .font(.system(size: 13, weight: .bold))
-                        .foregroundColor(HooplabTheme.textPrimary)
-                        .lineLimit(2)
-                        .frame(height: 34, alignment: .topLeading)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 3)
+                    .background(lvlBg)
+                    .clipShape(Capsule())
                 }
-                .padding(.horizontal, 10)
-                .padding(.top, 8)
-                .padding(.bottom, 10)
+
+                Text(exercise.localizedTitle(isEn: isEn))
+                    .font(.geist(15, weight: .semibold))
+                    .foregroundColor(HooplabTheme.textPrimary)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+
+                Text("\(exercise.localizedCategory(isEn: isEn)) • \(exercise.localizedSets(isEn: isEn))")
+                    .font(.geist(12, weight: .regular))
+                    .foregroundColor(HooplabTheme.textSecondary)
+                    .lineLimit(1)
             }
-            .frame(width: 160, height: 172)
-            .background(HooplabTheme.cardBg)
-            .cornerRadius(18)
-            .overlay(
-                RoundedRectangle(cornerRadius: 18)
-                    .stroke(HooplabTheme.cardBorder, lineWidth: 1)
-            )
-            .shadow(color: HooplabTheme.shadowColor, radius: 6, x: 0, y: 2)
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            if let onToggleFavorite {
+                Button {
+                    SoundAndHaptics.shared.vibrateClick()
+                    onToggleFavorite()
+                } label: {
+                    Image(systemName: isFavorite ? "star.fill" : "star")
+                        .font(.system(size: 17, weight: .semibold))
+                        .foregroundColor(isFavorite ? HooplabTheme.favoriteActive : HooplabTheme.favoriteInactive)
+                        .padding(6)
+                }
+                .buttonStyle(.plain)
+            } else {
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundColor(HooplabTheme.textHint)
+            }
         }
-        .buttonStyle(.plain)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 12)
+        .background(HooplabTheme.glassFill)
+        .clipShape(RoundedRectangle(cornerRadius: HooplabDimens.radiusCard))
+        .overlay(
+            RoundedRectangle(cornerRadius: HooplabDimens.radiusCard)
+                .stroke(HooplabTheme.glassStroke, lineWidth: 1)
+        )
     }
 }

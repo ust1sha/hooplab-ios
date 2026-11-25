@@ -1,268 +1,240 @@
 import SwiftUI
 
+// MARK: - Exercises Category Grid Screen (1:1 Android activity_exercises.xml)
 public struct ExercisesView: View {
     @EnvironmentObject var dataStore: DataStore
 
-    @State private var activeCategory: ExerciseCategory? = nil
-    @State private var searchText = ""
-    @State private var selectedLevel: ExerciseLevel = .all
-    @State private var selectedExercise: Exercise? = nil
+    private let columns = [
+        GridItem(.flexible(), spacing: 14),
+        GridItem(.flexible(), spacing: 14)
+    ]
 
-    private var availableCategories: [ExerciseCategory] {
-        [.shots, .dribbling, .defense, .technique, .physical, .tactics]
-    }
+    public init() {}
 
-    private var filteredExercises: [Exercise] {
-        dataStore.exercises.filter { (ex: Exercise) -> Bool in
-            let matchCat = activeCategory == nil || activeCategory?.matches(categoryString: ex.categoryRu) == true || activeCategory?.matches(categoryString: ex.categoryEn) == true
-            let matchLvl = selectedLevel.matches(levelString: ex.levelRu) || selectedLevel.matches(levelString: ex.levelEn)
+    public var body: some View {
+        let isEn = dataStore.isEnglish
+        let categories = ExerciseCategory.buildItems(from: dataStore.exercises)
 
-            if !searchText.isEmpty {
-                let q = searchText.lowercased()
-                let titleMatch = ex.titleRu.lowercased().contains(q) || ex.titleEn.lowercased().contains(q)
-                let descMatch = ex.descriptionRu.lowercased().contains(q) || ex.descriptionEn.lowercased().contains(q)
-                return matchCat && matchLvl && (titleMatch || descMatch)
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 18) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(isEn ? "Drills" : "Упражнения")
+                        .font(.geist(HooplabDimens.textDisplay, weight: .bold))
+                        .foregroundColor(HooplabTheme.textPrimary)
+
+                    Text(isEn ? "Choose a category" : "Выберите категорию")
+                        .font(.geist(HooplabDimens.textBody, weight: .regular))
+                        .foregroundColor(HooplabTheme.textSecondary)
+                }
+                .padding(.top, 6)
+
+                LazyVGrid(columns: columns, spacing: 14) {
+                    ForEach(categories) { item in
+                        NavigationLink {
+                            CategoryExercisesView(category: item)
+                        } label: {
+                            CategoryGridCardView(item: item, isEn: isEn)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
             }
-            return matchCat && matchLvl
+            .padding(.horizontal, HooplabDimens.screenPaddingH)
+            .padding(.top, 10)
+            .padding(.bottom, 24)
         }
+        .hooplabAurora()
     }
+}
 
-    private func countForCategory(_ cat: ExerciseCategory) -> Int {
-        dataStore.exercises.filter { (ex: Exercise) -> Bool in
-            cat.matches(categoryString: ex.categoryRu) || cat.matches(categoryString: ex.categoryEn)
-        }.count
+// MARK: - 1:1 Android item_category_card.xml
+private struct CategoryGridCardView: View {
+    let item: CategoryCardItem
+    let isEn: Bool
+
+    var body: some View {
+        ZStack(alignment: .bottomLeading) {
+            Image(item.imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(maxWidth: .infinity)
+                .frame(height: 176)
+                .clipped()
+
+            LinearGradient(
+                colors: [
+                    Color.clear,
+                    HooplabTheme.scrimEnd.opacity(0.65),
+                    HooplabTheme.scrimEnd
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(item.localizedName(isEn: isEn))
+                    .font(.geist(16, weight: .bold))
+                    .foregroundColor(HooplabTheme.textPrimary)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+
+                Text(item.localizedCountText(isEn: isEn))
+                    .font(.geist(12, weight: .medium))
+                    .foregroundColor(HooplabTheme.textSecondary)
+            }
+            .padding(14)
+        }
+        .frame(height: 176)
+        .background(HooplabTheme.surfaceElevated)
+        .clipShape(RoundedRectangle(cornerRadius: HooplabDimens.radiusCard))
+        .overlay(
+            RoundedRectangle(cornerRadius: HooplabDimens.radiusCard)
+                .stroke(HooplabTheme.glassStroke, lineWidth: 1)
+        )
+    }
+}
+
+// MARK: - Filtered Category Exercises List (1:1 Android activity_category_exercises.xml)
+public struct CategoryExercisesView: View {
+    @EnvironmentObject var dataStore: DataStore
+    public let category: CategoryCardItem
+
+    @State private var selectedLevel: ExerciseLevel = .all
+    @State private var searchText: String = ""
+
+    public init(category: CategoryCardItem) {
+        self.category = category
     }
 
     public var body: some View {
-        NavigationStack {
-            ZStack {
-                Color.clear
-                    .hooplabAurora()
+        let isEn = dataStore.isEnglish
+        let filtered = filteredExercises(isEn: isEn)
 
-                if let currentCategory = activeCategory {
-                    // Category Exercises List (matches activity_category_exercises.xml)
-                    categoryDetailView(category: currentCategory)
-                } else {
-                    // Categories Hub (matches activity_exercises.xml)
-                    categoriesHubView
-                }
-            }
-            .navigationBarHidden(true)
-            .sheet(item: $selectedExercise) { ex in
-                NavigationStack {
-                    ExerciseDetailView(exercise: ex)
-                        .environmentObject(dataStore)
-                }
-            }
-        }
-    }
+        VStack(spacing: 0) {
+            HooplabTopBar(
+                title: category.localizedName(isEn: isEn),
+                subtitle: category.localizedCountText(isEn: isEn)
+            )
 
-    // MARK: - Categories Hub View (activity_exercises.xml)
-    private var categoriesHubView: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .center, spacing: 6) {
-                // Main Title
-                Text(dataStore.isEnglish ? "Exercises" : "Тренировки")
-                    .font(.system(size: 28, weight: .bold))
-                    .foregroundColor(HooplabTheme.textPrimary)
-                    .padding(.top, 16)
-
-                // Subtitle
-                Text(dataStore.isEnglish ? "Select a category to train" : "Выберите категорию для тренировки")
-                    .font(.system(size: 14, weight: .regular))
-                    .foregroundColor(HooplabTheme.textSecondary)
-                    .padding(.bottom, 12)
-
-                // Search Bar
+            // Search + Level Filter Chips
+            VStack(spacing: 10) {
                 HStack(spacing: 10) {
                     Image(systemName: "magnifyingglass")
-                        .foregroundColor(HooplabTheme.textHint)
-                    TextField(dataStore.isEnglish ? "Search exercises..." : "Поиск упражнений...", text: $searchText)
+                        .foregroundColor(HooplabTheme.textSecondary)
+                    TextField(isEn ? "Search drills..." : "Поиск упражнений...", text: $searchText)
+                        .font(.geist(15, weight: .regular))
                         .foregroundColor(HooplabTheme.textPrimary)
                     if !searchText.isEmpty {
-                        Button(action: { searchText = "" }) {
+                        Button {
+                            searchText = ""
+                        } label: {
                             Image(systemName: "xmark.circle.fill")
                                 .foregroundColor(HooplabTheme.textHint)
                         }
                     }
                 }
                 .padding(.horizontal, 14)
-                .padding(.vertical, 11)
-                .background(Color.white.opacity(0.95))
-                .cornerRadius(16)
+                .frame(height: 44)
+                .background(HooplabTheme.bgInput)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
                 .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(HooplabTheme.cardBorder, lineWidth: 1)
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(HooplabTheme.glassStroke, lineWidth: 1)
                 )
-                .shadow(color: HooplabTheme.shadowColor, radius: 4, x: 0, y: 1)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 10)
 
-                if !searchText.isEmpty {
-                    // Search results view directly
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text(dataStore.isEnglish ? "Found \(filteredExercises.count) exercises" : "Найдено: \(filteredExercises.count) упр.")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(HooplabTheme.textSecondary)
-                            .padding(.horizontal, 16)
-
-                        ForEach(filteredExercises) { ex in
-                            ExerciseCardView(exercise: ex) {
-                                selectedExercise = ex
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        ForEach(ExerciseLevel.allCases) { level in
+                            let isSelected = (selectedLevel == level)
+                            Button {
+                                SoundAndHaptics.shared.vibrateClick()
+                                selectedLevel = level
+                            } label: {
+                                Text(level.localized(isEn: isEn))
+                                    .font(.geist(13, weight: .semibold))
+                                    .foregroundColor(isSelected ? .white : HooplabTheme.textPrimary)
+                                    .padding(.horizontal, 14)
+                                    .padding(.vertical, 8)
+                                    .background(isSelected ? HooplabTheme.primary : HooplabTheme.glassFill)
+                                    .clipShape(Capsule())
+                                    .overlay(
+                                        Capsule().stroke(
+                                            isSelected ? HooplabTheme.primary : HooplabTheme.glassStroke,
+                                            lineWidth: 1
+                                        )
+                                    )
                             }
-                            .padding(.horizontal, 16)
+                            .buttonStyle(.plain)
                         }
                     }
-                    .padding(.bottom, 32)
-                } else {
-                    // 2-column Grid of Categories (matches item_category_card.xml)
-                    let columns = [
-                        GridItem(.flexible(), spacing: 14),
-                        GridItem(.flexible(), spacing: 14)
-                    ]
-
-                    LazyVGrid(columns: columns, spacing: 14) {
-                        ForEach(availableCategories) { cat in
-                            categoryCard(cat)
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 32)
                 }
             }
-        }
-    }
+            .padding(.horizontal, HooplabDimens.screenPaddingH)
+            .padding(.bottom, 12)
 
-    private func categoryCard(_ cat: ExerciseCategory) -> some View {
-        Button(action: {
-            SoundAndHaptics.shared.lightTap()
-            activeCategory = cat
-        }) {
-            ZStack(alignment: .bottomLeading) {
-                // Background subtle tinted surface
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(HooplabTheme.cardBg)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(HooplabTheme.cardBorder, lineWidth: 1)
-                    )
-                    .shadow(color: HooplabTheme.shadowColor, radius: 6, x: 0, y: 2)
-
-                // Large watermark symbol in top right
-                VStack {
-                    HStack {
-                        Spacer()
-                        Image(systemName: cat.sfSymbol)
-                            .font(.system(size: 54, weight: .ultraLight))
-                            .foregroundColor(HooplabTheme.orangePrimary.opacity(0.18))
-                            .offset(x: 4, y: 4)
-                    }
-                    Spacer()
-                }
-
-                // Text content at bottom
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(cat.localized(isEn: dataStore.isEnglish))
-                        .font(.system(size: 17, weight: .bold))
-                        .foregroundColor(HooplabTheme.textPrimary)
-
-                    Text(dataStore.isEnglish ? "\(countForCategory(cat)) exercises" : "\(countForCategory(cat)) упражнений")
-                        .font(.system(size: 12, weight: .semibold))
-                        .foregroundColor(HooplabTheme.orangePrimary)
-                }
-                .padding(14)
-            }
-            .frame(height: 128)
-        }
-        .buttonStyle(.plain)
-    }
-
-    // MARK: - Category Exercises List View (activity_category_exercises.xml)
-    private func categoryDetailView(category: ExerciseCategory) -> some View {
-        VStack(spacing: 0) {
-            // Header with Back button
-            HStack {
-                Button(action: {
-                    SoundAndHaptics.shared.lightTap()
-                    activeCategory = nil
-                    selectedLevel = .all
-                    searchText = ""
-                }) {
-                    HStack(spacing: 6) {
-                        Image(systemName: "chevron.left")
-                            .font(.system(size: 16, weight: .bold))
-                        Text(dataStore.isEnglish ? "Categories" : "Категории")
-                            .font(.system(size: 14, weight: .semibold))
-                    }
-                    .foregroundColor(HooplabTheme.orangePrimary)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
-                    .background(HooplabTheme.orangeSoft)
-                    .cornerRadius(12)
-                }
-
+            if filtered.isEmpty {
                 Spacer()
-
-                VStack(spacing: 2) {
-                    Text(category.localized(isEn: dataStore.isEnglish))
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(HooplabTheme.textPrimary)
-                    Text(dataStore.isEnglish ? "Exercises" : "Упражнения")
-                        .font(.system(size: 12, weight: .regular))
+                VStack(spacing: 10) {
+                    Image(systemName: "basketball")
+                        .font(.system(size: 40))
+                        .foregroundColor(HooplabTheme.textHint)
+                    Text(isEn ? "No drills match the filter" : "Упражнения не найдены")
+                        .font(.geist(16, weight: .semibold))
                         .foregroundColor(HooplabTheme.textSecondary)
                 }
-
                 Spacer()
-
-                // Balance placeholder
-                Circle()
-                    .fill(Color.clear)
-                    .frame(width: 40, height: 40)
-            }
-            .padding(.horizontal, 16)
-            .padding(.top, 14)
-            .padding(.bottom, 10)
-
-            // Difficulty Filter Chips
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 8) {
-                    ForEach(ExerciseLevel.allCases) { lvl in
-                        Button(action: {
-                            SoundAndHaptics.shared.lightTap()
-                            selectedLevel = lvl
-                        }) {
-                            Text(lvl.localized(isEn: dataStore.isEnglish))
-                                .font(.system(size: 12, weight: .bold))
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 7)
-                                .background(selectedLevel == lvl ? HooplabTheme.orangePrimary : HooplabTheme.cardBg)
-                                .foregroundColor(selectedLevel == lvl ? .white : HooplabTheme.textSecondary)
-                                .cornerRadius(12)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .stroke(selectedLevel == lvl ? Color.clear : HooplabTheme.cardBorder, lineWidth: 1)
-                                )
-                                .shadow(color: HooplabTheme.shadowColor, radius: 3, x: 0, y: 1)
+            } else {
+                ScrollView(showsIndicators: false) {
+                    LazyVStack(spacing: 12) {
+                        ForEach(filtered) { exercise in
+                            NavigationLink {
+                                ExerciseDetailView(exercise: exercise)
+                            } label: {
+                                ExerciseListCardView(
+                                    exercise: exercise,
+                                    isEn: isEn,
+                                    isFavorite: dataStore.isFavorite(id: exercise.id)
+                                ) {
+                                    dataStore.toggleFavorite(id: exercise.id)
+                                }
+                            }
+                            .buttonStyle(.plain)
                         }
                     }
+                    .padding(.horizontal, HooplabDimens.screenPaddingH)
+                    .padding(.top, 4)
+                    .padding(.bottom, 28)
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 6)
             }
+        }
+        .hooplabAurora()
+        .toolbar(.hidden, for: .navigationBar)
+        .enableSwipeBack()
+    }
 
-            // Exercise Cards List
-            ScrollView(showsIndicators: false) {
-                LazyVStack(spacing: 12) {
-                    ForEach(filteredExercises) { ex in
-                        ExerciseCardView(exercise: ex) {
-                            selectedExercise = ex
-                        }
-                    }
+    private func filteredExercises(isEn: Bool) -> [Exercise] {
+        dataStore.exercises.filter { ex in
+            guard ex.category.ru == category.ruName else { return false }
+
+            let lvlMatches: Bool = {
+                switch selectedLevel {
+                case .all:
+                    return true
+                case .beginner:
+                    return ex.level.ru.lowercased().contains("нач") || ex.level.en.lowercased().contains("begin")
+                case .intermediate:
+                    return ex.level.ru.lowercased().contains("сред") || ex.level.en.lowercased().contains("inter")
+                case .advanced:
+                    return ex.level.ru.lowercased().contains("прод") || ex.level.en.lowercased().contains("advanc")
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 8)
-                .padding(.bottom, 32)
-            }
+            }()
+
+            let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            let searchMatches = query.isEmpty ||
+                ex.localizedTitle(isEn: isEn).lowercased().contains(query) ||
+                ex.localizedDesc(isEn: isEn).lowercased().contains(query)
+
+            return lvlMatches && searchMatches
         }
     }
 }

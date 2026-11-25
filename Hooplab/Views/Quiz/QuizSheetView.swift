@@ -1,324 +1,253 @@
 import SwiftUI
 
+// MARK: - Continuous Basketball IQ Quiz Modal (1:1 Android dialog_basketball_quiz.xml)
 public struct QuizSheetView: View {
     @EnvironmentObject var dataStore: DataStore
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
 
-    @State private var questions: [QuizQuestion] = BasketballQuizData.allQuestions
-    @State private var currentIndex: Int = 0
+    @State private var currentQuestion: QuizQuestion? = nil
     @State private var selectedOptionIndex: Int? = nil
-    @State private var isAnswered: Bool = false
-    @State private var score: Int = 0
-    @State private var isFinished: Bool = false
+    @State private var hasSubmittedCurrent: Bool = false
+
+    public init() {}
 
     public var body: some View {
-        ZStack {
-            Color.clear
-                .hooplabAurora()
+        let isEn = dataStore.isEnglish
 
-            VStack(spacing: 16) {
-                // Top header
-                HStack {
-                    Button(action: {
-                        dismiss()
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 26))
-                            .foregroundColor(HooplabTheme.textSecondary)
-                    }
+        NavigationStack {
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 18) {
+                    // Header Badges
+                    HStack {
+                        Text("🧠 HOOP IQ")
+                            .font(.geist(12, weight: .bold))
+                            .foregroundColor(HooplabTheme.primary)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(HooplabTheme.fireBg)
+                            .clipShape(Capsule())
 
-                    Spacer()
+                        Spacer()
 
-                    Text(dataStore.isEnglish ? "Basketball Quiz" : "Баскетбольный квиз")
-                        .font(.system(size: 17, weight: .bold))
-                        .foregroundColor(HooplabTheme.textPrimary)
-
-                    Spacer()
-
-                    HStack(spacing: 4) {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color(hex: "D97706"))
-                            .font(.system(size: 14))
-                        Text("\(score)")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(HooplabTheme.textPrimary)
-                    }
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 4)
-                    .background(Color(hex: "FEF3C7"))
-                    .cornerRadius(12)
-                }
-                .padding(.horizontal, 20)
-                .padding(.top, 16)
-
-                if isFinished {
-                    quizSummaryView
-                } else if currentIndex < questions.count {
-                    questionContentView(question: questions[currentIndex])
-                }
-            }
-        }
-    }
-
-    private func questionContentView(question: QuizQuestion) -> some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: 16) {
-                // Progress bar
-                HStack(spacing: 6) {
-                    ForEach(0..<questions.count, id: \.self) { idx in
-                        RoundedRectangle(cornerRadius: 3)
-                            .fill(idx < currentIndex ? HooplabTheme.greenAccent : (idx == currentIndex ? HooplabTheme.orangePrimary : HooplabTheme.bgNav))
-                            .frame(height: 5)
-                    }
-                }
-                .padding(.horizontal, 20)
-
-                // Question counter
-                HStack {
-                    Text(dataStore.isEnglish ? "QUESTION \(currentIndex + 1) OF \(questions.count)" : "ВОПРОС \(currentIndex + 1) ИЗ \(questions.count)")
-                        .font(.system(size: 12, weight: .bold))
-                        .foregroundColor(HooplabTheme.orangePrimary)
-                        .tracking(1.5)
-
-                    Spacer()
-                }
-                .padding(.horizontal, 20)
-
-                // Question text card
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(question.localizedQuestion(isEn: dataStore.isEnglish))
-                        .font(.system(size: 19, weight: .bold))
-                        .foregroundColor(HooplabTheme.textPrimary)
-                        .lineSpacing(4)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .hooplabCard(padding: 18)
-                .padding(.horizontal, 16)
-
-                // Options
-                VStack(spacing: 10) {
-                    let options = question.localizedOptions(isEn: dataStore.isEnglish)
-                    ForEach(0..<options.count, id: \.self) { optIdx in
-                        optionButton(index: optIdx, text: options[optIdx], correctIdx: question.correctIndex)
-                    }
-                }
-                .padding(.horizontal, 16)
-
-                // Explanation & Next Button
-                if isAnswered {
-                    VStack(alignment: .leading, spacing: 12) {
-                        HStack(spacing: 8) {
-                            Image(systemName: selectedOptionIndex == question.correctIndex ? "checkmark.circle.fill" : "info.circle.fill")
-                                .foregroundColor(selectedOptionIndex == question.correctIndex ? HooplabTheme.greenAccent : HooplabTheme.orangePrimary)
-                            Text(dataStore.isEnglish ? "Explanation" : "Объяснение")
-                                .font(.system(size: 15, weight: .bold))
-                                .foregroundColor(HooplabTheme.textPrimary)
-                        }
-
-                        Text(question.localizedExplanation(isEn: dataStore.isEnglish))
-                            .font(.system(size: 14))
-                            .foregroundColor(HooplabTheme.textSecondary)
-                            .lineSpacing(3)
-
-                        Button(action: {
-                            SoundAndHaptics.shared.mediumTap()
-                            goToNextQuestion()
-                        }) {
-                            HStack {
-                                Text(currentIndex + 1 < questions.count ? (dataStore.isEnglish ? "Next Question ▶" : "Следующий вопрос ▶") : (dataStore.isEnglish ? "View Results 🎉" : "Посмотреть результаты 🎉"))
-                                    .font(.system(size: 16, weight: .bold))
-                                Image(systemName: "arrow.right")
-                            }
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 50)
-                            .background(HooplabTheme.orangePrimary)
-                            .foregroundColor(.white)
-                            .cornerRadius(14)
-                            .shadow(color: HooplabTheme.orangePrimary.opacity(0.35), radius: 6, x: 0, y: 3)
-                        }
-                        .buttonStyle(.plain)
-                        .padding(.top, 4)
-                    }
-                    .hooplabCard(padding: 16)
-                    .padding(.horizontal, 16)
-                    .transition(.opacity.combined(with: .move(edge: .bottom)))
-                }
-
-                Spacer(minLength: 32)
-            }
-        }
-    }
-
-    private func optionButton(index: Int, text: String, correctIdx: Int) -> some View {
-        let isCorrect = index == correctIdx
-        let isSelected = selectedOptionIndex == index
-
-        var bgColor: Color = HooplabTheme.cardBg
-        var borderColor: Color = HooplabTheme.cardBorder
-        var iconName: String = "circle"
-        var iconColor: Color = HooplabTheme.textHint
-
-        if isAnswered {
-            if isCorrect {
-                bgColor = Color(hex: "DCFCE7")
-                borderColor = HooplabTheme.greenAccent
-                iconName = "checkmark.circle.fill"
-                iconColor = HooplabTheme.greenAccent
-            } else if isSelected {
-                bgColor = Color(hex: "FEE2E2")
-                borderColor = Color(hex: "EF4444")
-                iconName = "xmark.circle.fill"
-                iconColor = Color(hex: "EF4444")
-            }
-        }
-
-        return Button(action: {
-            if !isAnswered {
-                selectOption(index: index, correctIdx: correctIdx)
-            }
-        }) {
-            HStack(spacing: 12) {
-                Image(systemName: iconName)
-                    .foregroundColor(iconColor)
-                    .font(.system(size: 20))
-
-                Text(text)
-                    .font(.system(size: 15, weight: .medium))
-                    .foregroundColor(HooplabTheme.textPrimary)
-                    .multilineTextAlignment(.leading)
-
-                Spacer()
-            }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 14)
-            .background(bgColor)
-            .cornerRadius(16)
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(borderColor, lineWidth: 1.5)
-            )
-            .shadow(color: HooplabTheme.shadowColor, radius: 4, x: 0, y: 1)
-        }
-        .buttonStyle(.plain)
-        .disabled(isAnswered)
-    }
-
-    private func selectOption(index: Int, correctIdx: Int) {
-        selectedOptionIndex = index
-        isAnswered = true
-
-        if index == correctIdx {
-            score += 1
-            SoundAndHaptics.shared.success()
-        } else {
-            SoundAndHaptics.shared.error()
-        }
-    }
-
-    private func goToNextQuestion() {
-        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-            if currentIndex + 1 < questions.count {
-                currentIndex += 1
-                selectedOptionIndex = nil
-                isAnswered = false
-            } else {
-                isFinished = true
-                dataStore.recordQuizCompletion(score: score)
-            }
-        }
-    }
-
-    private var quizSummaryView: some View {
-        VStack(spacing: 24) {
-            Spacer()
-
-            ZStack {
-                Circle()
-                    .fill(HooplabTheme.orangeSoft)
-                    .frame(width: 120, height: 120)
-
-                Image(systemName: score >= 7 ? "medal.fill" : "flame.fill")
-                    .font(.system(size: 56))
-                    .foregroundColor(HooplabTheme.orangePrimary)
-            }
-
-            VStack(spacing: 8) {
-                Text(dataStore.isEnglish ? "Quiz Completed!" : "Квиз завершён!")
-                    .font(.system(size: 26, weight: .heavy))
-                    .foregroundColor(HooplabTheme.textPrimary)
-
-                Text(score >= 7 ? (dataStore.isEnglish ? "Superb knowledge of basketball rules!" : "Отличное знание правил и тактики!") : (dataStore.isEnglish ? "Good effort! Keep practicing." : "Хороший результат! Тренируйся дальше."))
-                    .font(.system(size: 15))
-                    .foregroundColor(HooplabTheme.textSecondary)
-            }
-
-            HStack(spacing: 16) {
-                VStack(spacing: 4) {
-                    Text("\(score) / \(questions.count)")
-                        .font(.system(size: 26, weight: .black))
-                        .foregroundColor(HooplabTheme.orangePrimary)
-                    Text(dataStore.isEnglish ? "Score" : "Правильно")
-                        .font(.system(size: 12, weight: .bold))
-                        .foregroundColor(HooplabTheme.textSecondary)
-                }
-                .frame(maxWidth: .infinity)
-                .hooplabCard()
-
-                VStack(spacing: 4) {
-                    Text("+\(score * 20)")
-                        .font(.system(size: 26, weight: .black))
-                        .foregroundColor(HooplabTheme.greenAccent)
-                    Text("XP Опыт")
-                        .font(.system(size: 12, weight: .bold))
-                        .foregroundColor(HooplabTheme.textSecondary)
-                }
-                .frame(maxWidth: .infinity)
-                .hooplabCard()
-            }
-            .padding(.horizontal, 24)
-
-            Spacer()
-
-            VStack(spacing: 12) {
-                Button(action: {
-                    restartQuiz()
-                }) {
-                    Text(dataStore.isEnglish ? "Play Again" : "Сыграть ещё раз")
-                        .font(.system(size: 17, weight: .bold))
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 52)
-                        .background(HooplabTheme.orangePrimary)
-                        .foregroundColor(.white)
-                        .cornerRadius(16)
-                        .shadow(color: HooplabTheme.orangePrimary.opacity(0.35), radius: 8, x: 0, y: 3)
-                }
-
-                Button(action: {
-                    dismiss()
-                }) {
-                    Text(dataStore.isEnglish ? "Close" : "Закрыть")
-                        .font(.system(size: 16, weight: .semibold))
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .background(HooplabTheme.cardBg)
-                        .foregroundColor(HooplabTheme.textPrimary)
-                        .cornerRadius(16)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(HooplabTheme.cardBorder, lineWidth: 1)
+                        Text(
+                            isEn
+                            ? "Score: \(dataStore.quizScore) • \(dataStore.answeredQuestionIds.count)/\(dataStore.totalQuizQuestionsCount)"
+                            : "Счёт: \(dataStore.quizScore) • \(dataStore.answeredQuestionIds.count)/\(dataStore.totalQuizQuestionsCount)"
                         )
+                        .font(.geist(13, weight: .bold))
+                        .foregroundColor(HooplabTheme.textSecondary)
+                    }
+
+                    if let q = currentQuestion {
+                        // Question Card
+                        Text(q.localizedQuestion(isEn: isEn))
+                            .font(.geist(19, weight: .bold))
+                            .foregroundColor(HooplabTheme.textPrimary)
+                            .lineSpacing(4)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .hooplabCard(padding: 18)
+
+                        // 4 Interactive Option Buttons
+                        let options = q.localizedOptions(isEn: isEn)
+                        let letters = ["A", "B", "C", "D"]
+
+                        VStack(spacing: 10) {
+                            ForEach(Array(options.enumerated()), id: \.offset) { idx, optionText in
+                                Button {
+                                    handleOptionTap(idx: idx, question: q)
+                                } label: {
+                                    optionRow(
+                                        letter: idx < letters.count ? letters[idx] : "•",
+                                        text: optionText,
+                                        index: idx,
+                                        correctIndex: q.correctIndex
+                                    )
+                                }
+                                .buttonStyle(.plain)
+                                .disabled(hasSubmittedCurrent)
+                            }
+                        }
+
+                        // Explanation Card + Continuous "Next Question ->" Button
+                        if hasSubmittedCurrent {
+                            let isCorrect = (selectedOptionIndex == q.correctIndex)
+
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(
+                                    isCorrect
+                                    ? (isEn ? "✅ Correct! +1 Hoop IQ" : "✅ Верно! +1 к Hoop IQ")
+                                    : (isEn ? "❌ Not quite right" : "❌ Неверный ответ")
+                                )
+                                .font(.geist(14, weight: .bold))
+                                .foregroundColor(isCorrect ? HooplabTheme.accentSecondary : HooplabTheme.error)
+
+                                Text(q.localizedExplanation(isEn: isEn))
+                                    .font(.geist(14, weight: .regular))
+                                    .foregroundColor(HooplabTheme.textPrimary)
+                                    .lineSpacing(3)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .hooplabCard(
+                                padding: 16,
+                                strokeColor: isCorrect ? HooplabTheme.accentSecondary.opacity(0.6) : HooplabTheme.error.opacity(0.5)
+                            )
+                            .transition(.opacity.combined(with: .move(edge: .bottom)))
+
+                            // Continuous Question Advance Button (doesn't close dialog!)
+                            let hasMore = dataStore.nextUnansweredQuestion() != nil
+                            Button {
+                                SoundAndHaptics.shared.vibrateClick()
+                                loadNextQuestion()
+                            } label: {
+                                HStack(spacing: 8) {
+                                    Text(
+                                        hasMore
+                                        ? (isEn ? "Next Question" : "Следующий вопрос")
+                                        : (isEn ? "See Final Results" : "Показать результат")
+                                    )
+                                    .font(.geist(15, weight: .bold))
+                                    Image(systemName: hasMore ? "arrow.right" : "checkmark")
+                                        .font(.system(size: 14, weight: .bold))
+                                }
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: HooplabDimens.buttonHeight)
+                                .background(HooplabTheme.primary)
+                                .clipShape(RoundedRectangle(cornerRadius: HooplabDimens.radiusButton))
+                            }
+                            .buttonStyle(.plain)
+                            .padding(.top, 4)
+                        }
+                    } else {
+                        // All Questions Completed View
+                        VStack(spacing: 16) {
+                            Text("🏆")
+                                .font(.system(size: 56))
+
+                            Text(isEn ? "All Hoop IQ Questions Complete!" : "Все вопросы Hoop IQ пройдены!")
+                                .font(.geist(22, weight: .bold))
+                                .foregroundColor(HooplabTheme.textPrimary)
+                                .multilineTextAlignment(.center)
+
+                            Text(
+                                isEn
+                                ? "Correct answers: \(dataStore.quizScore) of \(dataStore.totalQuizQuestionsCount)\nYour Playmaking & OVR rating are boosted!"
+                                : "Правильных ответов: \(dataStore.quizScore) из \(dataStore.totalQuizQuestionsCount)\nТвой рейтинг Playmaking и OVR прокачаны!"
+                            )
+                            .font(.geist(15, weight: .regular))
+                            .foregroundColor(HooplabTheme.textSecondary)
+                            .multilineTextAlignment(.center)
+                            .lineSpacing(4)
+
+                            Button {
+                                SoundAndHaptics.shared.vibrateClick()
+                                dismiss()
+                            } label: {
+                                Text(isEn ? "Back to Profile" : "Вернуться в профиль")
+                                    .font(.geist(15, weight: .bold))
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: HooplabDimens.buttonHeight)
+                                    .background(HooplabTheme.accentSecondary)
+                                    .clipShape(RoundedRectangle(cornerRadius: HooplabDimens.radiusButton))
+                            }
+                            .buttonStyle(.plain)
+                            .padding(.top, 8)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .hooplabCard(padding: 24)
+                    }
+                }
+                .padding(HooplabDimens.screenPaddingH)
+            }
+            .hooplabAurora()
+            .navigationTitle(isEn ? "Basketball IQ Quiz" : "Викторина Hoop IQ")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(isEn ? "Close" : "Закрыть") {
+                        dismiss()
+                    }
+                    .foregroundColor(HooplabTheme.primary)
                 }
             }
-            .padding(.horizontal, 24)
-            .padding(.bottom, 24)
+        }
+        .onAppear {
+            if currentQuestion == nil {
+                currentQuestion = dataStore.nextUnansweredQuestion()
+            }
         }
     }
 
-    private func restartQuiz() {
-        currentIndex = 0
-        selectedOptionIndex = nil
-        isAnswered = false
-        score = 0
-        isFinished = false
+    private func optionRow(letter: String, text: String, index: Int, correctIndex: Int) -> some View {
+        let borderColor: Color = {
+            guard hasSubmittedCurrent else { return HooplabTheme.glassStroke }
+            if index == correctIndex { return HooplabTheme.accentSecondary }
+            if index == selectedOptionIndex { return HooplabTheme.error }
+            return HooplabTheme.glassStroke.opacity(0.5)
+        }()
+
+        let bgTint: Color = {
+            guard hasSubmittedCurrent else { return HooplabTheme.glassFill }
+            if index == correctIndex { return HooplabTheme.accentSecondary.opacity(0.16) }
+            if index == selectedOptionIndex { return HooplabTheme.error.opacity(0.16) }
+            return HooplabTheme.glassFill.opacity(0.6)
+        }()
+
+        return HStack(spacing: 12) {
+            Text(letter)
+                .font(.geist(13, weight: .bold))
+                .foregroundColor(hasSubmittedCurrent && index == correctIndex ? .white : HooplabTheme.primary)
+                .frame(width: 28, height: 28)
+                .background(hasSubmittedCurrent && index == correctIndex ? HooplabTheme.accentSecondary : HooplabTheme.fireBg)
+                .clipShape(Circle())
+
+            Text(text)
+                .font(.geist(15, weight: .medium))
+                .foregroundColor(HooplabTheme.textPrimary)
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+            if hasSubmittedCurrent {
+                if index == correctIndex {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundColor(HooplabTheme.accentSecondary)
+                } else if index == selectedOptionIndex {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(HooplabTheme.error)
+                }
+            }
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 14)
+        .background(bgTint)
+        .clipShape(RoundedRectangle(cornerRadius: 14))
+        .overlay(
+            RoundedRectangle(cornerRadius: 14)
+                .stroke(borderColor, lineWidth: hasSubmittedCurrent && (index == correctIndex || index == selectedOptionIndex) ? 2 : 1)
+        )
+    }
+
+    private func handleOptionTap(idx: Int, question: QuizQuestion) {
+        guard !hasSubmittedCurrent else { return }
+        selectedOptionIndex = idx
+        let isCorrect = (idx == question.correctIndex)
+        if isCorrect {
+            SoundAndHaptics.shared.playSetComplete()
+        } else {
+            SoundAndHaptics.shared.mediumTap()
+        }
+        withAnimation(.easeInOut(duration: 0.2)) {
+            hasSubmittedCurrent = true
+        }
+        dataStore.submitQuizAnswer(questionId: question.id, isCorrect: isCorrect)
+    }
+
+    private func loadNextQuestion() {
+        withAnimation(.easeInOut(duration: 0.2)) {
+            selectedOptionIndex = nil
+            hasSubmittedCurrent = false
+            currentQuestion = dataStore.nextUnansweredQuestion()
+        }
     }
 }

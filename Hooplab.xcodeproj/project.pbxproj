@@ -29,8 +29,21 @@
 		BD18146C290E4C56B86C1B9F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0D205258AB4ABF98CF4908 /* ProfileView.swift */; };
 		7B76A4CEAF2543DEB600EB10 /* QuizSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246ECD404C949A1B3C289BA /* QuizSheetView.swift */; };
 		F6809BE18D0D4F5D999674AF /* WorkoutTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3349E21011DB409A8CBD2573 /* WorkoutTimerView.swift */; };
+		B10000010001400090000001 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000010001400090000001 /* SplashView.swift */; };
+		B10000020002400090000002 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020002400090000002 /* OnboardingView.swift */; };
+		B10000030003400090000003 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000030003400090000003 /* AuthView.swift */; };
+		B10000040004400090000004 /* RegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000040004400090000004 /* RegView.swift */; };
+		B10000050005400090000005 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000050005400090000005 /* StatsView.swift */; };
+		B10000060006400090000006 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000060006400090000006 /* LeaderboardView.swift */; };
+		C10000010001400090000001 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D10000010001400090000001 /* Lottie */; };
 		4A0962E33D9648148A68A7BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3022F17B14642C68FE6D0AD /* Assets.xcassets */; };
 		7C37CA3D60C4490896F4F9AA /* exercises.json in Resources */ = {isa = PBXBuildFile; fileRef = 5A1228D933314C3F96A2132A /* exercises.json */; };
+		B20000010001400090000001 /* geist_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A20000010001400090000001 /* geist_regular.ttf */; };
+		B20000020002400090000002 /* geist_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A20000020002400090000002 /* geist_medium.ttf */; };
+		B20000030003400090000003 /* geist_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A20000030003400090000003 /* geist_semibold.ttf */; };
+		B20000040004400090000004 /* geist_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A20000040004400090000004 /* geist_bold.ttf */; };
+		B30000010001400090000001 /* Media in Resources */ = {isa = PBXBuildFile; fileRef = A30000010001400090000001 /* Media */; };
+		B30000020002400090000002 /* Lottie in Resources */ = {isa = PBXBuildFile; fileRef = A30000020002400090000002 /* Lottie */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,9 +70,21 @@
 		1E0D205258AB4ABF98CF4908 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Profile/ProfileView.swift"; sourceTree = "<group>"; };
 		3246ECD404C949A1B3C289BA /* QuizSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Quiz/QuizSheetView.swift"; sourceTree = "<group>"; };
 		3349E21011DB409A8CBD2573 /* WorkoutTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Workout/WorkoutTimerView.swift"; sourceTree = "<group>"; };
+		A10000010001400090000001 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Splash/SplashView.swift"; sourceTree = "<group>"; };
+		A10000020002400090000002 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Onboarding/OnboardingView.swift"; sourceTree = "<group>"; };
+		A10000030003400090000003 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Auth/AuthView.swift"; sourceTree = "<group>"; };
+		A10000040004400090000004 /* RegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Auth/RegView.swift"; sourceTree = "<group>"; };
+		A10000050005400090000005 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Stats/StatsView.swift"; sourceTree = "<group>"; };
+		A10000060006400090000006 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hooplab/Views/Leaderboard/LeaderboardView.swift"; sourceTree = "<group>"; };
 		F3022F17B14642C68FE6D0AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Hooplab/Resources/Assets.xcassets"; sourceTree = "<group>"; };
 		5A1228D933314C3F96A2132A /* exercises.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Hooplab/Resources/exercises.json"; sourceTree = "<group>"; };
 		0CD847F0B23C4D3DBF974468 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hooplab/Resources/Info.plist"; sourceTree = "<group>"; };
+		A20000010001400090000001 /* geist_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hooplab/Resources/Fonts/geist_regular.ttf"; sourceTree = "<group>"; };
+		A20000020002400090000002 /* geist_medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hooplab/Resources/Fonts/geist_medium.ttf"; sourceTree = "<group>"; };
+		A20000030003400090000003 /* geist_semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hooplab/Resources/Fonts/geist_semibold.ttf"; sourceTree = "<group>"; };
+		A20000040004400090000004 /* geist_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hooplab/Resources/Fonts/geist_bold.ttf"; sourceTree = "<group>"; };
+		A30000010001400090000001 /* Media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Hooplab/Resources/Media"; sourceTree = "<group>"; };
+		A30000020002400090000002 /* Lottie */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Hooplab/Resources/Lottie"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C10000010001400090000001 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,9 +140,21 @@
 				1E0D205258AB4ABF98CF4908 /* ProfileView.swift */,
 				3246ECD404C949A1B3C289BA /* QuizSheetView.swift */,
 				3349E21011DB409A8CBD2573 /* WorkoutTimerView.swift */,
+				A10000010001400090000001 /* SplashView.swift */,
+				A10000020002400090000002 /* OnboardingView.swift */,
+				A10000030003400090000003 /* AuthView.swift */,
+				A10000040004400090000004 /* RegView.swift */,
+				A10000050005400090000005 /* StatsView.swift */,
+				A10000060006400090000006 /* LeaderboardView.swift */,
 				F3022F17B14642C68FE6D0AD /* Assets.xcassets */,
 				5A1228D933314C3F96A2132A /* exercises.json */,
 				0CD847F0B23C4D3DBF974468 /* Info.plist */,
+				A20000010001400090000001 /* geist_regular.ttf */,
+				A20000020002400090000002 /* geist_medium.ttf */,
+				A20000030003400090000003 /* geist_semibold.ttf */,
+				A20000040004400090000004 /* geist_bold.ttf */,
+				A30000010001400090000001 /* Media */,
+				A30000020002400090000002 /* Lottie */,
 			);
 			name = Hooplab;
 			sourceTree = "<group>";
@@ -137,6 +175,9 @@
 			dependencies = (
 			);
 			name = Hooplab;
+			packageProductDependencies = (
+				D10000010001400090000001 /* Lottie */,
+			);
 			productName = Hooplab;
 			productReference = 92E4D279D2464C189FE9CDA2 /* Hooplab.app */;
 			productType = "com.apple.product-type.application";
@@ -164,6 +205,9 @@
 				Base,
 			);
 			mainGroup = D4BA81821B7B495394401ED9;
+			packageReferences = (
+				E10000010001400090000001 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 364E92C46A894D309E9C45D0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -180,6 +224,12 @@
 			files = (
 				4A0962E33D9648148A68A7BE /* Assets.xcassets in Resources */,
 				7C37CA3D60C4490896F4F9AA /* exercises.json in Resources */,
+				B20000010001400090000001 /* geist_regular.ttf in Resources */,
+				B20000020002400090000002 /* geist_medium.ttf in Resources */,
+				B20000030003400090000003 /* geist_semibold.ttf in Resources */,
+				B20000040004400090000004 /* geist_bold.ttf in Resources */,
+				B30000010001400090000001 /* Media in Resources */,
+				B30000020002400090000002 /* Lottie in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,10 +262,35 @@
 				BD18146C290E4C56B86C1B9F /* ProfileView.swift in Sources */,
 				7B76A4CEAF2543DEB600EB10 /* QuizSheetView.swift in Sources */,
 				F6809BE18D0D4F5D999674AF /* WorkoutTimerView.swift in Sources */,
+				B10000010001400090000001 /* SplashView.swift in Sources */,
+				B10000020002400090000002 /* OnboardingView.swift in Sources */,
+				B10000030003400090000003 /* AuthView.swift in Sources */,
+				B10000040004400090000004 /* RegView.swift in Sources */,
+				B10000050005400090000005 /* StatsView.swift in Sources */,
+				B10000060006400090000006 /* LeaderboardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E10000010001400090000001 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D10000010001400090000001 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E10000010001400090000001 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCBuildConfiguration section */
 		324F16AE75D448E9811BB2DF /* Debug */ = {

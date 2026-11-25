@@ -4,8 +4,15 @@ import AudioToolbox
 
 public class SoundAndHaptics {
     public static let shared = SoundAndHaptics()
+    public var isMuted: Bool = false
 
     private init() {}
+
+    public func vibrateClick() {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
+    }
 
     public func lightTap() {
         let generator = UIImpactFeedbackGenerator(style: .light)
@@ -19,29 +26,55 @@ public class SoundAndHaptics {
         generator.impactOccurred()
     }
 
-    public func success() {
+    public func playStartWhistle() {
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.prepare()
+        generator.impactOccurred()
+        guard !isMuted else { return }
+        AudioServicesPlaySystemSound(1005)
+    }
+
+    public func playCountdownTick() {
+        let generator = UIImpactFeedbackGenerator(style: .soft)
+        generator.prepare()
+        generator.impactOccurred()
+        guard !isMuted else { return }
+        AudioServicesPlaySystemSound(1057)
+    }
+
+    public func playSetComplete() {
         let generator = UINotificationFeedbackGenerator()
         generator.prepare()
         generator.notificationOccurred(.success)
-        AudioServicesPlaySystemSound(1054) // Subtly pleasant system chime
+        guard !isMuted else { return }
+        AudioServicesPlaySystemSound(1054)
+    }
+
+    public func playWorkoutComplete() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
+        generator.notificationOccurred(.success)
+        guard !isMuted else { return }
+        AudioServicesPlaySystemSound(1025)
+    }
+
+    public func success() {
+        playSetComplete()
     }
 
     public func error() {
         let generator = UINotificationFeedbackGenerator()
         generator.prepare()
         generator.notificationOccurred(.error)
-        AudioServicesPlaySystemSound(1053) // Subtle alert sound
+        guard !isMuted else { return }
+        AudioServicesPlaySystemSound(1053)
     }
 
     public func timerCountdownBeep() {
-        let generator = UIImpactFeedbackGenerator(style: .soft)
-        generator.impactOccurred()
-        AudioServicesPlaySystemSound(1057) // Short tick
+        playCountdownTick()
     }
 
     public func timerCompleteSound() {
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.success)
-        AudioServicesPlaySystemSound(1025) // Celebratory fanfare
+        playWorkoutComplete()
     }
 }

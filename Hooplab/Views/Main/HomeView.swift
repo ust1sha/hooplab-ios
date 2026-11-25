@@ -2,458 +2,412 @@ import SwiftUI
 
 public struct HomeView: View {
     @EnvironmentObject var dataStore: DataStore
+    @State private var selectedProgram: WorkoutProgram? = nil
+    @State private var navigatedExercise: Exercise? = nil
 
-    @State private var showingQuiz = false
-    @State private var showingCourts = false
-    @State private var showingLeaderboard = false
-    @State private var selectedExercise: Exercise? = nil
-
-    private var workoutOfTheDay: Exercise? {
-        dataStore.exercises.first { $0.id == 2 } ?? dataStore.exercises.first
-    }
-
-    private var popularExercises: [Exercise] {
-        Array(dataStore.exercises.prefix(8))
-    }
-
-    private let programs = WorkoutProgramsCatalog.programs
+    public init() {}
 
     public var body: some View {
-        NavigationStack {
-            ZStack {
-                // Background & Aurora glowing pastels
-                Color.clear
-                    .hooplabAurora()
+        let isEn = dataStore.isEnglish
 
-                ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 20) {
-                        // 1. Top Brand Header
-                        topHeader
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: HooplabDimens.space5) {
+                headerSection(isEn: isEn)
 
-                        // 2. Fire Streak Card
-                        streakCard
+                streakCardSection(isEn: isEn)
 
-                        // 3. Quick Start Horizontal Pills
-                        quickStartSection
+                quickPillsSection(isEn: isEn)
 
-                        // 4. Hero Banner "Тренировка дня"
-                        if let wotd = workoutOfTheDay {
-                            heroBanner(wotd)
-                        }
+                if let recommended = dataStore.recommendedExercise {
+                    heroBannerSection(exercise: recommended, isEn: isEn)
+                }
 
-                        // 5. Ready Programs Carousel
-                        programsSection
+                programsSection(isEn: isEn)
 
-                        // 6. Popular Exercises Carousel
-                        popularSection
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.top, 12)
-                    .padding(.bottom, 32)
+                popularExercisesSection(isEn: isEn)
+            }
+            .padding(.horizontal, HooplabDimens.screenPaddingH)
+            .padding(.top, 12)
+            .padding(.bottom, 24)
+        }
+        .hooplabAurora()
+        .sheet(item: $selectedProgram) { program in
+            ProgramExercisesSheet(program: program, isEn: isEn) { chosenExercise in
+                selectedProgram = nil
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    navigatedExercise = chosenExercise
                 }
             }
-            .navigationBarHidden(true)
-            .sheet(isPresented: $showingQuiz) {
-                QuizSheetView()
-                    .environmentObject(dataStore)
-            }
-            .sheet(isPresented: $showingCourts) {
-                NavigationStack {
-                    CourtsView()
-                        .environmentObject(dataStore)
-                }
-            }
-            .sheet(isPresented: $showingLeaderboard) {
-                NavigationStack {
-                    LeaderboardSheetView()
-                        .environmentObject(dataStore)
-                }
-            }
-            .sheet(item: $selectedExercise) { ex in
-                NavigationStack {
-                    ExerciseDetailView(exercise: ex)
-                        .environmentObject(dataStore)
-                }
+            .environmentObject(dataStore)
+        }
+        .navigationDestination(isPresented: Binding(
+            get: { navigatedExercise != nil },
+            set: { if !$0 { navigatedExercise = nil } }
+        )) {
+            if let ex = navigatedExercise {
+                ExerciseDetailView(exercise: ex)
             }
         }
     }
 
-    // MARK: - 1. Top Header
-    private var topHeader: some View {
-        HStack(alignment: .center) {
+    // MARK: - 1. Header
+    private func headerSection(isEn: Bool) -> some View {
+        HStack(alignment: .center, spacing: 12) {
             VStack(alignment: .leading, spacing: 2) {
-                Text(dataStore.isEnglish ? "Welcome to HoopLab!" : "Добро пожаловать в HoopLab!")
-                    .font(.system(size: 22, weight: .bold))
-                    .foregroundColor(HooplabTheme.textPrimary)
-                Text(dataStore.isEnglish ? "Track your basketball progress" : "Прокачивай навыки каждый день")
-                    .font(.system(size: 13, weight: .regular))
+                Text(isEn ? "Welcome back," : "Добро пожаловать,")
+                    .font(.geist(15, weight: .medium))
                     .foregroundColor(HooplabTheme.textSecondary)
+
+                Text("\(dataStore.playerName)!")
+                    .font(.geist(26, weight: .bold))
+                    .foregroundColor(HooplabTheme.textPrimary)
+                    .lineLimit(1)
             }
 
             Spacer()
 
-            // HoopLab Brand Badge
-            ZStack {
-                Circle()
-                    .fill(HooplabTheme.orangePrimary)
-                    .frame(width: 42, height: 42)
-                    .shadow(color: HooplabTheme.orangePrimary.opacity(0.35), radius: 6, x: 0, y: 3)
-
-                Image(systemName: "basketball.fill")
-                    .font(.system(size: 22, weight: .bold))
-                    .foregroundColor(.white)
-            }
+            Image("ic_hooplab_badge")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 44, height: 44)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
         }
+        .padding(.top, 4)
     }
 
-    // MARK: - 2. Fire Streak Card (matches streakContainer)
-    private var streakCard: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            HStack {
-                HStack(spacing: 6) {
-                    Text("🔥")
-                        .font(.system(size: 18))
-                    Text(dataStore.isEnglish ? "\(dataStore.streakDays) Day Streak" : "\(dataStore.streakDays) дн. серия")
-                        .font(.system(size: 17, weight: .bold))
-                        .foregroundColor(HooplabTheme.orangePrimary)
-                }
+    // MARK: - 2. Fire Streak & Weekly Progress Card
+    private func streakCardSection(isEn: Bool) -> some View {
+        let streak = dataStore.streakState
+        let progress = min(1.0, Double(streak.weeklyMinutes) / Double(max(1, streak.weeklyGoalMinutes)))
+
+        return VStack(alignment: .leading, spacing: 14) {
+            HStack(spacing: 8) {
+                Image(systemName: "flame.fill")
+                    .font(.system(size: 18))
+                    .foregroundColor(HooplabTheme.fireOrange)
+
+                Text(
+                    isEn
+                    ? "\(streak.streakDays) day streak"
+                    : "\(streak.streakDays) дн. подряд"
+                )
+                .font(.geist(17, weight: .bold))
+                .foregroundColor(HooplabTheme.textPrimary)
 
                 Spacer()
 
-                Text(dataStore.isEnglish ? "Goal: \(dataStore.totalMinutes) / 120 min" : "Цель: \(dataStore.totalMinutes) / 120 мин")
-                    .font(.system(size: 13, weight: .regular))
-                    .foregroundColor(HooplabTheme.textSecondary)
+                Text("\(streak.weeklyMinutes) / \(streak.weeklyGoalMinutes) " + (isEn ? "min" : "мин"))
+                    .font(.geist(13, weight: .semibold))
+                    .foregroundColor(HooplabTheme.primary)
             }
 
-            // Weekly Progress Bar
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 3)
-                        .fill(HooplabTheme.bgNav)
-                        .frame(height: 6)
-
-                    let progress = min(1.0, Double(max(10, dataStore.totalMinutes)) / 120.0)
-                    RoundedRectangle(cornerRadius: 3)
-                        .fill(HooplabTheme.orangePrimary)
-                        .frame(width: max(12, geo.size.width * CGFloat(progress)), height: 6)
-                }
-            }
-            .frame(height: 6)
-
-            // 7 Days of the week row
+            // Mon..Sun circles
             HStack(spacing: 0) {
-                let days = dataStore.isEnglish
-                    ? ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
-                    : ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
+                ForEach(streak.days) { day in
+                    VStack(spacing: 6) {
+                        Text(day.shortLabel)
+                            .font(.geist(11, weight: day.isToday ? .bold : .medium))
+                            .foregroundColor(day.isToday ? HooplabTheme.primary : HooplabTheme.textSecondary)
 
-                ForEach(0..<days.count, id: \.self) { idx in
-                    let isCompleted = idx == 0 || (idx < dataStore.streakDays)
-                    ZStack {
-                        Circle()
-                            .fill(isCompleted ? HooplabTheme.greenAccent : HooplabTheme.bgNav)
-                            .frame(width: 32, height: 32)
+                        ZStack {
+                            Circle()
+                                .fill(day.isCompleted ? HooplabTheme.streakDayCompleted : HooplabTheme.streakDayPending)
+                                .frame(width: 32, height: 32)
+                                .overlay(
+                                    Circle().stroke(
+                                        day.isToday && !day.isCompleted ? HooplabTheme.primary : Color.clear,
+                                        lineWidth: 1.5
+                                    )
+                                )
 
-                        Text(days[idx])
-                            .font(.system(size: 11, weight: .bold))
-                            .foregroundColor(isCompleted ? .white : HooplabTheme.textSecondary)
+                            if day.isCompleted {
+                                Image(systemName: "checkmark")
+                                    .font(.system(size: 13, weight: .bold))
+                                    .foregroundColor(HooplabTheme.streakDayTextDone)
+                            } else {
+                                Circle()
+                                    .fill(day.isToday ? HooplabTheme.primary : HooplabTheme.textHint.opacity(0.45))
+                                    .frame(width: 6, height: 6)
+                            }
+                        }
                     }
                     .frame(maxWidth: .infinity)
                 }
             }
-        }
-        .hooplabCard(padding: 16, cornerRadius: 20)
-    }
 
-    // MARK: - 3. Quick Start Section
-    private var quickStartSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(dataStore.isEnglish ? "Quick Start" : "Быстрый старт")
-                .font(.system(size: 18, weight: .bold))
-                .foregroundColor(HooplabTheme.textPrimary)
+            // Weekly goal progress bar
+            VStack(alignment: .leading, spacing: 6) {
+                GeometryReader { geo in
+                    ZStack(alignment: .leading) {
+                        Capsule()
+                            .fill(HooplabTheme.nbaSkillTrack)
+                            .frame(height: 8)
 
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 8) {
-                    quickPill(title: dataStore.isEnglish ? "Warmup" : "Разминка", icon: "flame.fill", color: HooplabTheme.orangePrimary) {
-                        openPillExercise(named: "разминк")
-                    }
-
-                    quickPill(title: dataStore.isEnglish ? "Free Throws" : "Штрафные", icon: "scope", color: HooplabTheme.orangePrimary) {
-                        openPillExercise(named: "штрафн")
-                    }
-
-                    quickPill(title: dataStore.isEnglish ? "Home Dribbling" : "Дриблинг дома", icon: "bolt.fill", color: Color(hex: "D97706")) {
-                        openPillExercise(named: "дриблинг")
-                    }
-
-                    quickPill(title: dataStore.isEnglish ? "Defense Stance" : "Защитная стойка", icon: "shield.fill", color: Color(hex: "16A34A")) {
-                        openPillExercise(named: "защит")
-                    }
-
-                    quickPill(title: dataStore.isEnglish ? "Cooldown" : "Заминка", icon: "figure.mind.and.body", color: Color(hex: "9333EA")) {
-                        openPillExercise(named: "заминк")
-                    }
-
-                    quickPill(title: dataStore.isEnglish ? "Leaderboard" : "Лидерборд", icon: "trophy.fill", color: Color(hex: "EA580C")) {
-                        SoundAndHaptics.shared.lightTap()
-                        showingLeaderboard = true
-                    }
-
-                    quickPill(title: dataStore.isEnglish ? "Courts" : "Площадки", icon: "mappin.circle.fill", color: Color(hex: "2563EB")) {
-                        SoundAndHaptics.shared.lightTap()
-                        showingCourts = true
-                    }
-                }
-            }
-        }
-    }
-
-    private func quickPill(title: String, icon: String, color: Color, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            HStack(spacing: 6) {
-                Image(systemName: icon)
-                    .font(.system(size: 12, weight: .semibold))
-                    .foregroundColor(color)
-
-                Text(title)
-                    .font(.system(size: 13, weight: .semibold))
-                    .foregroundColor(HooplabTheme.textPrimary)
-            }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 9)
-            .background(Color.white.opacity(0.95))
-            .cornerRadius(18)
-            .overlay(
-                RoundedRectangle(cornerRadius: 18)
-                    .stroke(HooplabTheme.cardBorder, lineWidth: 1)
-            )
-            .shadow(color: HooplabTheme.shadowColor, radius: 4, x: 0, y: 1)
-        }
-        .buttonStyle(.plain)
-    }
-
-    private func openPillExercise(named keyword: String) {
-        SoundAndHaptics.shared.lightTap()
-        let match = dataStore.exercises.first { (ex: Exercise) -> Bool in
-            ex.titleRu.lowercased().contains(keyword) || ex.categoryRu.lowercased().contains(keyword)
-        }
-        selectedExercise = match ?? dataStore.exercises.first
-    }
-
-    // MARK: - 4. Hero Banner (matches section_recommended & bg_hero_card)
-    private func heroBanner(_ exercise: Exercise) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(dataStore.isEnglish ? "Workout of the Day" : "Тренировка дня")
-                .font(.system(size: 18, weight: .bold))
-                .foregroundColor(HooplabTheme.textPrimary)
-
-            ZStack(alignment: .topTrailing) {
-                // Background Card
-                RoundedRectangle(cornerRadius: 22)
-                    .fill(HooplabTheme.cardBg)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 22)
-                            .stroke(HooplabTheme.cardBorder, lineWidth: 1)
-                    )
-                    .shadow(color: HooplabTheme.shadowColor, radius: 8, x: 0, y: 3)
-
-                // Kinetic Silhouette Dunk Artwork on Right
-                HStack {
-                    Spacer()
-                    ZStack {
-                        Circle()
+                        Capsule()
                             .fill(
-                                RadialGradient(
-                                    colors: [HooplabTheme.orangePrimary.opacity(0.18), Color.clear],
-                                    center: .center,
-                                    startRadius: 20,
-                                    endRadius: 80
+                                LinearGradient(
+                                    colors: [HooplabTheme.primary, HooplabTheme.accentSecondary],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
                                 )
                             )
-                            .frame(width: 140, height: 140)
-
-                        Image(systemName: "figure.basketball")
-                            .font(.system(size: 80, weight: .semibold))
-                            .foregroundColor(HooplabTheme.orangePrimary.opacity(0.65))
-                            .rotationEffect(.degrees(-8))
+                            .frame(width: max(progress > 0 ? 12 : 0, geo.size.width * progress), height: 8)
                     }
-                    .padding(.trailing, 10)
-                    .padding(.top, 14)
                 }
+                .frame(height: 8)
 
-                // Foreground Content
-                VStack(alignment: .leading, spacing: 10) {
-                    // Badges row
-                    HStack(spacing: 6) {
-                        Text(dataStore.isEnglish ? "TREND" : "ТРЕНД")
-                            .font(.system(size: 11, weight: .heavy))
-                            .foregroundColor(HooplabTheme.orangePrimary)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 3)
-                            .background(HooplabTheme.orangeSoft)
-                            .cornerRadius(6)
+                Text(
+                    isEn
+                    ? "Weekly goal: \(streak.weeklyMinutes) of \(streak.weeklyGoalMinutes) min"
+                    : "Недельная цель: \(streak.weeklyMinutes) из \(streak.weeklyGoalMinutes) мин"
+                )
+                .font(.geist(11, weight: .medium))
+                .foregroundColor(HooplabTheme.textSecondary)
+            }
+        }
+        .hooplabCard(padding: 16)
+    }
 
-                        Text("⏱ 15 МИН")
-                            .font(.system(size: 11, weight: .bold))
-                            .foregroundColor(HooplabTheme.textSecondary)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 3)
-                            .background(HooplabTheme.bgNav)
-                            .cornerRadius(6)
+    // MARK: - 3. Quick Start Horizontal Pills
+    private func quickPillsSection(isEn: Bool) -> some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                pillExerciseButton(title: isEn ? "🔥 Warmup" : "🔥 Разминка", key: "warmup")
+                pillExerciseButton(title: isEn ? "🎯 Free Throws" : "🎯 Штрафные", key: "freethrows")
+                pillExerciseButton(title: isEn ? "⚡ Dribbling" : "⚡ Дриблинг", key: "dribbling")
+                pillExerciseButton(title: isEn ? "🛡️ Defense" : "🛡️ Защита", key: "defense")
 
-                        Text("⭐ " + exercise.localizedLevel(isEn: dataStore.isEnglish).uppercased())
-                            .font(.system(size: 11, weight: .heavy))
-                            .foregroundColor(HooplabTheme.levelColor(exercise.levelRu))
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 3)
-                            .background(HooplabTheme.levelBgColor(exercise.levelRu))
-                            .cornerRadius(6)
-                    }
-
-                    // Title
-                    Text(exercise.localizedTitle(isEn: dataStore.isEnglish))
-                        .font(.system(size: 19, weight: .bold))
-                        .foregroundColor(HooplabTheme.textPrimary)
-                        .padding(.trailing, 90)
-
-                    // Description
-                    Text(exercise.localizedDescription(isEn: dataStore.isEnglish))
-                        .font(.system(size: 13, weight: .regular))
-                        .foregroundColor(HooplabTheme.textSecondary)
-                        .lineLimit(2)
-                        .padding(.trailing, 90)
-
-                    // CTA Button
-                    Button(action: {
-                        SoundAndHaptics.shared.mediumTap()
-                        selectedExercise = exercise
-                    }) {
-                        HStack {
-                            Spacer()
-                            Text(dataStore.isEnglish ? "Start Workout" : "Начать тренировку")
-                                .font(.system(size: 15, weight: .bold))
-                                .foregroundColor(.white)
-                            Spacer()
-                        }
-                        .frame(height: 48)
-                        .background(HooplabTheme.orangePrimary)
-                        .cornerRadius(14)
-                        .shadow(color: HooplabTheme.orangePrimary.opacity(0.35), radius: 6, x: 0, y: 3)
-                    }
-                    .buttonStyle(.plain)
-                    .padding(.top, 4)
+                NavigationLink {
+                    LeaderboardView()
+                } label: {
+                    quickPillLabel(isEn ? "🏆 Top-50" : "🏆 Топ-50")
                 }
-                .padding(16)
+                .buttonStyle(.plain)
+
+                NavigationLink {
+                    CourtsView()
+                } label: {
+                    quickPillLabel(isEn ? "📍 Courts" : "📍 Площадки")
+                }
+                .buttonStyle(.plain)
+
+                pillExerciseButton(title: isEn ? "❄️ Cooldown" : "❄️ Заминка", key: "cooldown")
+            }
+            .padding(.vertical, 2)
+        }
+    }
+
+    private func pillExerciseButton(title: String, key: String) -> some View {
+        Group {
+            if let ex = dataStore.findExerciseForPill(key) {
+                NavigationLink {
+                    ExerciseDetailView(exercise: ex)
+                } label: {
+                    quickPillLabel(title)
+                }
+                .buttonStyle(.plain)
             }
         }
     }
 
-    // MARK: - 5. Programs Section (matches section_programs & item_program_card)
-    private var programsSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(dataStore.isEnglish ? "Workouts & Programs" : "Готовые комплексы")
-                .font(.system(size: 18, weight: .bold))
-                .foregroundColor(HooplabTheme.textPrimary)
-
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEach(programs) { program in
-                        programCard(program)
-                    }
-                }
-            }
-        }
+    private func quickPillLabel(_ title: String) -> some View {
+        Text(title)
+            .font(.geist(13, weight: .semibold))
+            .foregroundColor(HooplabTheme.textPrimary)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 9)
+            .background(HooplabTheme.glassFill)
+            .clipShape(Capsule())
+            .overlay(Capsule().stroke(HooplabTheme.glassStroke, lineWidth: 1))
     }
 
-    private func programCard(_ program: WorkoutProgram) -> some View {
-        Button(action: {
-            SoundAndHaptics.shared.lightTap()
-            if let firstId = program.exerciseIds.first,
-               let ex = dataStore.exercises.first(where: { $0.id == firstId }) {
-                selectedExercise = ex
-            }
-        }) {
-            ZStack(alignment: .bottomLeading) {
-                // Background Gradient
-                LinearGradient(
-                    colors: [Color(hex: program.gradientColors[0]), Color(hex: program.gradientColors[1])],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
+    // MARK: - 4. Hero Banner (Kinetic Dunk - matches bg_hero_card.xml)
+    private func heroBannerSection(exercise: Exercise, isEn: Bool) -> some View {
+        NavigationLink {
+            ExerciseDetailView(exercise: exercise)
+        } label: {
+            ZStack(alignment: .bottomTrailing) {
+                // Dark kinetic surface + orange glow
+                RoundedRectangle(cornerRadius: 22)
+                    .fill(
+                        LinearGradient(
+                            colors: [Color(hex: "141923"), Color(hex: "1E1722")],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+
+                RadialGradient(
+                    colors: [Color(hex: "FF5500").opacity(0.35), Color.clear],
+                    center: .trailing,
+                    startRadius: 8,
+                    endRadius: 170
                 )
+                .clipShape(RoundedRectangle(cornerRadius: 22))
 
-                // Dark gradient scrim
-                LinearGradient(
-                    colors: [Color.black.opacity(0.15), Color.black.opacity(0.8)],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
+                Image("ic_hero_kinetic_dunk")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 118, height: 118)
+                    .padding(.trailing, 4)
+                    .padding(.bottom, 4)
+                    .opacity(0.95)
 
-                // Background symbol watermark
-                VStack {
-                    HStack {
-                        Spacer()
-                        Image(systemName: program.iconName)
-                            .font(.system(size: 64, weight: .ultraLight))
-                            .foregroundColor(Color.white.opacity(0.2))
-                            .offset(x: 10, y: -10)
-                    }
-                    Spacer()
-                }
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(isEn ? "🔥 WORKOUT OF THE DAY" : "🔥 ХИТ ДНЯ")
+                        .font(.geist(11, weight: .bold))
+                        .foregroundColor(Color(hex: "FF7A33"))
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
+                        .background(Color(hex: "FF5500").opacity(0.22))
+                        .clipShape(Capsule())
 
-                // Card info
-                VStack(alignment: .leading, spacing: 6) {
-                    HStack {
-                        Text(program.tag)
-                            .font(.system(size: 11, weight: .heavy))
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 3)
-                            .background(Color.white.opacity(0.22))
-                            .cornerRadius(6)
-
-                        Spacer()
-
-                        Text("⏱ \(program.durationMinutes) мин")
-                            .font(.system(size: 11, weight: .bold))
-                            .foregroundColor(.white.opacity(0.9))
-                    }
-
-                    Spacer()
-
-                    Text(program.titleRu)
-                        .font(.system(size: 16, weight: .bold))
+                    Text(exercise.localizedTitle(isEn: isEn))
+                        .font(.geist(20, weight: .bold))
                         .foregroundColor(.white)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.leading)
+
+                    Text("\(exercise.localizedCategory(isEn: isEn)) • \(exercise.localizedSets(isEn: isEn))")
+                        .font(.geist(13, weight: .medium))
+                        .foregroundColor(.white.opacity(0.75))
                         .lineLimit(1)
 
-                    Text("\(program.exerciseCount) упр • \(program.levelRu)")
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.white.opacity(0.8))
+                    HStack(spacing: 6) {
+                        Text(isEn ? "START NOW" : "НАЧАТЬ СЕЙЧАС")
+                            .font(.geist(13, weight: .bold))
+                        Image(systemName: "play.fill")
+                            .font(.system(size: 11))
+                    }
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(Color(hex: "FF5500"))
+                    .clipShape(Capsule())
+                    .padding(.top, 4)
                 }
-                .padding(14)
+                .padding(18)
+                .padding(.trailing, 92)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .frame(width: 260, height: 146)
-            .cornerRadius(20)
             .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(HooplabTheme.cardBorder.opacity(0.6), lineWidth: 1)
+                RoundedRectangle(cornerRadius: 22)
+                    .stroke(Color(hex: "FF5500").opacity(0.38), lineWidth: 1)
             )
-            .shadow(color: HooplabTheme.shadowColor, radius: 6, x: 0, y: 2)
         }
         .buttonStyle(.plain)
     }
 
-    // MARK: - 6. Popular Exercises Carousel (matches section_popular)
-    private var popularSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(dataStore.isEnglish ? "Popular Exercises" : "Популярные упражнения")
-                .font(.system(size: 18, weight: .bold))
+    // MARK: - 5. Workout Programs Section (260x146 cards with program_*.webp)
+    private func programsSection(isEn: Bool) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(isEn ? "Training Programs" : "Программы тренировок")
+                .font(.geist(HooplabDimens.textSection, weight: .bold))
                 .foregroundColor(HooplabTheme.textPrimary)
 
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEach(popularExercises) { exercise in
-                        ExerciseCarouselCardView(exercise: exercise) {
-                            selectedExercise = exercise
+                HStack(spacing: 14) {
+                    ForEach(dataStore.programs) { program in
+                        Button {
+                            SoundAndHaptics.shared.vibrateClick()
+                            selectedProgram = program
+                        } label: {
+                            ZStack(alignment: .bottomLeading) {
+                                ProgramPhotoView(imageName: program.imageName)
+                                    .frame(width: 260, height: 146)
+                                    .clipped()
+
+                                LinearGradient(
+                                    colors: [Color.black.opacity(0.18), Color.black.opacity(0.84)],
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                )
+
+                                VStack(alignment: .leading, spacing: 0) {
+                                    HStack {
+                                        Text(program.tag)
+                                            .font(.geist(10, weight: .bold))
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal, 8)
+                                            .padding(.vertical, 4)
+                                            .background(Color.black.opacity(0.45))
+                                            .clipShape(Capsule())
+
+                                        Spacer()
+
+                                        Text(isEn ? "START" : "СТАРТ")
+                                            .font(.geist(10, weight: .bold))
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal, 9)
+                                            .padding(.vertical, 4)
+                                            .background(Color(hex: "FF5500"))
+                                            .clipShape(Capsule())
+                                    }
+
+                                    Spacer()
+
+                                    Text(program.localizedTitle(isEn: isEn))
+                                        .font(.geist(16, weight: .bold))
+                                        .foregroundColor(.white)
+                                        .lineLimit(1)
+
+                                    Text(
+                                        isEn
+                                        ? "\(program.durationMinutes) min • \(program.exerciseCount) drills • \(program.localizedLevel(isEn: true))"
+                                        : "\(program.durationMinutes) мин • \(program.exerciseCount) упр. • \(program.localizedLevel(isEn: false))"
+                                    )
+                                    .font(.geist(12, weight: .medium))
+                                    .foregroundColor(.white.opacity(0.8))
+                                    .lineLimit(1)
+                                }
+                                .padding(14)
+                            }
+                            .frame(width: 260, height: 146)
+                            .clipShape(RoundedRectangle(cornerRadius: HooplabDimens.radiusCard))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: HooplabDimens.radiusCard)
+                                    .stroke(HooplabTheme.glassStroke.opacity(0.45), lineWidth: 1)
+                            )
                         }
+                        .buttonStyle(.plain)
+                    }
+                }
+            }
+        }
+    }
+
+    // MARK: - 6. Popular Exercises Carousel
+    private func popularExercisesSection(isEn: Bool) -> some View {
+        let popular = Array(dataStore.exercises.prefix(8))
+
+        return VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text(isEn ? "Popular Drills" : "Популярные упражнения")
+                    .font(.geist(HooplabDimens.textSection, weight: .bold))
+                    .foregroundColor(HooplabTheme.textPrimary)
+
+                Spacer()
+
+                Button {
+                    SoundAndHaptics.shared.vibrateClick()
+                    dataStore.selectedTab = .exercises
+                } label: {
+                    Text(isEn ? "All" : "Все")
+                        .font(.geist(14, weight: .semibold))
+                        .foregroundColor(HooplabTheme.primary)
+                }
+                .buttonStyle(.plain)
+            }
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(popular) { exercise in
+                        NavigationLink {
+                            ExerciseDetailView(exercise: exercise)
+                        } label: {
+                            ExerciseCarouselCardView(exercise: exercise, isEn: isEn)
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
             }
@@ -461,130 +415,71 @@ public struct HomeView: View {
     }
 }
 
-// MARK: - Leaderboard Sheet View (matches activity_leaderboard.xml)
-public struct LeaderboardSheetView: View {
-    @Environment(\.dismiss) var dismiss
+// MARK: - Program Exercises Sheet
+private struct ProgramExercisesSheet: View {
     @EnvironmentObject var dataStore: DataStore
+    @Environment(\.dismiss) private var dismiss
 
-    public struct MockUser: Identifiable {
-        public let id = UUID()
-        public let rank: Int
-        public let name: String
-        public let position: String
-        public let jersey: Int
-        public let ovr: Int
-        public let isCurrentUser: Bool
-    }
+    let program: WorkoutProgram
+    let isEn: Bool
+    let onSelectExercise: (Exercise) -> Void
 
-    private var leaderboardUsers: [MockUser] {
-        [
-            MockUser(rank: 1, name: "Андрей Кириленко", position: "SF", jersey: 47, ovr: 91, isCurrentUser: false),
-            MockUser(rank: 2, name: "Алексей Швед", position: "PG", jersey: 1, ovr: 88, isCurrentUser: false),
-            MockUser(rank: 3, name: "Виктор Хряпа", position: "PF", jersey: 20, ovr: 85, isCurrentUser: false),
-            MockUser(rank: 4, name: dataStore.playerName.isEmpty ? "Вы" : dataStore.playerName, position: dataStore.playerPosition.rawValue, jersey: dataStore.playerJersey, ovr: dataStore.calculateOVR(), isCurrentUser: true),
-            MockUser(rank: 5, name: "Виталий Фридзон", position: "SG", jersey: 7, ovr: 83, isCurrentUser: false),
-            MockUser(rank: 6, name: "Тимофей Мозгов", position: "C", jersey: 25, ovr: 82, isCurrentUser: false),
-            MockUser(rank: 7, name: "Сергей Моня", position: "SF", jersey: 12, ovr: 80, isCurrentUser: false)
-        ]
-    }
+    var body: some View {
+        let drills = dataStore.exercises.filter { program.exerciseIds.contains($0.id) }
 
-    public var body: some View {
-        ZStack {
-            Color.clear
-                .hooplabAurora()
+        NavigationStack {
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 16) {
+                    ZStack(alignment: .bottomLeading) {
+                        ProgramPhotoView(imageName: program.imageName)
+                            .frame(height: 170)
+                            .frame(maxWidth: .infinity)
+                            .clipped()
 
-            VStack(spacing: 0) {
-                // Header
-                HStack {
-                    Button(action: { dismiss() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 26))
-                            .foregroundColor(HooplabTheme.textSecondary)
-                    }
+                        LinearGradient(
+                            colors: [Color.clear, Color.black.opacity(0.85)],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
 
-                    Spacer()
-
-                    VStack(spacing: 2) {
-                        Text(dataStore.isEnglish ? "Leaderboard" : "Рейтинг атлетов")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(HooplabTheme.textPrimary)
-                        Text(dataStore.isEnglish ? "HoopLab Top Players" : "Таблица лидеров HoopLab")
-                            .font(.system(size: 12, weight: .regular))
-                            .foregroundColor(HooplabTheme.textSecondary)
-                    }
-
-                    Spacer()
-
-                    // Balance spacer
-                    Circle()
-                        .fill(Color.clear)
-                        .frame(width: 26, height: 26)
-                }
-                .padding(.horizontal, 16)
-                .padding(.top, 16)
-                .padding(.bottom, 12)
-
-                ScrollView {
-                    VStack(spacing: 10) {
-                        ForEach(leaderboardUsers) { user in
-                            HStack(spacing: 12) {
-                                // Rank
-                                Text("#\(user.rank)")
-                                    .font(.system(size: 16, weight: .heavy))
-                                    .foregroundColor(user.rank <= 3 ? HooplabTheme.orangePrimary : HooplabTheme.textSecondary)
-                                    .frame(width: 36)
-
-                                // Name and info
-                                VStack(alignment: .leading, spacing: 3) {
-                                    HStack(spacing: 6) {
-                                        Text(user.name)
-                                            .font(.system(size: 16, weight: .bold))
-                                            .foregroundColor(HooplabTheme.textPrimary)
-
-                                        if user.isCurrentUser {
-                                            Text("ВЫ")
-                                                .font(.system(size: 10, weight: .heavy))
-                                                .foregroundColor(HooplabTheme.orangePrimary)
-                                                .padding(.horizontal, 6)
-                                                .padding(.vertical, 2)
-                                                .background(HooplabTheme.orangeSoft)
-                                                .cornerRadius(6)
-                                        }
-                                    }
-
-                                    Text("\(user.position) • #\(user.jersey)")
-                                        .font(.system(size: 12, weight: .regular))
-                                        .foregroundColor(HooplabTheme.textSecondary)
-                                }
-
-                                Spacer()
-
-                                // OVR Badge
-                                VStack(spacing: 0) {
-                                    Text("\(user.ovr)")
-                                        .font(.system(size: 18, weight: .heavy))
-                                        .foregroundColor(HooplabTheme.textPrimary)
-                                    Text("OVR")
-                                        .font(.system(size: 8, weight: .heavy))
-                                        .foregroundColor(HooplabTheme.textSecondary)
-                                }
-                                .frame(width: 50, height: 44)
-                                .background(user.isCurrentUser ? HooplabTheme.orangeSoft : HooplabTheme.bgNav)
-                                .cornerRadius(12)
-                            }
-                            .padding(.horizontal, 14)
-                            .padding(.vertical, 12)
-                            .background(HooplabTheme.cardBg)
-                            .cornerRadius(16)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(user.isCurrentUser ? HooplabTheme.orangePrimary : HooplabTheme.cardBorder, lineWidth: user.isCurrentUser ? 1.5 : 1)
-                            )
-                            .shadow(color: HooplabTheme.shadowColor, radius: 4, x: 0, y: 1)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(program.tag)
+                                .font(.geist(11, weight: .bold))
+                                .foregroundColor(Color(hex: "FF7A33"))
+                            Text(program.localizedTitle(isEn: isEn))
+                                .font(.geist(22, weight: .bold))
+                                .foregroundColor(.white)
+                            Text(program.localizedDescription(isEn: isEn))
+                                .font(.geist(13, weight: .regular))
+                                .foregroundColor(.white.opacity(0.85))
                         }
+                        .padding(16)
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+
+                    Text(isEn ? "Drills in program" : "Упражнения в программе")
+                        .font(.geist(17, weight: .bold))
+                        .foregroundColor(HooplabTheme.textPrimary)
+
+                    ForEach(drills) { ex in
+                        Button {
+                            SoundAndHaptics.shared.vibrateClick()
+                            onSelectExercise(ex)
+                        } label: {
+                            ExerciseListCardView(exercise: ex, isEn: isEn)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(HooplabDimens.screenPaddingH)
+            }
+            .hooplabAurora()
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(isEn ? "Close" : "Закрыть") {
+                        dismiss()
+                    }
+                    .foregroundColor(HooplabTheme.primary)
                 }
             }
         }
