@@ -589,9 +589,12 @@ public class DataStore: ObservableObject {
                               let msg = errObj["message"] as? String {
                         // Firebase returned explicit auth error (INVALID_LOGIN_CREDENTIALS / EMAIL_NOT_FOUND / INVALID_PASSWORD)
                         let local = loadLocalAccounts()
-                        if let cached = local.first(where: { $0.email.lowercased() == email.lowercased() && $0.passwordHash == hashPassword(password) }) {
-                            finalizeAuthSession(uid: cached.uid, email: cached.email, name: cached.name, token: nil)
-                            return .success(())
+                        if let cached = local.first(where: { $0.email.lowercased() == email.lowercased() }) {
+                            if cached.passwordHash == hashPassword(password) {
+                                finalizeAuthSession(uid: cached.uid, email: cached.email, name: cached.name, token: nil)
+                                return .success(())
+                            }
+                            return .failure(NSError(domain: "Auth", code: 401, userInfo: [NSLocalizedDescriptionKey: isEnglish ? "Invalid email or password" : "Неверный email или пароль"]))
                         }
                         return .failure(NSError(domain: "Auth", code: http.statusCode, userInfo: [NSLocalizedDescriptionKey: mapFirebaseAuthError(msg)]))
                     }
@@ -640,23 +643,36 @@ public class DataStore: ObservableObject {
                         return .success(())
                     } else if let errObj = json["error"] as? [String: Any],
                               let msg = errObj["message"] as? String {
-                        return .failure(NSError(domain: "Auth", code: http.statusCode, userInfo: [NSLocalizedDescriptionKey: mapFirebaseAuthError(msg)]))
+                        let userValidationErrors: Set<String> = [
+                            "EMAIL_EXISTS",
+                            "WEAK_PASSWORD",
+                            "INVALID_EMAIL",
+                            "TOO_MANY_ATTEMPTS_TRY_LATER"
+                        ]
+                        if userValidationErrors.contains(msg) {
+                            return .failure(NSError(domain: "Auth", code: http.statusCode, userInfo: [NSLocalizedDescriptionKey: mapFirebaseAuthError(msg)]))
+                        }
+                        // Fallback 1:1 like Android UserRepository.kt when Firebase Auth isn't configured or unavailable
+                        return registerLocally(name: name, email: email, password: password)
                     }
                 }
             } catch {
-                // Offline fallback
-                var local = loadLocalAccounts()
-                if local.contains(where: { $0.email.lowercased() == email.lowercased() }) {
-                    return .failure(NSError(domain: "Auth", code: -1, userInfo: [NSLocalizedDescriptionKey: isEnglish ? "User already exists" : "Пользователь уже существует"]))
-                }
-                let uid = "local_\(UUID().uuidString.prefix(8))"
-                local.append(LocalUserAccount(uid: uid, name: name, email: email, passwordHash: hashPassword(password)))
-                saveLocalAccounts(local)
-                finalizeAuthSession(uid: uid, email: email, name: name, token: nil)
-                return .success(())
+                return registerLocally(name: name, email: email, password: password)
             }
         }
-        return .failure(NSError(domain: "Auth", code: -1, userInfo: [NSLocalizedDescriptionKey: isEnglish ? "Registration failed" : "Ошибка регистрации"]))
+        return registerLocally(name: name, email: email, password: password)
+    }
+
+    private func registerLocally(name: String, email: String, password: String) -> Result<Void, Error> {
+        var local = loadLocalAccounts()
+        if local.contains(where: { $0.email.lowercased() == email.lowercased() }) {
+            return .failure(NSError(domain: "Auth", code: -1, userInfo: [NSLocalizedDescriptionKey: isEnglish ? "User already exists" : "Пользователь с таким email уже существует"]))
+        }
+        let uid = "local_\(UUID().uuidString.prefix(8))"
+        local.append(LocalUserAccount(uid: uid, name: name, email: email, passwordHash: hashPassword(password)))
+        saveLocalAccounts(local)
+        finalizeAuthSession(uid: uid, email: email, name: name, token: nil)
+        return .success(())
     }
 
     public func sendPasswordReset(email: String) async -> Result<Void, Error> {
@@ -857,6 +873,10 @@ public class DataStore: ObservableObject {
             return isEnglish ? "Password must be at least 6 characters" : "Пароль должен быть не менее 6 символов"
         case "INVALID_EMAIL":
             return isEnglish ? "Enter a valid email" : "Введите корректный email"
+        case "CONFIGURATION_NOT_FOUND", "OPERATION_NOT_ALLOWED":
+            return isEnglish
+                ? "Account not found locally. Please register (or enable Email/Password in Firebase Console)."
+                : "Аккаунт не найден на устройстве. Нажмите «Зарегистрируйтесь» (или включите Email/Password в Firebase Console)."
         default:
             return code
         }

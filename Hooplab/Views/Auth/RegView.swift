@@ -263,6 +263,9 @@ public struct RegView: View {
             switch res {
             case .success:
                 dataStore.showToast(dataStore.isEnglish ? "Registration successful!" : "Регистрация успешна!")
+                withAnimation(Animation.easeInOut(duration: 0.3)) {
+                    dataStore.route = .main
+                }
                 dismiss()
             case .failure(let err):
                 dataStore.showToast(err.localizedDescription)

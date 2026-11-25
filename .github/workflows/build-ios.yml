@@ -52,3 +52,41 @@ jobs:
           name: Hooplab-iOS-IPA
           path: Hooplab.ipa
           retention-days: 14
+
+  build-simulator:
+    name: Build Simulator App (Browser Emulator)
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Resolve Swift Package Dependencies
+        run: |
+          xcodebuild -resolvePackageDependencies -project Hooplab.xcodeproj -scheme Hooplab
+
+      - name: Build Simulator App
+        run: |
+          xcodebuild -project Hooplab.xcodeproj \
+            -scheme Hooplab \
+            -configuration Release \
+            -sdk iphonesimulator \
+            -destination "generic/platform=iOS Simulator" \
+            -derivedDataPath build_sim \
+            build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            COMPILER_INDEX_STORE_ENABLE=NO
+
+      - name: Package Simulator App ZIP
+        run: |
+          cd build_sim/Build/Products/Release-iphonesimulator
+          zip -qr "$GITHUB_WORKSPACE/Hooplab-Simulator.zip" Hooplab.app
+          ls -lh "$GITHUB_WORKSPACE/Hooplab-Simulator.zip"
+
+      - name: Upload Simulator Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Hooplab-iOS-Simulator
+          path: Hooplab-Simulator.zip
+          retention-days: 14
