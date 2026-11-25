@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import SwiftUI
 import UIKit
-import UserNotifications
+@preconcurrency import UserNotifications
 import CryptoKit
 
 // MARK: - App Routing & Streak Models
@@ -261,17 +261,19 @@ public class DataStore: ObservableObject {
         center.removePendingNotificationRequests(withIdentifiers: ["hooplab_daily_streak"])
         guard enabled else { return }
 
+        let isEn = self.isEnglish
+        let streak = self.streakState.streakDays
+
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
             guard granted else { return }
             let content = UNMutableNotificationContent()
-            content.title = self.isEnglish ? "🏀 Your streak is on the line!" : "🏀 Твой стрик под угрозой!"
-            let streak = self.streakState.streakDays
+            content.title = isEn ? "🏀 Your streak is on the line!" : "🏀 Твой стрик под угрозой!"
             if streak > 0 {
-                content.body = self.isEnglish
+                content.body = isEn
                     ? "You're on a \(streak)-day streak! Complete a quick workout today to keep it burning."
                     : "У тебя серия из \(streak) дн. подряд! Сделай короткую тренировку сегодня, чтобы не сгорел прогресс."
             } else {
-                content.body = self.isEnglish
+                content.body = isEn
                     ? "Time to hit the court! Complete a 10-minute warmup or shooting session today."
                     : "Время выйти на корт! Пройди 10-минутную разминку или броски сегодня."
             }
@@ -334,7 +336,7 @@ public class DataStore: ObservableObject {
         let totalStreak = StatsCalculator.currentStreak(completedSessions)
 
         var cal = Calendar.current
-        cal.firstDayOfWeek = 2 // Monday
+        cal.firstWeekday = 2 // Monday
         let now = Date()
         let weekday = cal.component(.weekday, from: now) // 1=Sun, 2=Mon..7=Sat
         let todayIdx = (weekday == 1) ? 6 : (weekday - 2)

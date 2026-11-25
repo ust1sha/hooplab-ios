@@ -79,8 +79,8 @@ public struct FavoritesView: View {
                                     isEn: isEn,
                                     isFavorite: true
                                 ) {
-                                    withAnimation(.easeInOut(duration: 0.2)) {
-                                        dataStore.toggleFavorite(id: exercise.id)
+                                    withAnimation(Animation.easeInOut(duration: 0.2)) {
+                                        _ = dataStore.toggleFavorite(id: exercise.id)
                                     }
                                 }
                             }
